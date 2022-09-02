@@ -48,4 +48,11 @@ abstract class FormComponent extends Component
 
         return null;
     }
+
+    protected function getKey(?string $model, ?string $id = null):string
+    {
+        $section = self::getSection($model);
+
+        return $id ?? $section ?? md5(time());
+    }
 }

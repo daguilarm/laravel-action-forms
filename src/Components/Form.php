@@ -9,16 +9,21 @@ class Form extends FormComponent
 {
     public ?string $section = null;
 
+    public string $formId;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(public string $action, protected ?string $model = null, public ?string $id = null)
+    public function __construct(public string $action, protected ?string $model = null, public ?string $key = null)
     {
-        $this->model = parent::getModel($model, $id);
+        // Get the model instance and the current section
+        $this->model = parent::getModel($model, $key);
         $this->section = parent::getSection($model);
+        $this->formId = parent::getKey($model, $key);
 
+        // Create the form binding
         View::composer('action-forms::*', function($view) {
             $view->with('modelBinding', json_decode($this->model));
         });

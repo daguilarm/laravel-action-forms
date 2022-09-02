@@ -1,5 +1,5 @@
 @if($modelBinding)
-    <form {{ $attributes }} action="{{ $action }}" dusk="form-create-{{ $id ?? $section ?? 'crud' }}">
+    <form {{ $attributes }} action="{{ $action }}" dusk="form-create-{{ $formId }}">
         @csrf
         {{ $slot }}
     </form>
