@@ -28,7 +28,7 @@ final class ServiceProvider extends PackageProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/action-forms.php', 'action-forms');
+        $this->mergeConfigFrom(__DIR__.'/../config/action-forms.php', 'action-forms');
     }
 
     /**
@@ -63,11 +63,11 @@ final class ServiceProvider extends PackageProvider
     private function bootDirectives(): void
     {
         Blade::directive('ActionForms', function (string $expression) {
-            return "<?php echo '<script defer src=\"". config('action-forms.cdn.javascript.alpinejs')."\"></script><script src=\"https://cdn.tailwindcss.com\"></script>'; ?>";
+            return "<?php echo '<script defer src=\"".config('action-forms.cdn.javascript.alpinejs')."\"></script><script src=\"https://cdn.tailwindcss.com\"></script>'; ?>";
         });
 
         Blade::directive('ActionFormsAlpine', function (string $expression) {
-            return "<?php echo '<script defer src=\"". config('action-forms.cdn.javascript.alpinejs')."\"></script>'; ?>";
+            return "<?php echo '<script defer src=\"".config('action-forms.cdn.javascript.alpinejs')."\"></script>'; ?>";
         });
 
         Blade::directive('ActionFormsTailwind', function (string $expression) {
@@ -81,7 +81,7 @@ final class ServiceProvider extends PackageProvider
     private function bootPublishAssets(): void
     {
         $this->publishes([
-            __DIR__ . '/../resources/views' => $this->app->resourcePath('views/vendor/laravel-action-forms'),
+            __DIR__.'/../resources/views' => $this->app->resourcePath('views/vendor/laravel-action-forms'),
         ], 'views');
     }
 }

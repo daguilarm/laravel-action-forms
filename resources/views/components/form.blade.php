@@ -1,4 +1,4 @@
-@if($model)
+@if($modelBinding)
     <form {{ $attributes }} action="{{ $action }}" dusk="form-create-{{ $id ?? $section ?? 'crud' }}">
         @csrf
         {{ $slot }}

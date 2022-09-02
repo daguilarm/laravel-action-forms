@@ -16,20 +16,19 @@ abstract class FormComponent extends Component
     /**
      * Get the model if exists.
      */
-    protected function getModel(?string $model): ?object 
+    protected function getModel(?string $model, ?string $id = null): ?object
     {
-        if($model) {
-            if (class_exists($model)) {
-                return app($model);
-            }
+        if ($model) {
+            $instance = match (true) {
+                class_exists($model) => app($model),
+                class_exists('\App\\'.$model) => app('\App\\'.$model),
+                class_exists('\App\Models\\'.$model) => app('\App\Models\\'.$model),
+                default => null,
+            };
 
-            if (class_exists('\App\\' . $model)) {
-                return app('\App\\' . $model);
-            }
-
-            if (class_exists('\App\Models\\' . $model)) {
-                return app('\App\Models\\' . $model);
-            }
+            return $id && $instance
+                ? $instance::find($id)
+                : $instance;
         }
 
         return null;
@@ -40,9 +39,9 @@ abstract class FormComponent extends Component
      */
     protected function getSection(?string $model): ?string
     {
-        if($model) {
+        if ($model) {
             $_array = explode('\\', $model);
-            $_array_text = $_array[count($_array)-1];
+            $_array_text = $_array[count($_array) - 1];
 
             return str($_array_text)->lower()->plural()->toString();
         }

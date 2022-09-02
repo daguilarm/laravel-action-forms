@@ -12,6 +12,7 @@ return [
 
         // Base
         'form' => Components\Form::class,
+        'input' => Components\Input::class,
     ],
 
     /*
@@ -29,7 +30,7 @@ return [
     'cdn' => [
         'javascript' => [
             'alpinejs' => 'https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js',
-            'tailwind' => 'https://cdn.tailwindcss.com'
+            'tailwind' => 'https://cdn.tailwindcss.com',
         ],
     ],
 ];

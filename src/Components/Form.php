@@ -3,6 +3,7 @@
 namespace Daguilarm\ActionForms\Components;
 
 use Daguilarm\ActionForms\FormComponent;
+use Illuminate\Support\Facades\View;
 
 class Form extends FormComponent
 {
@@ -13,10 +14,12 @@ class Form extends FormComponent
      *
      * @return void
      */
-    public function __construct(public string $action, public ?string $model = null)
+    public function __construct(public string $action, protected ?string $model = null, public ?string $id = null)
     {
-        $this->model = parent::getModel($model);
+        $this->model = parent::getModel($model, $id);
         $this->section = parent::getSection($model);
+
+        View::share('modelBinding', json_decode($this->model));
     }
 
     /**
