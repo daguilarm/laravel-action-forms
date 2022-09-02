@@ -56,7 +56,7 @@ module.exports = {
 
 The soported methods for the form are:
 
-- **post**: Is the default value if you keep this empty. Will send a `POST` `_method` to **Laravel**.
+- **post**: Is the default value if you keep this attribute empty. Will send a `POST` `_method` to **Laravel**.
 - **get**: Will send a `GET` `_method` to **Laravel**.
 - **update** and **edit**: Will send a `PATCH` `_method` to **Laravel**. You can use either.
 - **delete** and **destroy**: Will send a `DELETE` `_method` to **Laravel**. You can use either.
@@ -87,4 +87,4 @@ Will render a `<label>` tag like: `<label>My name</label/>`.
 
 ### Width 
 
-The `width` parameter allow you to set the container width using **tailwindcss** styles like: `w-1/2`, `w-2/3`,... If you remove the `width` parameter, the default value will be 'w-full'.
+The `width` parameter allow you to set the container width using **tailwindcss** styles like: `w-1/2`, `w-2/3`,... If you remove the `width` parameter, the default value will be `w-full`.
