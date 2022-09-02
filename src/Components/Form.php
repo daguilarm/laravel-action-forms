@@ -19,7 +19,9 @@ class Form extends FormComponent
         $this->model = parent::getModel($model, $id);
         $this->section = parent::getSection($model);
 
-        View::share('modelBinding', json_decode($this->model));
+        View::composer('action-forms::*', function($view) {
+            $view->with('modelBinding', json_decode($this->model));
+        });
     }
 
     /**
