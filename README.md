@@ -73,6 +73,7 @@ The `input` field use all the supported parameters, like: `type`, `name`, `place
         name="name"
         label="My name"
         placehoder="..."
+        helper="This is a way to explain something..."
         class="p-2"
         required
     />
@@ -88,3 +89,7 @@ Will render a `<label>` tag like: `<label>My name</label/>`.
 ### Width 
 
 The `width` parameter allow you to set the container width using **tailwindcss** styles like: `w-1/2`, `w-2/3`,... If you remove the `width` parameter, the default value will be `w-full`.
+
+## Helper 
+
+Will show a helper message after the input.

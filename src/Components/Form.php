@@ -16,8 +16,10 @@ class Form extends FormComponent
      *
      * @return void
      */
-    public function __construct(public string $action, protected ?string $model = null, public ?string $key = null)
+    public function __construct(public string $action, protected ?string $model = null, public ?string $key = null, public string $method = 'post')
     {
+        $this->method = $method;
+
         // Get the model instance and the current section
         $this->model = parent::getModel($model, $key);
         $this->section = parent::getSection($model);

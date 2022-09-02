@@ -1,14 +1,3 @@
-@props([
-    'method' => match($method) {
-        'get' => 'GET',
-        'delete' => 'DELETE',
-        'destroy' => 'DELETE',
-        'update' => 'PATCH',
-        'edit' => 'PATCH',
-        default => 'POST',
-    }
-])
-
 <div x-data="{}">
     @if($modelBinding)
         <form 
@@ -18,7 +7,14 @@
             class="w-full"
         >
             @csrf
-            @method($method)
+            @method(match($method) {
+                'get' => 'GET',
+                'delete' => 'DELETE',
+                'destroy' => 'DELETE',
+                'update' => 'PATCH',
+                'edit' => 'PATCH',
+                default => 'POST',
+            })
 
             {{ $slot }}
         </form>
