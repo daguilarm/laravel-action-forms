@@ -1,5 +1,5 @@
 {
-    "name": "daguilarm/action-forms",
+    "name": "daguilarm/laravel-action-forms",
     "description": "A package to manage forms with Laravel, using only one blade file for all your views (index, edit and show).",
     "keywords": [
         "laravel",
@@ -16,23 +16,25 @@
     ],
     "autoload": {
         "psr-4": {
-            "Daguilarm\\Forms\\": "src/"
+            "Daguilarm\\ActionForms\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Daguilarm\\Forms\\Tests\\": "tests/"
+            "Daguilarm\\ActionForms\\Tests\\": "tests/"
         }
     },
     "require": {
         "php": "^8.0",
-        "laravel/framework": "^9.0"
+        "illuminate/support": "^8.70|^9.0",
+        "illuminate/view": "^8.70|^9.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^7.0|^v6.24.1",
         "friendsofphp/php-cs-fixer": "^3.8",
+        "laravel/pint": "^1.1",
         "nunomaduro/collision": "^6.0|^5.0",
         "nunomaduro/larastan": "^2.0.1|^1.0.3",
+        "orchestra/testbench": "^7.0|^v6.24.1",
         "pestphp/pest": "^v1.21.3",
         "pestphp/pest-plugin-laravel": "^1.1",
         "phpstan/extension-installer": "^1.1",
@@ -56,7 +58,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Daguilarm\\Forms\\ServiceProvider"
+                "Daguilarm\\ActionForms\\ServiceProvider"
             ]
         }
     },
