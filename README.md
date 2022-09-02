@@ -31,6 +31,16 @@ If you prefer, you can add this requirements using CDN, and we have created a fe
 @ActionFormsTailwind
 ```
 
+You have to add to your tailwind.config.js the next line:
+
+``` 
+module.exports = {
+    content: [
+        ...
+        './vendor/laravel-action-forms/resources/views/**/*.php',
+    ],
+```
+
 ## Create a form 
 ```
 <x-form
@@ -44,3 +54,18 @@ If you prefer, you can add this requirements using CDN, and we have created a fe
 </x-form>
 ```
 
+## Create a input field
+```
+<x-form>
+    <x-input
+        type="text"
+        width="1/2"
+        name="name"
+        label="My name"
+        class="p-2"
+        required
+    />
+</x-form>
+```
+
+The `width` parameter support the next values: `1/5`, `1/4`, `1/3`, `1/2`. And if you remove the parameter, the width will be 100%.
