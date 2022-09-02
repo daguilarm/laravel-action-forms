@@ -1,16 +1,65 @@
 {
-    "name": "daguilarm/forms",
-    "description": "A Laravel Nova",
+    "name": "daguilarm/action-forms",
+    "description": "A package to manage forms with Laravel, using only one blade file for all your views (index, edit and show).",
+    "keywords": [
+        "laravel",
+        "blade",
+        "forms",
+        "actions"
+    ],
     "license": "MIT",
+    "authors": [
+        {
+            "name": "daguilarm",
+            "email": "damian.aguilarm@gmail.com"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Daguilarm\\Forms\\": "src/"
         }
     },
-    "authors": [
-        {
-            "name": "A package to manage forms with Laravel, using only one blade file for all your views (index, edit and show)."
+    "autoload-dev": {
+        "psr-4": {
+            "Daguilarm\\Forms\\Tests\\": "tests/"
         }
-    ],
-    "require": {}
+    },
+    "require": {
+        "php": "^8.0",
+        "laravel/framework": "^9.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^7.0|^v6.24.1",
+        "friendsofphp/php-cs-fixer": "^3.8",
+        "nunomaduro/collision": "^6.0|^5.0",
+        "nunomaduro/larastan": "^2.0.1|^1.0.3",
+        "pestphp/pest": "^v1.21.3",
+        "pestphp/pest-plugin-laravel": "^1.1",
+        "phpstan/extension-installer": "^1.1",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.0",
+        "phpunit/phpunit": "^9.5"
+    },
+    "scripts": {
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Daguilarm\\Forms\\ServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
