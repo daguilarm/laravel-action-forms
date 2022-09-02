@@ -1,17 +1,28 @@
-@if($modelBinding)
-    <form 
-        {{ $attributes }} 
-        action="{{ $action }}" 
-        dusk="form-create-{{ $formId }}"
-        class="w-full"
-    >
-        @csrf
+@props([
+    'method' => match($method) {
+        'get' => 'GET',
+        'delete' => 'DELETE',
+        'destroy' => 'DELETE',
+        'update' => 'PATCH',
+        'edit' => 'PATCH',
+        default => 'POST',
+    }
+])
 
+<div x-data="{}">
+    @if($modelBinding)
+        <form 
+            {{ $attributes }} 
+            action="{{ $action }}" 
+            dusk="form-create-{{ $formId }}"
+            class="w-full"
+        >
+            @csrf
+            @method($method)
+
+            {{ $slot }}
+        </form>
+    @else
         {{ $slot }}
-    </form>
-@else
-    {{ $slot }}
-@endif
-
-{{-- Default tailwind values for width --}}
-<span class="w-1/5 w-1/4 w-1/3 w-1/2 w-full"></span>
+    @endif
+</div>

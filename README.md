@@ -54,7 +54,17 @@ module.exports = {
 </x-form>
 ```
 
+The soported methods for the form are:
+
+- **post**: Is the default value if you keep this empty. Will send a `POST` `_method` to **Laravel**.
+- **get**: Will send a `GET` `_method` to **Laravel**.
+- **update** and **edit**: Will send a `PATCH` `_method` to **Laravel**. You can use either.
+- **delete** and **destroy**: Will send a `DELETE` `_method` to **Laravel**. You can use either.
+
 ## Create a input field
+
+The `input` field use all the supported parameters, like: `type`, `name`, `placehoder`, `required`, etc... The basic example of an `input` field will be:
+
 ```
 <x-form>
     <x-input
@@ -62,10 +72,19 @@ module.exports = {
         width="1/2"
         name="name"
         label="My name"
+        placehoder="..."
         class="p-2"
         required
     />
 </x-form>
 ```
 
-The `width` parameter support the next values: `1/5`, `1/4`, `1/3`, `1/2`. And if you remove the parameter, the width will be 100%.
+An `input` field, has also a list of custom parameters like:
+
+### Label 
+
+Will render a `<label>` tag like: `<label>My name</label/>`.
+
+### Width 
+
+The `width` parameter allow you to set the container width using **tailwindcss** styles like: `w-1/2`, `w-2/3`,... If you remove the `width` parameter, the default value will be 'w-full'.
