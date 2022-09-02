@@ -1,6 +1,6 @@
 <?php
 
-namespace Daguilarm\Forms;
+namespace Daguilarm\ActionForms;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider as PackageProvider;
@@ -15,7 +15,12 @@ final class ServiceProvider extends PackageProvider
     {
         //Resources
         $this->bootResources();
+        $this->bootDirectives();
         $this->bootBladeComponents();
+
+        if ($this->app->runningInConsole()) {
+            $this->bootPublishAssets();
+        }
     }
 
     /**
@@ -23,11 +28,11 @@ final class ServiceProvider extends PackageProvider
      */
     public function register(): void
     {
-        //
+        $this->mergeConfigFrom(__DIR__ . '/../config/action-forms.php', 'action-forms');
     }
 
     /**
-     * Register the package resources
+     * Boot the package resources
      */
     private function bootResources(): void
     {
@@ -36,7 +41,7 @@ final class ServiceProvider extends PackageProvider
     }
 
     /**
-     * Register the package blade components
+     * Boot the package blade components
      */
     private function bootBladeComponents(): void
     {
@@ -50,5 +55,33 @@ final class ServiceProvider extends PackageProvider
                 $blade->component($componentClass, $alias, $prefix);
             }
         });
+    }
+
+    /**
+     * Boot the package blade directives
+     */
+    private function bootDirectives(): void
+    {
+        Blade::directive('ActionForms', function (string $expression) {
+            return "<?php echo '<script defer src=\"". config('action-forms.cdn.javascript.alpinejs')."\"></script><script src=\"https://cdn.tailwindcss.com\"></script>'; ?>";
+        });
+
+        Blade::directive('ActionFormsAlpine', function (string $expression) {
+            return "<?php echo '<script defer src=\"". config('action-forms.cdn.javascript.alpinejs')."\"></script>'; ?>";
+        });
+
+        Blade::directive('ActionFormsTailwind', function (string $expression) {
+            return "<?php echo '<script src=\"https://cdn.tailwindcss.com\"></script>'; ?>";
+        });
+    }
+
+    /**
+     * Publish the package assets
+     */
+    private function bootPublishAssets(): void
+    {
+        $this->publishes([
+            __DIR__ . '/../resources/views' => $this->app->resourcePath('views/vendor/laravel-action-forms'),
+        ], 'views');
     }
 }
