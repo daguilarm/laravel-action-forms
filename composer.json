@@ -1,0 +1,16 @@
+{
+    "name": "daguilarm/forms",
+    "description": "A Laravel Nova",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Daguilarm\\Forms\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "A package to manage forms with Laravel, using only one blade file for all your views (index, edit and show)."
+        }
+    ],
+    "require": {}
+}
