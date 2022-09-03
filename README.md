@@ -54,6 +54,16 @@ module.exports = {
 </x-form>
 ```
 
+An `form` field, has also a list of custom parameters like:
+
+## model 
+
+It is the current model, for model binding.
+
+## key
+
+It is the current model id value, for model binding.
+
 The soported methods for the form are:
 
 - **post**: Is the default value if you keep this attribute empty. Will send a `POST` `_method` to **Laravel**.
