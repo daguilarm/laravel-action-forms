@@ -7,7 +7,7 @@
 composer require daguilarm/laravel-action-forms
 ```
 
-## Requirements 
+## Requirements and configuration
 
 This package use:
 
@@ -39,6 +39,34 @@ module.exports = {
         ...
         './vendor/laravel-action-forms/resources/views/**/*.php',
     ],
+```
+
+You can modify the package theme, using the config file:
+
+```js
+/*
+|--------------------------------------------------------------------------
+| Theme
+|--------------------------------------------------------------------------
+*/
+'theme' => [
+    'label-color' => 'text-gray-500',
+    'element-bg-color' => 'bg-gray-50',
+    'element-color' => 'text-gray-400', // Text color for input, textarea,...
+    'element-focus' => 'focus:border-gray-500 focus:ring-gray-500', // Border color on focus for input, textarea,...
+    'element-placeholder' => 'text-gray-400',
+    'helper-color' => 'text-gray-400',
+    'error-color' => 'text-red-500',
+    'addons' => 'bg-gray-200 text-gray-400',
+    'shadow' => false,
+    ...
+],
+```
+
+For this you need to publish the configuration file:
+
+```
+php artisan vendor:publish --provider="Daguilarm\ActionForms\CookieConsentServiceProvider"
 ```
 
 ## Important!
