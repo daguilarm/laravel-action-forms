@@ -42,7 +42,8 @@ module.exports = {
 ```
 
 ## Create a form 
-```
+
+```html
 <x-form
     id="form"
     method="post"
@@ -75,7 +76,7 @@ The soported methods for the form are:
 
 The `input` field use all the supported parameters, like: `type`, `name`, `placehoder`, `required`, etc... The basic example of an `input` field will be:
 
-```
+```html
 <x-form>
     <x-input
         type="text"
@@ -108,7 +109,7 @@ Will show a helper message after the input.
 
 This will allow us to create dependent fields, for example:
 
-```
+```html
 <x-form>
     <x-input
         type="text"
