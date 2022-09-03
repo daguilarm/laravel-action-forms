@@ -11,7 +11,7 @@ class Input extends FormComponent
      *
      * @return void
      */
-    public function __construct(public ?string $label = null, public ?string $width = 'full') {}
+    public function __construct(public ?string $label = null, public ?string $width = 'full', public ?string $dependOn = null) {}
     
     /**
      * Get the view / contents that represent the component.

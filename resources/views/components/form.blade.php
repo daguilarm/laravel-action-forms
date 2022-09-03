@@ -1,9 +1,16 @@
-<div x-data="{}">
+@php
+    $id = $attributes->get('id');
+@endphp
+
+<div 
+    x-data="{formData: []}" 
+    id="laravel-action-form-component"
+>
     @if($modelBinding)
         <form 
             {{ $attributes }} 
             action="{{ $action }}" 
-            dusk="form-create-{{ $formId }}"
+            dusk="form-create-{{ $id }}"
             class="w-full"
         >
             @csrf

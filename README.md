@@ -93,3 +93,30 @@ The `width` parameter allow you to set the container width using **tailwindcss**
 ## Helper 
 
 Will show a helper message after the input.
+
+## DependOn && dependOnType
+
+This will allow us to create dependent fields, for example:
+
+```
+<x-form>
+    <x-input
+        type="text"
+        name="name"
+        label="My name"
+        required
+    />
+    <x-input
+        type="text"
+        name="surname"
+        label="Surname"
+        dependOn="name"
+        dependOnType="hidden"
+        required
+    />
+</x-form>
+```
+
+In this case, the `surname` field will be hidden until the `name` field has a value. The system will be watching the `name` field until an `onchange` event occurs, and then it will check if the `name` field is still empty, if not, it will display the `surname` field. 
+
+The `dependOnType()` attribute admits two possible values: `hidden` or `disabled`.

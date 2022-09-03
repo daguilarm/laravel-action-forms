@@ -9,7 +9,7 @@ class Form extends FormComponent
 {
     public ?string $section = null;
 
-    public string $formId;
+    public string $formId = '';
 
     /**
      * Create a new component instance.
@@ -23,11 +23,11 @@ class Form extends FormComponent
         // Get the model instance and the current section
         $this->model = parent::getModel($model, $key);
         $this->section = parent::getSection($model);
-        $this->formId = parent::getKey($model, $key);
 
         // Create the form binding
         View::composer('action-forms::*', function($view) {
-            $view->with('modelBinding', json_decode($this->model));
+            $view
+                ->with('modelBinding', json_decode($this->model));
         });
     }
 
