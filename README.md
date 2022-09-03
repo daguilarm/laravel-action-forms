@@ -111,7 +111,7 @@ This will allow us to create dependent fields, for example:
         name="surname"
         label="Surname"
         dependOn="name"
-        dependOnType="hidden"
+        dependOnType="hidden" // or dependOnType="disabled"
         required
     />
 </x-form>
