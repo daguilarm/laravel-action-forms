@@ -22,32 +22,47 @@
 >
     {{-- Add label --}}
     @if($label)
-        <label for="email" class="w-auto text-base {{ config('action-forms.label-color') }} block font-medium">{{ $label }}</label>
+        <label 
+            for="{{ $element }}" 
+            class="w-auto text-base {{ config('action-forms.label-color') }} block font-medium"
+        >
+            {{ $label }}
+        </label>
     @endif
 
     {{-- Element --}}
     <div class="mt-1.5">
-        <input 
-            data-element="{{ $uniqueKey }}"
-            class="w-full p-1.5 rounded-md border text-base focus:outline-none {{ config('action-forms.shadow') ? 'shadow' : '' }} {{ config('action-forms.element-color') }} {{ config('action-forms.element-placeholder') }} {{ implode(' ', config('action-forms.element-focus')) }} @error($element) border-red-500 @else border-gray-200 @enderror" 
-
-            {{-- DependOn Conditions: Disabled --}}
-            @if($dependOnType === 'disabled')
-                x-bind:disabled="@json($dependOnValue)"
-            @endif
+        {{-- Only show --}}
+        @if($viewAction === 'show')
+            <div>
+                {{ $data->{$attributes->get('name')} }}
+            </div>
             
-            {{ $attributes }} 
-        />
-        
-        {{-- Validation errors --}}
-        @error($element)
-            <div class="p-1 mt-1 text-sm {{ config('action-forms.error-color') }} font-semibold">{{ $message }}</div>
-        @enderror
+        @else 
+            <input 
+                data-element="{{ $uniqueKey }}"
+                class="w-full p-1.5 rounded-md border text-base focus:outline-none {{ config('action-forms.shadow') ? 'shadow' : '' }} {{ config('action-forms.element-color') }} {{ config('action-forms.element-placeholder') }} {{ implode(' ', config('action-forms.element-focus')) }} @error($element) border-red-500 @else border-gray-200 @enderror" 
 
-        {{-- Helper text --}}
-        @if($helper)
-            <div class="p-1 mt-1 text-sm {{ config('action-forms.helper-color') }} italic font-normal">{{ $helper }}</div>
+                {{-- DependOn Conditions: Disabled --}}
+                @if($dependOnType === 'disabled')
+                    x-bind:disabled="@json($dependOnValue)"
+                @endif
+                
+                {{ $attributes }} 
+            />
+
+            {{-- Validation errors --}}
+            @error($element)
+                <div class="p-1 mt-1 text-sm {{ config('action-forms.error-color') }} font-semibold">{{ $message }}</div>
+            @enderror
+
+            {{-- Helper text --}}
+            @if($helper)
+                <div class="p-1 mt-1 text-sm {{ config('action-forms.helper-color') }} italic font-normal">{{ $helper }}</div>
+            @endif
+
         @endif
+
     </div>
 </div>
 

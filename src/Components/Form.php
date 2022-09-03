@@ -16,18 +16,13 @@ class Form extends FormComponent
      *
      * @return void
      */
-    public function __construct(public string $action, protected ?string $model = null, public ?string $key = null, public string $method = 'post')
+    public function __construct(public string $action, public string $method, public string $view, public ?object $data)
     {
-        $this->method = $method;
-
-        // Get the model instance and the current section
-        $this->model = parent::getModel($model, $key);
-        $this->section = parent::getSection($model);
-
         // Create the form binding
-        View::composer('action-forms::*', function($view) {
-            $view
-                ->with('modelBinding', json_decode($this->model));
+        View::composer('action-forms::*', function ($template) {
+            $template
+                ->with('data', isset($this->data) ? json_decode($this->data) : null)
+                ->with('viewAction', $this->view);
         });
     }
 

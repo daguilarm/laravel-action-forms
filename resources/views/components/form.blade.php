@@ -6,12 +6,15 @@
     x-data="{formData: []}" 
     id="laravel-action-form-component"
 >
-    @if($modelBinding)
+    @if($config->get('section') === 'show')
+        {{ $slot }}
+    @else
         <form 
             {{ $attributes }} 
             action="{{ $action }}" 
             dusk="form-create-{{ $id }}"
             class="w-full"
+            @isset($data) :data="$data" @endisset
         >
             @csrf
             @method(match($method) {
@@ -25,7 +28,5 @@
 
             {{ $slot }}
         </form>
-    @else
-        {{ $slot }}
     @endif
 </div>
