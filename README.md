@@ -67,7 +67,7 @@ It is the current model result. You have to pass the data for model binding.
 
 ### view
 
-It is the current view action: `index`, `edit`, `create` or `show`. This is for render the custom view for each action.
+It is the current view action: `edit`, `create` or `show`. This is for render the custom view for each action.
 
 ### method
 
