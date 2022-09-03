@@ -37,8 +37,16 @@
 
         {{-- Text version --}}
         @if($viewAction === 'show')
-            <div class="w-full p-2 border text-base focus:outline-none {{ $addons }} {{ config('action-forms.theme.element-bg-color') }} {{ config('action-forms.theme.shadow') ? 'shadow' : '' }} {{ config('action-forms.theme.element-color') }}">
-                {{ $data->{$attributes->get('name')} }}
+            <div class="flex">
+                {{-- Addon before --}}
+                @include('action-forms::elements.addon-before')
+
+                <div class="w-full p-2 border text-base focus:outline-none {{ $addons }} {{ config('action-forms.theme.element-bg-color') }} {{ config('action-forms.theme.shadow') ? 'shadow' : '' }} {{ config('action-forms.theme.element-color') }}">
+                    {{ $data->{$attributes->get('name')} }}
+                </div>
+
+                {{-- Addon after --}}
+                @include('action-forms::elements.addon-after')
             </div>
             
         {{-- Form version --}}
@@ -46,11 +54,7 @@
             <div class="flex">
                 
                 {{-- Addon before --}}
-                @if($before)
-                    <span class="px-3 inline-flex items-center rounded-l-md border border-r-0 {{ config('action-forms.theme.addons') }} @error($element) border-red-500 @else border-gray-200 @enderror">
-                        {{ $before }}
-                    </span>
-                @endif 
+                @include('action-forms::elements.addon-before')
 
                 <input 
                     data-element="{{ $uniqueKey }}"
@@ -64,6 +68,10 @@
                     
                     {{ $attributes }} 
                 />
+
+
+                {{-- Addon after --}}
+                @include('action-forms::elements.addon-after')
             </div>
 
             {{-- Validation errors --}}

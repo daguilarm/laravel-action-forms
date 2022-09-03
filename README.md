@@ -140,3 +140,31 @@ This will allow us to create dependent fields, for example:
 In this case, the `surname` field will be hidden until the `name` field has a value. The system will be watching the `name` field until an `onchange` event occurs, and then it will check if the `name` field is still empty, if not, it will display the `surname` field. 
 
 The `dependOnType()` attribute admits two possible values: `hidden` or `disabled`.
+
+### addons 
+
+You can add addons in front, behind or both. At the moment, it only supports text. In the future it will support icons.
+
+```html
+<x-form>
+    <x-input
+        id="url"
+        type="text"
+        name="url"
+        before="http://"
+    />
+    <x-input
+        id="email"
+        type="text"
+        name="email"
+        after="@"
+    />
+    <x-input
+        id="price"
+        type="text"
+        name="price"
+        before="$"
+        after="USD"
+    />
+</x-form>
+```
