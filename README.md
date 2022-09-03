@@ -85,6 +85,7 @@ The `input` field use all the supported parameters, like: `type`, `name`, `place
 ```html
 <x-form>
     <x-input
+        id="name"
         type="text"
         width="1/2"
         name="name"
@@ -118,12 +119,14 @@ This will allow us to create dependent fields, for example:
 ```html
 <x-form>
     <x-input
+        id="name"
         type="text"
         name="name"
         label="My name"
         required
     />
     <x-input
+        id="surname"
         type="text"
         name="surname"
         label="Surname"
