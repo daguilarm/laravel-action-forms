@@ -16,17 +16,17 @@ This package use:
 
 If you prefer, you can add this requirements using CDN, and we have created a few **Blade Directives** in order to help you. You can add this **Blade Directives** between your `<head></head>`:
 
-```
+```html
 # This will add the two CDNs into your Blade template.
 @ActionForms
 ```
 
-```
+```html
 # This will add the alpinejs CDN into your Blade template.
 @ActionFormsAlpine
 ```
 
-```
+```html
 # This will add the tailwindcss CDN into your Blade template.
 @ActionFormsTailwind
 ```
