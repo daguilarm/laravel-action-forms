@@ -1,5 +1,5 @@
 # laravel-action-forms (project in development...)
- A package to manage forms with Laravel, using only one blade file for all your views (create, edit and show).
+ A package to manage forms with Laravel, using only one blade file for all your views (create, edit and show). You will only need to create a file with your form (only once), and the package will automatically generate the views to create, edit and show.
 
 ## Install 
 
