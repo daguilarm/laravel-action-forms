@@ -33,7 +33,7 @@ If you prefer, you can add this requirements using CDN, and we have created a fe
 
 You have to add to your tailwind.config.js the next line:
 
-``` 
+```js
 module.exports = {
     content: [
         ...
