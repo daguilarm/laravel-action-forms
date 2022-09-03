@@ -57,11 +57,11 @@ module.exports = {
 
 An `form` field, has also a list of custom parameters like:
 
-## model 
+### model 
 
 It is the current model, for model binding. The model namespace.
 
-## key
+### key
 
 It is the current model id value, for model binding.
 
@@ -101,11 +101,11 @@ Will render a `<label>` tag like: `<label>My name</label/>`.
 
 The `width` parameter allow you to set the container width using **tailwindcss** styles like: `w-1/2`, `w-2/3`,... If you remove the `width` parameter, the default value will be `w-full`.
 
-## Helper 
+### Helper 
 
 Will show a helper message after the input.
 
-## DependOn && dependOnType
+### DependOn && dependOnType
 
 This will allow us to create dependent fields, for example:
 
