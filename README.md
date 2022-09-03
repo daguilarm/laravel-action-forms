@@ -58,7 +58,7 @@ An `form` field, has also a list of custom parameters like:
 
 ## model 
 
-It is the current model, for model binding.
+It is the current model, for model binding. The model namespace.
 
 ## key
 
