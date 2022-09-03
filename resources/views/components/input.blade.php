@@ -41,6 +41,7 @@
         @else 
             <input 
                 data-element="{{ $uniqueKey }}"
+                dusk="form-create-{{ $attributes->get('id') ?? $attributes->get('name') }}"
                 class="w-full p-1.5 rounded-md border text-base focus:outline-none {{ config('action-forms.shadow') ? 'shadow' : '' }} {{ config('action-forms.element-color') }} {{ config('action-forms.element-placeholder') }} {{ implode(' ', config('action-forms.element-focus')) }} @error($element) border-red-500 @else border-gray-200 @enderror" 
 
                 {{-- DependOn Conditions: Disabled --}}

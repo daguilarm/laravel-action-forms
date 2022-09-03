@@ -1,7 +1,3 @@
-@php
-    $id = $attributes->get('id');
-@endphp
-
 <div 
     x-data="{formData: []}" 
     id="laravel-action-form-component"
@@ -12,7 +8,7 @@
         <form 
             {{ $attributes }} 
             action="{{ $action }}" 
-            dusk="form-create-{{ $id }}"
+            dusk="form-create-{{ $attributes->get('id') ?? 'component' }}"
             class="w-full"
             @isset($data) :data="$data" @endisset
         >

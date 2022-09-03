@@ -41,6 +41,10 @@ module.exports = {
     ],
 ```
 
+## It would be advisable to avoid problems...
+
+In order to eliminate problems, always add an `id` element to each component.
+
 ## Create a form 
 
 ```html
