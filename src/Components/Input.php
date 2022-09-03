@@ -6,13 +6,21 @@ use Daguilarm\ActionForms\FormComponent;
 
 class Input extends FormComponent
 {
+    public string $addons = '';
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(public ?string $label = null, public ?string $width = 'full', public ?string $dependOn = null)
+    public function __construct(public ?string $label = null, public ?string $width = 'full', public ?string $dependOn = null, public bool $before = false, public bool $after = false)
     {
+        $this->addons = match (true) {
+            $after && $before => 'rounded-none',
+            $after => 'rounded-none rounded-l-md',
+            $before => 'rounded-none rounded-r-md',
+            default => 'rounded-md',
+        };
     }
 
     /**

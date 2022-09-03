@@ -2,7 +2,9 @@
     'dependOn' => $dependOn,
     'dependOnType' => $dependOnType ?? 'disable',
     'dependOnValue' => $dependOn ? true : false,
-    'inline' => false,
+    'after' => $after ? true : false,
+    'before' => $before ? true : false,
+    'addons' => $addons,
     'label' => $label,
     'width' => $width ?? 'w-full',
     'element' => $attributes->get('name'),
@@ -24,7 +26,7 @@
     @if($label)
         <label 
             for="{{ $element }}" 
-            class="w-auto text-base {{ config('action-forms.label-color') }} block font-medium"
+            class="w-auto text-base {{ config('action-forms.theme.label-color') }} block font-medium"
         >
             {{ $label }}
         </label>
@@ -32,34 +34,46 @@
 
     {{-- Element --}}
     <div class="mt-1.5">
-        {{-- Only show --}}
+
+        {{-- Text version --}}
         @if($viewAction === 'show')
-            <div>
+            <div class="w-full p-2 border text-base focus:outline-none {{ $addons }} {{ config('action-forms.theme.element-bg-color') }} {{ config('action-forms.theme.shadow') ? 'shadow' : '' }} {{ config('action-forms.theme.element-color') }}">
                 {{ $data->{$attributes->get('name')} }}
             </div>
             
+        {{-- Form version --}}
         @else 
-            <input 
-                data-element="{{ $uniqueKey }}"
-                dusk="form-create-{{ $attributes->get('id') ?? $attributes->get('name') }}"
-                class="w-full p-1.5 rounded-md border text-base focus:outline-none {{ config('action-forms.shadow') ? 'shadow' : '' }} {{ config('action-forms.element-color') }} {{ config('action-forms.element-placeholder') }} {{ implode(' ', config('action-forms.element-focus')) }} @error($element) border-red-500 @else border-gray-200 @enderror" 
-
-                {{-- DependOn Conditions: Disabled --}}
-                @if($dependOnType === 'disabled')
-                    x-bind:disabled="@json($dependOnValue)"
-                @endif
+            <div class="flex">
                 
-                {{ $attributes }} 
-            />
+                {{-- Addon before --}}
+                @if($before)
+                    <span class="px-3 inline-flex items-center rounded-l-md border border-r-0 {{ config('action-forms.theme.addons') }} @error($element) border-red-500 @else border-gray-200 @enderror">
+                        {{ $before }}
+                    </span>
+                @endif 
+
+                <input 
+                    data-element="{{ $uniqueKey }}"
+                    dusk="form-create-{{ $attributes->get('id') ?? $attributes->get('name') }}"
+                    class="w-full flex-1 py-1.5 px-2 {{ $addons }} border text-base focus:outline-none {{ config('action-forms.theme.element-bg-color') }} {{ config('action-forms.theme.shadow') ? 'shadow' : '' }} {{ config('action-forms.theme.element-color') }} {{ config('action-forms.theme.element-placeholder') }} {{ config('action-forms.theme.element-focus') }} @error($element) border-red-500 @else border-gray-200 @enderror" 
+    
+                    {{-- DependOn Conditions: Disabled --}}
+                    @if($dependOnType === 'disabled')
+                        x-bind:disabled="@json($dependOnValue)"
+                    @endif
+                    
+                    {{ $attributes }} 
+                />
+            </div>
 
             {{-- Validation errors --}}
             @error($element)
-                <div class="p-1 mt-1 text-sm {{ config('action-forms.error-color') }} font-semibold">{{ $message }}</div>
+                <div class="p-1 mt-1 text-sm {{ config('action-forms.theme.error-color') }} font-semibold">{{ $message }}</div>
             @enderror
 
             {{-- Helper text --}}
             @if($helper)
-                <div class="p-1 mt-1 text-sm {{ config('action-forms.helper-color') }} italic font-normal">{{ $helper }}</div>
+                <div class="p-1 mt-1 text-sm {{ config('action-forms.theme.helper-color') }} italic font-normal">{{ $helper }}</div>
             @endif
 
         @endif

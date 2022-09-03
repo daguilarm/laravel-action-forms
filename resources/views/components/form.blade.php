@@ -26,3 +26,4 @@
         </form>
     @endif
 </div>
+<span id="theme-safe-css" class="hidden @foreach(config('action-forms.theme') as $element){{ is_string($element) ? $element : '' }} @endforeach">Css Safe</span>

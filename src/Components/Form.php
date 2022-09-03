@@ -7,17 +7,13 @@ use Illuminate\Support\Facades\View;
 
 class Form extends FormComponent
 {
-    public ?string $section = null;
-
-    public string $formId = '';
-
     /**
      * Create a new component instance.
      *
      * @return void
      */
     public function __construct(public string $action, public string $method, public string $view, public ?object $data)
-    {
+    {        
         // Create the form binding
         View::composer('action-forms::*', function ($template) {
             $template
