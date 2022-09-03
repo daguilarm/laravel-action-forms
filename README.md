@@ -41,7 +41,7 @@ module.exports = {
     ],
 ```
 
-## It would be advisable to avoid problems...
+## Important!
 
 In order to eliminate problems, always add an `id` element to each component.
 
