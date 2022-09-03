@@ -1,4 +1,4 @@
-# laravel-action-forms
+# laravel-action-forms (project in development...)
  A package to manage forms with Laravel, using only one blade file for all your views (index, edit and show).
 
 ## Install 
@@ -107,7 +107,7 @@ The `width` parameter allow you to set the container width using **tailwindcss**
 
 Will show a helper message after the input.
 
-### dependOn && dependOnType
+### dependOn & dependOnType
 
 This will allow us to create dependent fields, for example:
 
