@@ -143,7 +143,7 @@ The `dependOnType()` attribute admits two possible values: `hidden` or `disabled
 
 ### addons 
 
-You can add addons in front, behind or both. At the moment, it only supports text. In the future it will support icons.
+You can add addons before, after or both. At the moment, it only supports text. In the future it will support icons.
 
 ```html
 <x-form>
