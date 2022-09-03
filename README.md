@@ -14,7 +14,7 @@ This package use:
 - https://tailwindcss.com/docs/installation
 - https://alpinejs.dev/essentials/installation
 
-If you prefer, you can add this requirements using CDN, and we have created a few **Blade Directives** in order to help you. You can add this **Blade Directives** between your `<head></head>`:
+If you prefer, you can add this requirements using CDN. We have created a few **Blade Directives** in order to help you. You can add this **Blade Directives** between your `<head></head>`:
 
 ```html
 <!-- This will add the two CDNs into your Blade template. -->
