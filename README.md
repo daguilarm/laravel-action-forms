@@ -48,8 +48,8 @@ module.exports = {
     id="form"
     method="post"
     action="/users/update"
-    model="\App\Models\User"
-    key="2"
+    data="\App\Models\User::find(3)"
+    view="show"
 >
     ...
 </x-form>
@@ -57,13 +57,15 @@ module.exports = {
 
 An `form` field, has also a list of custom parameters like:
 
-### model 
+### data 
 
-It is the current model, for model binding. The model namespace.
+It is the current model result. You have to pass the data for model binding.
 
-### key
+### view
 
-It is the current model id value, for model binding.
+It is the current view action: `index`, `edit`, `create` or `show`. This is for render the custom view for each action.
+
+### method
 
 The soported methods for the form are:
 
@@ -93,19 +95,19 @@ The `input` field use all the supported parameters, like: `type`, `name`, `place
 
 An `input` field, has also a list of custom parameters like:
 
-### Label 
+### label 
 
 Will render a `<label>` tag like: `<label>My name</label/>`.
 
-### Width 
+### width 
 
 The `width` parameter allow you to set the container width using **tailwindcss** styles like: `w-1/2`, `w-2/3`,... If you remove the `width` parameter, the default value will be `w-full`.
 
-### Helper 
+### helper 
 
 Will show a helper message after the input.
 
-### DependOn && dependOnType
+### dependOn && dependOnType
 
 This will allow us to create dependent fields, for example:
 
