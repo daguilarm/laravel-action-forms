@@ -63,7 +63,7 @@ final class ServiceProvider extends PackageProvider
     private function bootDirectives(): void
     {
         Blade::directive('ActionForms', function (string $expression) {
-            return "<?php echo '<script defer src=\"".config('action-forms.cdn.javascript.alpinejs')."\"></script><script src=\"https://cdn.tailwindcss.com\"></script>'; ?>";
+            return "<?php echo '<script defer src=\"".config('action-forms.cdn.javascript.alpinejs')."\"></script><script src=\"https://cdn.tailwindcss.com\"></script><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css\"><script src=\"https://cdn.jsdelivr.net/npm/flatpickr\"></script>'; ?>";
         });
 
         Blade::directive('ActionFormsAlpine', function (string $expression) {
@@ -72,6 +72,10 @@ final class ServiceProvider extends PackageProvider
 
         Blade::directive('ActionFormsTailwind', function (string $expression) {
             return "<?php echo '<script src=\"https://cdn.tailwindcss.com\"></script>'; ?>";
+        });
+
+        Blade::directive('ActionFormsflatpickr', function (string $expression) {
+            return "<?php echo '<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css\"><script src=\"https://cdn.jsdelivr.net/npm/flatpickr\"></script>'; ?>";
         });
     }
 

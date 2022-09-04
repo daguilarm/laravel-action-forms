@@ -13,11 +13,12 @@ This package use:
 
 - https://tailwindcss.com/docs/installation
 - https://alpinejs.dev/essentials/installation
+- https://flatpickr.js.org/getting-started/
 
 If you prefer, you can add this requirements using CDN. We have created a few **Blade Directives** in order to help you. You can add this **Blade Directives** between your `<head></head>`:
 
 ```html
-<!-- This will add the two CDNs into your Blade template. -->
+<!-- This will add all the needed CDNs into your Blade template. -->
 @ActionForms
 ```
 
@@ -29,6 +30,11 @@ If you prefer, you can add this requirements using CDN. We have created a few **
 ```html
 <!-- This will add the tailwindcss CDN into your Blade template. -->
 @ActionFormsTailwind
+```
+
+```html
+<!-- This will add the flatpickr CDN into your Blade template. -->
+@ActionFormsflatpickr
 ```
 
 You have to add to your tailwind.config.js the next lines:
