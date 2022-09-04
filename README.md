@@ -37,8 +37,6 @@ If you prefer, you can add this requirements using CDN. We have created a few **
 @ActionFormsFlatpickr
 ```
 
-**Important**: Don't use all the dependencies. Each component will inform you of the dependencies it requires. Only tailwindcss is required for all the components.
-
 You have to add to your tailwind.config.js the next lines:
 
 ```js
@@ -97,7 +95,8 @@ safelist: [
 
 ## Important!
 
-In order to eliminate problems, always add an `id` attribute to each component.
+- In order to eliminate problems, always add an `id` attribute to each component.
+- Don't use all the dependencies. Each component will inform you of the dependencies it requires. **Only tailwindcss is required for all the components**.
 
 ## Create a form 
 
