@@ -101,15 +101,6 @@ For this you need to publish the configuration file:
 php artisan vendor:publish --provider="Daguilarm\ActionForms\CookieConsentServiceProvider"
 ```
 
-Maybe you will need to add your `theme` configuration to your `tailwind.config.js` safe-list:
-
-```js
-// This are the default values used by the package
-safelist: [
-    'text-sm text-base text-white text-gray-400 text-gray-500 text-red-500 font-semibold font-medium bg-white bg-gray-400 border border-gray-200 border-gray-400 border-red-500 italic shadow focus:border-gray-500 focus:ring-gray-500 placeholder:text-gray-300 placeholder:italic',
-],
-```
-
 ## Important!
 
 - In order to eliminate problems, always add an `id` attribute to each component.
@@ -245,8 +236,50 @@ You can add addons before, after or both. At the moment, it only supports text. 
 
 > This component requires the **alpinejs** dependency.
 
-working on it...
+```html
+<x-form>
+    <x-textarea
+        width="w-1/3"
+        name="description"
+        label="Description"
+        placeholder="description..."
+        maxlength="300"
+        :count="true"
+        rows="10"
+        required
+    />
+</x-form>
+```
+
+An `textarea` field, has also a list of custom parameters like:
+
+### label 
+
+Will render a `<label>` tag like: `<label>My name</label/>`.
+
+### width 
+
+The `width` parameter allow you to set the container width using **tailwindcss** styles like: `w-1/2`, `w-2/3`,... If you remove the `width` parameter, the default value will be `w-full`.
+
+### helper 
+
+Will show a helper message after the input.
+
+### maxlength 
+
+It is used to determine the maximum number of characters allowed. By default it will be 220.
+
+### count 
+
+This field only admits boolean values. It is used to indicate if we want to show the characters used and the remaining characters. By default it is disabled.
+
+### rows 
+
+Indicates the default number of rows that the textarea will have. The default value is 4.
+
 ## Checkbox 
+working on it...
+
 ## Radio 
 ## File 
 ## Select 

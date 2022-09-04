@@ -2,8 +2,9 @@
 
 namespace Daguilarm\ActionForms\Components;
 
-use Daguilarm\ActionForms\FormComponent;
 use Illuminate\Support\Facades\View;
+use Daguilarm\ActionForms\FormComponent;
+use Illuminate\View\View as ViewResponse;
 
 class Form extends FormComponent
 {
@@ -28,10 +29,8 @@ class Form extends FormComponent
 
     /**
      * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
      */
-    public function render()
+    public function render(): ViewResponse
     {
         return view('action-forms::components.form');
     }

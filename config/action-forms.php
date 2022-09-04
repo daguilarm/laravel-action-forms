@@ -35,6 +35,9 @@ return [
             ],
             'shadow' => 'shadow',
         ],
+        'textarea' => [
+            'counter' => 'py-1.5 w-full italic text-right text-sm text-gray-400',
+        ],
         'messages' => [
             'errors' => [
                 'text' => 'text-sm text-red-500 font-semibold',

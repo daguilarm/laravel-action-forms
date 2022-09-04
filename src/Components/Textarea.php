@@ -2,6 +2,7 @@
 
 namespace Daguilarm\ActionForms\Components;
 
+use Illuminate\View\View;
 use Daguilarm\ActionForms\FormComponent;
 
 class Textarea extends FormComponent
@@ -13,17 +14,15 @@ class Textarea extends FormComponent
      *
      * @return void
      */
-    public function __construct(public ?string $label = null, public ?string $width = 'full', public ?string $dependOn = null, public ?string $dependOnType = null, public ?int $count = null)
+    public function __construct(public ?string $label = null, public ?string $width = 'full', public int $maxlength = 220, public int $rows = 4, public ?string $dependOn = null, public ?string $dependOnType = null, public bool $count = false)
     {
-        $this->uniqueKey = str()->uuid();
+        $this->uniqueKey = parent::generateUniqueKey();
     }
 
     /**
      * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
      */
-    public function render()
+    public function render(): View
     {
         return view('action-forms::components.textarea');
     }

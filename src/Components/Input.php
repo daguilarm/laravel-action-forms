@@ -3,6 +3,7 @@
 namespace Daguilarm\ActionForms\Components;
 
 use Daguilarm\ActionForms\FormComponent;
+use Illuminate\View\View;
 
 class Input extends FormComponent
 {
@@ -24,15 +25,13 @@ class Input extends FormComponent
             default => 'rounded-md',
         };
 
-        $this->uniqueKey = str()->uuid();
+        $this->uniqueKey = parent::generateUniqueKey();
     }
 
     /**
      * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
      */
-    public function render()
+    public function render(): View
     {
         return view('action-forms::components.input');
     }
