@@ -9,15 +9,29 @@ return [
     |--------------------------------------------------------------------------
     */
     'theme' => [
-        'label-color' => 'text-gray-500',
-        'element-bg-color' => 'bg-gray-50',
-        'element-color' => 'text-gray-400', // Text color for input, textarea,...
-        'element-focus' => 'focus:border-gray-500 focus:ring-gray-500', // Border color on focus for input, textarea,...
-        'element-placeholder' => 'text-gray-400',
-        'helper-color' => 'text-gray-400',
-        'error-color' => 'text-red-500',
-        'addons' => 'bg-gray-200 text-gray-400',
-        'shadow' => false,
+        'label' => [
+            'text' => 'text-base text-gray-500 font-medium',
+        ],
+        'input' => [
+            'bg' => 'bg-white',
+            'text' => 'text-base text-gray-500', // Text color for input, textarea,...
+            'border' => 'border-gray-200',
+            'focus' => 'focus:border-gray-500 focus:ring-gray-500', // Border color on focus for input, textarea,...
+            'placeholder' => 'placeholder:text-gray-300 placeholder:italic',
+            'helper' => 'text-sm text-gray-400 italic',
+            'addons' => [
+                'text' => 'text-white',
+                'bg' => 'bg-gray-400',
+                'border' => 'border border-gray-400',
+            ],
+            'shadow' => 'shadow',
+        ],
+        'messages' => [
+            'errors' => [
+                'text' => 'text-sm text-red-500 font-semibold',
+                'border' => 'border-red-500',
+            ]
+        ],
     ],
 
     /*

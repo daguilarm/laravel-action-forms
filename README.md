@@ -3,7 +3,7 @@
 
 ## Install 
 
-```
+```bash
 composer require daguilarm/laravel-action-forms
 ```
 
@@ -37,7 +37,9 @@ You have to add to your tailwind.config.js the next line:
 module.exports = {
     content: [
         ...
-        './vendor/laravel-action-forms/resources/views/**/*.php',
+        './vendor/daguilarm/laravel-action-forms/resources/views/components/*.php',
+        './vendor/daguilarm/laravel-action-forms/resources/views/elements/*.php',
+        './vendor/daguilarm/laravel-action-forms/config/*.php',
     ],
 ```
 
@@ -50,23 +52,39 @@ You can modify the package theme, using the config file:
 |--------------------------------------------------------------------------
 */
 'theme' => [
-    'label-color' => 'text-gray-500',
-    'element-bg-color' => 'bg-gray-50',
-    'element-color' => 'text-gray-400', // Text color for input, textarea,...
-    'element-focus' => 'focus:border-gray-500 focus:ring-gray-500', // Border color on focus for input, textarea,...
-    'element-placeholder' => 'text-gray-400',
-    'helper-color' => 'text-gray-400',
-    'error-color' => 'text-red-500',
-    'addons' => 'bg-gray-200 text-gray-400',
-    'shadow' => false,
-    ...
+    'label' => [
+        'text' => 'text-gray-500',
+    ],
+    'input' => [
+        'bg' => 'bg-gray-50',
+        'text' => 'text-gray-400', // Text color for input, textarea,...
+        'focus' => 'focus:border-gray-500 focus:ring-gray-500', // Border color on focus for input, textarea,...
+        'placeholder' => 'text-gray-400',
+        'helper' => 'text-gray-400',
+        'addons' => 'bg-gray-200 text-gray-400',
+        'shadow' => false,
+    ],
+    'messages' => [
+        'errors' => [
+            'text' => 'text-red-500',
+        ]
+    ],
 ],
 ```
 
 For this you need to publish the configuration file:
 
-```
+```bash
 php artisan vendor:publish --provider="Daguilarm\ActionForms\CookieConsentServiceProvider"
+```
+
+Maybe you will need to add your `theme` configuration to your `tailwind.config.js` safe-list:
+
+```js
+// This are the default values used by the package
+safelist: [
+    'text-sm text-base text-white text-gray-400 text-gray-500 text-red-500 font-semibold font-medium bg-white bg-gray-400 border border-gray-200 border-gray-400 border-red-500 italic shadow focus:border-gray-500 focus:ring-gray-500 placeholder:text-gray-300 placeholder:italic',
+],
 ```
 
 ## Important!

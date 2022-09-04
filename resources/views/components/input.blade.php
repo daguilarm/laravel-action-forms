@@ -26,7 +26,7 @@
     @if($label)
         <label 
             for="{{ $element }}" 
-            class="w-auto text-base {{ config('action-forms.theme.label-color') }} block font-medium"
+            class="w-auto block {{ config('action-forms.theme.label.text') }}"
         >
             {{ $label }}
         </label>
@@ -41,7 +41,7 @@
                 {{-- Addon before --}}
                 @include('action-forms::elements.addon-before')
 
-                <div class="w-full p-2 border text-base focus:outline-none {{ $addons }} {{ config('action-forms.theme.element-bg-color') }} {{ config('action-forms.theme.shadow') ? 'shadow' : '' }} {{ config('action-forms.theme.element-color') }}">
+                <div class="w-full p-2 border focus:outline-none {{ $addons }} {{ config('action-forms.theme.input.text') }} {{ config('action-forms.theme.input.bg') }} {{ config('action-forms.theme::input.shadow') }}">
                     {{ $data->{$attributes->get('name')} }}
                 </div>
 
@@ -58,13 +58,15 @@
 
                 <input 
                     data-element="{{ $uniqueKey }}"
-                    dusk="form-create-{{ $attributes->get('id') ?? $attributes->get('name') }}"
-                    class="w-full flex-1 py-1.5 px-2 {{ $addons }} border text-base focus:outline-none {{ config('action-forms.theme.element-bg-color') }} {{ config('action-forms.theme.shadow') ? 'shadow' : '' }} {{ config('action-forms.theme.element-color') }} {{ config('action-forms.theme.element-placeholder') }} {{ config('action-forms.theme.element-focus') }} @error($element) border-red-500 @else border-gray-200 @enderror" 
+                    dusk="form-create-{{ $attributes->get('id') ?? $element }}"
+                    class="w-full flex-1 py-1.5 px-2 border focus:outline-none {{ $addons }} {{ config('action-forms.theme.input.text') }} {{ config('action-forms.theme.input.bg') }} {{ config('action-forms.theme.input.shadow') }} {{ config('action-forms.theme.input.placeholder') }} {{ config('action-forms.theme.input.focus') }} @error($element) {{ config('action-forms.theme.messages.errors.border') }} @else {{ config('action-forms.theme.input.border') }} @enderror" 
     
                     {{-- DependOn Conditions: Disabled --}}
                     @if($dependOnType === 'disabled')
                         x-bind:disabled="@json($dependOnValue)"
                     @endif
+
+                    value="{{ old($element, $data->{$element} ?? null) }}"
                     
                     {{ $attributes }} 
                 />
@@ -76,12 +78,12 @@
 
             {{-- Validation errors --}}
             @error($element)
-                <div class="p-1 mt-1 text-sm {{ config('action-forms.theme.error-color') }} font-semibold">{{ $message }}</div>
+                <div class="p-1 mt-1 {{ config('action-forms.theme.messages.errors.text') }}">{{ $message }}</div>
             @enderror
 
             {{-- Helper text --}}
             @if($helper)
-                <div class="p-1 mt-1 text-sm {{ config('action-forms.theme.helper-color') }} italic font-normal">{{ $helper }}</div>
+                <div class="p-1 mt-1 {{ config('action-forms.theme.input.helper') }}">{{ $helper }}</div>
             @endif
 
         @endif
