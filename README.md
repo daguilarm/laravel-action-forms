@@ -216,6 +216,7 @@ You can add addons before, after or both. At the moment, it only supports text. 
 ```
 
 ## Textarea 
+working on it...
 ## Select 
 ## Checkbox 
 ## Radio 
