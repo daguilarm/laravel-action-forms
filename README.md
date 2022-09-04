@@ -34,7 +34,7 @@ If you prefer, you can add this requirements using CDN. We have created a few **
 
 ```html
 <!-- This will add the flatpickr CDN into your Blade template. -->
-@ActionFormsflatpickr
+@ActionFormsFlatpickr
 ```
 
 You have to add to your tailwind.config.js the next lines:

@@ -74,7 +74,7 @@ final class ServiceProvider extends PackageProvider
             return "<?php echo '<script src=\"https://cdn.tailwindcss.com\"></script>'; ?>";
         });
 
-        Blade::directive('ActionFormsflatpickr', function (string $expression) {
+        Blade::directive('ActionFormsFlatpickr', function (string $expression) {
             return "<?php echo '<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css\"><script src=\"https://cdn.jsdelivr.net/npm/flatpickr\"></script>'; ?>";
         });
     }
