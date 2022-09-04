@@ -255,15 +255,19 @@ An `textarea` field, has also a list of custom parameters like:
 
 ### label 
 
-Will render a `<label>` tag like: `<label>My name</label/>`.
+It works the same way as explained in the `input` field.
 
 ### width 
 
-The `width` parameter allow you to set the container width using **tailwindcss** styles like: `w-1/2`, `w-2/3`,... If you remove the `width` parameter, the default value will be `w-full`.
+It works the same way as explained in the `input` field.
 
 ### helper 
 
-Will show a helper message after the input.
+It works the same way as explained in the `input` field.
+
+### dependOn & dependOnType
+
+It works the same way as explained in the `input` field.
 
 ### maxlength 
 
