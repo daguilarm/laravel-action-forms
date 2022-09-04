@@ -8,6 +8,8 @@ class Input extends FormComponent
 {
     public string $addons = '';
 
+    public string $uniqueKey;
+
     /**
      * Create a new component instance.
      *
@@ -21,6 +23,8 @@ class Input extends FormComponent
             $before => 'rounded-none rounded-r-md',
             default => 'rounded-md',
         };
+
+        $this->uniqueKey = str()->uuid();
     }
 
     /**

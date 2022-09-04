@@ -26,4 +26,7 @@
         </form>
     @endif
 </div>
-<span id="theme-safe-css" class="hidden @foreach(config('action-forms.theme') as $element){{ is_string($element) ? $element : '' }} @endforeach">Css Safe</span>
+
+@if(config('action-forms.tailwind-safe-list'))
+    <span id="theme-safe-css" class="hidden {{ $safeCssClasses }}">Tailwind Safe List</span>
+@endif

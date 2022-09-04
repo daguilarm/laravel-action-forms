@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\View;
 
 class Form extends FormComponent
 {
+    public string $safeCssClasses = '';
+
     /**
      * Create a new component instance.
      *
@@ -20,6 +22,8 @@ class Form extends FormComponent
                 ->with('data', isset($this->data) ? json_decode($this->data) : null)
                 ->with('viewAction', $this->view);
         });
+
+        $this->safeCssClasses = parent::safeCssClasses();
     }
 
     /**

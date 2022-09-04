@@ -37,19 +37,30 @@ If you prefer, you can add this requirements using CDN. We have created a few **
 @ActionFormsFlatpickr
 ```
 
-You have to add to your tailwind.config.js the next lines:
+If you are using PostCss in your Tailwindcss configuration, you will need to add the following line in your tailwind.config.js:
 
 ```js
 module.exports = {
     content: [
         ...
-        './vendor/daguilarm/laravel-action-forms/resources/views/components/*.php',
-        './vendor/daguilarm/laravel-action-forms/resources/views/elements/*.php',
-        './vendor/daguilarm/laravel-action-forms/config/*.php',
+        './vendor/daguilarm/laravel-action-forms/resources/views/**/*.php',
     ],
 ```
 
-You can modify the package theme, using the config file:
+With this, when `PostCss` scans the all package views it will find a hidden tag (`<span class="hidden ..."></span>`) containing all the classes used by the package (disable this feature if you are not using `PostCss`). You can disable this feature in the config file:
+
+```js
+/*
+|--------------------------------------------------------------------------
+| Tailwindcss
+|--------------------------------------------------------------------------
+| Generate a container with all the tailwind used by the theme
+|
+*/
+'tailwind-safe-list' => false,
+```
+
+You can also modify the package theme, using the config file:
 
 ```js
 /*
@@ -59,20 +70,26 @@ You can modify the package theme, using the config file:
 */
 'theme' => [
     'label' => [
-        'text' => 'text-gray-500',
+        'text' => 'text-base text-gray-500 font-medium',
     ],
     'input' => [
-        'bg' => 'bg-gray-50',
-        'text' => 'text-gray-400', // Text color for input, textarea,...
+        'bg' => 'bg-white',
+        'text' => 'text-base text-gray-500', // Text color for input, textarea,...
+        'border' => 'border-gray-200',
         'focus' => 'focus:border-gray-500 focus:ring-gray-500', // Border color on focus for input, textarea,...
-        'placeholder' => 'text-gray-400',
-        'helper' => 'text-gray-400',
-        'addons' => 'bg-gray-200 text-gray-400',
-        'shadow' => false,
+        'placeholder' => 'placeholder:text-gray-300 placeholder:italic',
+        'helper' => 'text-sm text-gray-400 italic',
+        'addons' => [
+            'text' => 'text-white',
+            'bg' => 'bg-gray-400',
+            'border' => 'border border-gray-400',
+        ],
+        'shadow' => 'shadow',
     ],
     'messages' => [
         'errors' => [
-            'text' => 'text-red-500',
+            'text' => 'text-sm text-red-500 font-semibold',
+            'border' => 'border-red-500',
         ]
     ],
 ],

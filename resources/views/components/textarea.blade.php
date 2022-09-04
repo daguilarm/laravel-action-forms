@@ -2,14 +2,11 @@
     'dependOn' => $dependOn,
     'dependOnType' => $dependOnType ?? 'disabled',
     'dependOnValue' => $dependOn ? true : false,
-    'after' => $after ? true : false,
-    'before' => $before ? true : false,
-    'addons' => $addons,
     'label' => $label,
     'width' => $width ?? 'w-full',
     'element' => $attributes->get('name'),
     'helper' => $helper ?? null,
-    'uniqueKey' => str()->uuid(),
+    'uniqueKey' => $uniqueKey,
 ])
 
 {{-- Element container --}}
@@ -36,51 +33,55 @@
         {{-- Text version --}}
         @if($viewAction === 'show')
             <div class="flex">
-                {{-- Addon before --}}
-                @include('action-forms::elements.addon-before')
 
-                <div class="w-full p-2 border focus:outline-none {{ $addons }} {{ config('action-forms.theme.input.text') }} {{ config('action-forms.theme.input.bg') }} {{ config('action-forms.theme::input.shadow') }}">
-                    {{ $data->{$attributes->get('name')} }}
+                <div 
+                    dusk="form-textarea-{{ $attributes->get('id') ?? $element }}"
+                    class="w-full p-2 border focus:outline-none {{ config('action-forms.theme.input.text') }} {{ config('action-forms.theme.input.bg') }} {{ config('action-forms.theme::input.shadow') }}"
+                >                    
+                    {{ $data->{$element} }}
                 </div>
 
-                {{-- Addon after --}}
-                @include('action-forms::elements.addon-after')
             </div>
             
         {{-- Form version --}}
-        @else 
-            <div class="flex">
-                
-                {{-- Addon before --}}
-                @include('action-forms::elements.addon-before')
+        @else
+            <div                 
+                x-data="{ count: 0 }" 
+                x-init="count = $refs.{{ $element }}.value.length"
+            >
+                <div class="flex">
 
-                <input 
-                    data-element="{{ $uniqueKey }}"
-                    dusk="form-create-{{ $attributes->get('id') ?? $element }}"
-                    class="w-full flex-1 py-1.5 px-2 border focus:outline-none {{ $addons }} {{ config('action-forms.theme.input.text') }} {{ config('action-forms.theme.input.bg') }} {{ config('action-forms.theme.input.shadow') }} {{ config('action-forms.theme.input.placeholder') }} {{ config('action-forms.theme.input.focus') }} @error($element) {{ config('action-forms.theme.messages.errors.border') }} @else {{ config('action-forms.theme.input.border') }} @enderror" 
-    
-                    {{-- DependOn Conditions: Disabled --}}
-                    @includeWhen($dependOnValue && $dependOnType, 'action-forms::javascript.depend-on-disabled')
+                    <textarea 
+                        x-ref="{{ $element }}" 
+                        x-on:keyup="count = $refs.{{ $element }}.value.length"
+                        data-element="{{ $uniqueKey }}"
+                        dusk="form-textarea-{{ $attributes->get('id') ?? $element }}"
+                        maxlength="280"
+                        class="w-full flex-1 py-1.5 px-2 border focus:outline-none {{ config('action-forms.theme.input.text') }} {{ config('action-forms.theme.input.bg') }} {{ config('action-forms.theme.input.shadow') }} {{ config('action-forms.theme.input.placeholder') }} {{ config('action-forms.theme.input.focus') }} @error($element) {{ config('action-forms.theme.messages.errors.border') }} @else {{ config('action-forms.theme.input.border') }} @enderror" 
+        
+                        {{-- DependOn Conditions: Disabled --}}
+                        @includeWhen($dependOnValue && $dependOnType, 'action-forms::javascript.depend-on-disabled')
+                        
+                        {{ $attributes }} 
+                    >{{ trim(old($element, $data->{$element} ?? null)) }}</textarea>
 
-                    value="{{ old($element, $data->{$element} ?? null) }}"
-                    
-                    {{ $attributes }} 
-                />
+                </div>
 
-                {{-- Addon after --}}
-                @include('action-forms::elements.addon-after')
+                {{-- Validation errors --}}
+                @error($element)
+                    <div class="p-1 mt-1 {{ config('action-forms.theme.messages.errors.text') }}">{{ $message }}</div>
+                @enderror
+
+                {{-- Helper text --}}
+                @if($helper)
+                    <div class="p-1 mt-1 {{ config('action-forms.theme.input.helper') }}">{{ $helper }}</div>
+                @endif
+
+                <div class="">
+                    <span x-html="count"></span> / <span x-html="$refs.{{ $element }}.maxLength"></span>
+                </div>
             </div>
-
-            {{-- Validation errors --}}
-            @error($element)
-                <div class="p-1 mt-1 {{ config('action-forms.theme.messages.errors.text') }}">{{ $message }}</div>
-            @enderror
-
-            {{-- Helper text --}}
-            @if($helper)
-                <div class="p-1 mt-1 {{ config('action-forms.theme.input.helper') }}">{{ $helper }}</div>
-            @endif
-
+            
         @endif
 
     </div>

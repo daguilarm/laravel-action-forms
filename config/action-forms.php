@@ -5,6 +5,15 @@ use Daguilarm\ActionForms\Components;
 return [
     /*
     |--------------------------------------------------------------------------
+    | Tailwindcss
+    |--------------------------------------------------------------------------
+    | Generate a container with all the tailwind used by the theme
+    |
+    */
+    'tailwind-safe-list' => true,
+
+    /*
+    |--------------------------------------------------------------------------
     | Theme
     |--------------------------------------------------------------------------
     */
@@ -44,6 +53,7 @@ return [
         // Base
         'form' => Components\Form::class,
         'input' => Components\Input::class,
+        'textarea' => Components\Textarea::class,
     ],
 
     /*
