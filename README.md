@@ -89,7 +89,7 @@ safelist: [
 
 ## Important!
 
-In order to eliminate problems, always add an `id` element to each component.
+In order to eliminate problems, always add an `id` attribute to each component.
 
 ## Create a form 
 
