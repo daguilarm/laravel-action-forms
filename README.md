@@ -37,7 +37,7 @@ If you prefer, you can add this requirements using CDN. We have created a few **
 @ActionFormsFlatpickr
 ```
 
-If you are using PostCss in your Tailwindcss configuration, you will need to add the following line in your tailwind.config.js:
+If you are using `PostCss` in your Tailwindcss configuration, you will need to add the following line in your `tailwind.config.js`:
 
 ```js
 module.exports = {
