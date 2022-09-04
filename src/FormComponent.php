@@ -31,7 +31,7 @@ abstract class FormComponent extends Component
                 'input.addons.bg',
                 'input.addons.border',
             'textarea.counter',
-            'messages.errors.text',
+            'messages.errors.base',
             'messages.errors.border',
         ];
 

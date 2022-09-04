@@ -78,12 +78,12 @@
 
                 {{-- Validation errors --}}
                 @error($element)
-                    <div class="p-1 mt-1 {{ config('action-forms.theme.messages.errors.text') }}">{{ $message }}</div>
+                    <div class="{{ config('action-forms.theme.messages.errors.base') }}">{{ $message }}</div>
                 @enderror
 
                 {{-- Helper text --}}
                 @if($helper)
-                    <div class="p-1 mt-1 {{ config('action-forms.theme.input.helper') }}">{{ $helper }}</div>
+                    <div class="{{ config('action-forms.theme.input.helper') }}">{{ $helper }}</div>
                 @endif
             </div>
         @endif

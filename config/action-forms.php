@@ -28,7 +28,7 @@ return [
             'focus' => 'focus:border-gray-500 focus:ring-gray-500', // Border color on focus for input, textarea,...
             'disabled' => 'disabled:bg-gray-200 disabled:text-gray-400 disabled:border-gray-300',
             'placeholder' => 'placeholder:text-gray-300 placeholder:italic',
-            'helper' => 'text-sm text-gray-400 italic',
+            'helper' => 'px-1 mt-1 -mb-1 text-sm text-gray-400 italic',
             'addons' => [
                 'text' => 'text-gray-50',
                 'bg' => 'bg-gray-400',
@@ -41,7 +41,7 @@ return [
         ],
         'messages' => [
             'errors' => [
-                'text' => 'text-sm text-red-500 font-semibold',
+                'base' => 'p-1 mt-1 text-sm text-red-500 font-semibold',
                 'border' => 'border-red-500',
             ]
         ],

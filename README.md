@@ -60,6 +60,8 @@ With this, when `PostCss` scans the all package views it will find a hidden tag 
 'tailwind-safe-list' => false,
 ```
 
+> Remember: if you are using `tailwind-safe-list`, you will need to clear views each time you change something in the package theme.
+
 You can also modify the package theme, using the config file:
 
 ```js
