@@ -124,7 +124,7 @@ The soported methods for the form are:
 - **update** and **edit**: Will send a `PATCH` `_method` to **Laravel**. You can use either.
 - **delete** and **destroy**: Will send a `DELETE` `_method` to **Laravel**. You can use either.
 
-## Create an input field
+## Input
 
 The `input` field use all the supported parameters, like: `type`, `name`, `placehoder`, `required`, etc... The basic example of an `input` field will be:
 
@@ -214,3 +214,12 @@ You can add addons before, after or both. At the moment, it only supports text. 
     />
 </x-form>
 ```
+
+## Textarea 
+## Select 
+## Checkbox 
+## Radio 
+## Datalist
+## File 
+## Datetime (flatpickr) 
+## Combobox 
