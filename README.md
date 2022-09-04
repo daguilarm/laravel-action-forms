@@ -289,6 +289,7 @@ working on it...
 ## Radio 
 ## File 
 ## Select 
-## Datalist (alpinejs)
+## Toggle (alpinejs)
+## Datalist/Search (alpinejs)
 ## Datetime (flatpickr) 
 ## Combobox (alpinejs)
