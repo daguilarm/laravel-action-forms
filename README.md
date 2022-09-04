@@ -37,6 +37,8 @@ If you prefer, you can add this requirements using CDN. We have created a few **
 @ActionFormsFlatpickr
 ```
 
+    > Important: Don't use all the dependencies. Each component will inform you of the dependencies it requires.
+
 You have to add to your tailwind.config.js the next lines:
 
 ```js
@@ -227,6 +229,6 @@ working on it...
 ## Radio 
 ## File 
 ## Select 
-## Datalist
+## Datalist (alpinejs)
 ## Datetime (flatpickr) 
-## Combobox 
+## Combobox (alpinejs)
