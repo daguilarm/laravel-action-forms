@@ -63,13 +63,11 @@
                         data-element="{{ $uniqueKey }}"
                         dusk="form-input-{{ $attributes->get('id') ?? $element }}"
                         class="w-full flex-1 py-1.5 px-2 border focus:outline-none {{ $addons }} {{ config('action-forms.theme.input.text') }} {{ config('action-forms.theme.input.bg') }} {{ config('action-forms.theme.input.shadow') }} {{ config('action-forms.theme.input.placeholder') }} {{ config('action-forms.theme.input.focus') }} {{ config('action-forms.theme.input.disabled') }} @error($element) {{ config('action-forms.theme.messages.errors.border') }} @else {{ config('action-forms.theme.input.border') }} @enderror" 
-        
+                        value="{{ old($element, $data->{$element} ?? null) }}"
+                        {{ $attributes }} 
+
                         {{-- DependOn Conditions: Disabled --}}
                         @includeWhen($dependOnValue && $dependOnType, 'action-forms::javascript.depend-on-disabled')
-
-                        value="{{ old($element, $data->{$element} ?? null) }}"
-                        
-                        {{ $attributes }} 
                     />
 
                     {{-- Addon after --}}

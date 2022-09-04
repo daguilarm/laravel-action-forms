@@ -21,6 +21,7 @@ return [
         'label' => [
             'text' => 'text-base text-gray-500 font-medium',
         ],
+        // Input and textarea
         'input' => [
             'bg' => 'bg-white',
             'text' => 'text-base text-gray-500', // Text color for input, textarea,...
@@ -36,8 +37,14 @@ return [
             ],
             'shadow' => 'shadow',
         ],
+        // Textarea elements
         'textarea' => [
             'counter' => 'py-1.5 w-full italic text-right text-sm text-gray-400',
+        ],
+        'checkbox' => [
+            'base' => 'w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 ',
+            'focus' => 'focus:ring-blue-500',
+            'label' => 'ml-2 text-sm text-gray-900 font-medium',
         ],
         'messages' => [
             'errors' => [
@@ -58,6 +65,7 @@ return [
         'form' => Components\Form::class,
         'input' => Components\Input::class,
         'textarea' => Components\Textarea::class,
+        'checkbox' => Components\Checkbox::class,
     ],
 
     /*

@@ -1,6 +1,6 @@
 {{-- Javascript: Depend On... --}}
 @if($dependOn)
-    <script>
+    <script defer>
         document
             .querySelector('[name={{ $dependOn }}]')
             .addEventListener('change', (element) => {  
@@ -9,7 +9,7 @@
                 let currentElement = document.querySelector('[data-element="{{ $uniqueKey }}"]');   
 
                 // The element is active
-                if(element.target.value) {
+                if(element.target.value || element.target.checked === true) {
 
                     @if($dependOnType === 'disabled') currentElement.disabled = false; @endif
                     @if($dependOnType === 'hidden') currentContainer.classList.remove('hidden'); @endif
@@ -22,6 +22,7 @@
 
                     // Reset value
                     currentElement.value = '';
+                    currentElement.checked = false;
 
                     // Create an onchange evet
                     currentElement.dispatchEvent(new Event('change'));
