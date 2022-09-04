@@ -133,6 +133,8 @@ The soported methods for the form are:
 
 ## Input
 
+> This component does not use any dependencies. At the moment it uses only vanilla **javascript**, although I hope to have time in the future and implement this code with **alpinejs**.
+
 The `input` field use all the supported parameters, like: `type`, `name`, `placehoder`, `required`, etc... The basic example of an `input` field will be:
 
 ```html
@@ -223,6 +225,9 @@ You can add addons before, after or both. At the moment, it only supports text. 
 ```
 
 ## Textarea 
+
+> This component requires the **alpinejs** dependency.
+
 working on it...
 ## Checkbox 
 ## Radio 
