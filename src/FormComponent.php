@@ -23,6 +23,7 @@ abstract class FormComponent extends Component
             'input.text',
             'input.border',
             'input.focus',
+            'input.disabled',
             'input.placeholder',
             'input.shadow',
             'input.helper',

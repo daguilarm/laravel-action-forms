@@ -61,7 +61,7 @@
                         dusk="form-textarea-{{ $attributes->get('id') ?? $element }}"
                         maxlength="{{ $maxlength }}"
                         rows="{{ $rows }}"
-                        class="w-full flex-1 py-1.5 px-2 rounded-md border focus:outline-none {{ config('action-forms.theme.input.text') }} {{ config('action-forms.theme.input.bg') }} {{ config('action-forms.theme.input.shadow') }} {{ config('action-forms.theme.input.placeholder') }} {{ config('action-forms.theme.input.focus') }} @error($element) {{ config('action-forms.theme.messages.errors.border') }} @else {{ config('action-forms.theme.input.border') }} @enderror" 
+                        class="w-full flex-1 py-1.5 px-2 rounded-md border focus:outline-none {{ config('action-forms.theme.input.text') }} {{ config('action-forms.theme.input.bg') }} {{ config('action-forms.theme.input.shadow') }} {{ config('action-forms.theme.input.placeholder') }} {{ config('action-forms.theme.input.focus') }} {{ config('action-forms.theme.input.focus') }} @error($element) {{ config('action-forms.theme.messages.errors.border') }} @else {{ config('action-forms.theme.input.border') }} @enderror" 
         
                         {{-- DependOn Conditions: Disabled --}}
                         @includeWhen($dependOnValue && $dependOnType, 'action-forms::javascript.depend-on-disabled')

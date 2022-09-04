@@ -26,10 +26,11 @@ return [
             'text' => 'text-base text-gray-500', // Text color for input, textarea,...
             'border' => 'border-gray-200',
             'focus' => 'focus:border-gray-500 focus:ring-gray-500', // Border color on focus for input, textarea,...
+            'disabled' => 'disabled:bg-gray-200 disabled:text-gray-400 disabled:border-gray-300',
             'placeholder' => 'placeholder:text-gray-300 placeholder:italic',
             'helper' => 'text-sm text-gray-400 italic',
             'addons' => [
-                'text' => 'text-white',
+                'text' => 'text-gray-50',
                 'bg' => 'bg-gray-400',
                 'border' => 'border border-gray-400',
             ],

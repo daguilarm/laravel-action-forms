@@ -141,7 +141,7 @@ The soported methods for the form are:
 
 ## Input
 
-> This component does not use any dependencies. At the moment it uses only vanilla **javascript**, although I hope to have time in the future and implement this code with **alpinejs**.
+> This component requires the **alpinejs** dependency.
 
 The `input` field use all the supported parameters, like: `type`, `name`, `placehoder`, `required`, etc... The basic example of an `input` field will be:
 

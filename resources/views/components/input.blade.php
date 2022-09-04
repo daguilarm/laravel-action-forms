@@ -53,7 +53,7 @@
             
         {{-- Form version --}}
         @else 
-            <div x-data="{}">
+            <div x-data="">
                 <div class="flex">
                     
                     {{-- Addon before --}}
@@ -62,7 +62,7 @@
                     <input 
                         data-element="{{ $uniqueKey }}"
                         dusk="form-input-{{ $attributes->get('id') ?? $element }}"
-                        class="w-full flex-1 py-1.5 px-2 border focus:outline-none {{ $addons }} {{ config('action-forms.theme.input.text') }} {{ config('action-forms.theme.input.bg') }} {{ config('action-forms.theme.input.shadow') }} {{ config('action-forms.theme.input.placeholder') }} {{ config('action-forms.theme.input.focus') }} @error($element) {{ config('action-forms.theme.messages.errors.border') }} @else {{ config('action-forms.theme.input.border') }} @enderror" 
+                        class="w-full flex-1 py-1.5 px-2 border focus:outline-none {{ $addons }} {{ config('action-forms.theme.input.text') }} {{ config('action-forms.theme.input.bg') }} {{ config('action-forms.theme.input.shadow') }} {{ config('action-forms.theme.input.placeholder') }} {{ config('action-forms.theme.input.focus') }} {{ config('action-forms.theme.input.disabled') }} @error($element) {{ config('action-forms.theme.messages.errors.border') }} @else {{ config('action-forms.theme.input.border') }} @enderror" 
         
                         {{-- DependOn Conditions: Disabled --}}
                         @includeWhen($dependOnValue && $dependOnType, 'action-forms::javascript.depend-on-disabled')
@@ -71,8 +71,6 @@
                         
                         {{ $attributes }} 
                     />
-
-                    <span x-text="formData"></span>
 
                     {{-- Addon after --}}
                     @include('action-forms::elements.addon-after')
