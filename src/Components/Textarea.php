@@ -4,10 +4,13 @@ namespace Daguilarm\ActionForms\Components;
 
 use Daguilarm\ActionForms\FormComponent;
 use Illuminate\View\View;
+use Illuminate\Support\Collection;
 
 class Textarea extends FormComponent
 {
     public string $uniqueKey;
+
+    public Collection $css;
 
     /**
      * Create a new component instance.
@@ -18,6 +21,14 @@ class Textarea extends FormComponent
     {
         $this->counter = !is_null($counter) ? true : false;
         $this->uniqueKey = parent::generateUniqueKey();
+        $this->css = collect([
+            'base' => parent::getConfigClasses(parent::getThemeTextarea()),
+            'label' => parent::getConfigClasses(parent::getThemeLabel()),
+            'counter' => parent::getConfigClasses(parent::getThemeTextareaCounter()),
+            'error' => parent::getConfigClasses(parent::getThemeErrorMessages()),
+            'errorHighlight' => parent::getConfigClasses(parent::getThemeErrorMessagesHighlight()),
+            'helper' => parent::getConfigClasses(parent::getThemeHelper()),
+        ]);
     }
 
     /**

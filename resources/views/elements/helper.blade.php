@@ -1,4 +1,4 @@
 {{-- Helper text --}}
 @if($helper)
-    <div class="{{ config('action-forms.theme.helper') }}">{{ $helper }}</div>
+    <div class="{{ $css->get('helper') }}">{{ $helper }}</div>
 @endif

@@ -2,14 +2,17 @@
 
 namespace Daguilarm\ActionForms\Components;
 
-use Daguilarm\ActionForms\FormComponent;
 use Illuminate\View\View;
+use Illuminate\Support\Collection;
+use Daguilarm\ActionForms\FormComponent;
 
 class Input extends FormComponent
 {
     public string $addons = '';
 
     public string $uniqueKey;
+
+    public Collection $css;
 
     /**
      * Create a new component instance.
@@ -20,6 +23,15 @@ class Input extends FormComponent
     {
         $this->addons = self::getAddonsClasses();
         $this->uniqueKey = parent::generateUniqueKey();
+        $this->css = collect([
+            'base' => parent::getConfigClasses(parent::getThemeInput()),
+            'label' => parent::getConfigClasses(parent::getThemeLabel()),
+            'addons' => parent::getConfigClasses(parent::getThemeInputAddons()),
+            'addonsHighlight' => parent::getConfigClasses(parent::getThemeInputAddonsHighlight()),
+            'error' => parent::getConfigClasses(parent::getThemeErrorMessages()),
+            'errorHighlight' => parent::getConfigClasses(parent::getThemeErrorMessagesHighlight()),
+            'helper' => parent::getConfigClasses(parent::getThemeHelper()),
+        ]);
     }
 
     /**

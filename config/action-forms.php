@@ -19,37 +19,40 @@ return [
     */
     'theme' => [
         'label' => [
-            'text' => 'text-base text-gray-500 font-medium',
+            'base' => 'w-auto block font-medium text-gray-500',
+            'general' => 'text-base',
+            'checkbox' => 'ml-2 text-sm',
         ],
         'helper' => 'px-1 mt-1 -mb-1 text-sm text-gray-400 italic',
         // Input and textarea
         'input' => [
+            'base' => 'w-full p-2',
             'bg' => 'bg-white',
             'text' => 'text-base text-gray-500', // Text color for input, textarea,...
-            'border' => 'border-gray-200',
-            'focus' => 'focus:border-gray-500 focus:ring-gray-500', // Border color on focus for input, textarea,...
+            'border' => 'border border-gray-300',
+            'focus' => 'focus:outline-none focus:border-gray-500 focus:ring-gray-500', // Border color on focus for input, textarea,...
             'disabled' => 'disabled:bg-gray-200 disabled:text-gray-400 disabled:border-gray-300',
             'placeholder' => 'placeholder:text-gray-300 placeholder:italic',
+            'shadow' => 'shadow',
             'addons' => [
                 'text' => 'text-gray-50',
                 'bg' => 'bg-gray-400',
                 'border' => 'border border-gray-400',
             ],
-            'shadow' => 'shadow',
         ],
         // Textarea elements
         'textarea' => [
-            // 'rounded' => 'rounded-md',
+            'rounded' => 'rounded-md',
             'counter' => 'py-1.5 w-full italic text-right text-sm text-gray-400',
         ],
         'checkbox' => [
             'base' => 'w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 ',
             'focus' => 'focus:ring-blue-500',
-            'label' => 'ml-2 text-sm text-gray-900 font-medium',
         ],
         'messages' => [
             'errors' => [
-                'base' => 'p-1 mt-1 text-sm text-red-500 font-semibold',
+                'base' => 'p-1 mt-1',
+                'text' => 'text-sm text-red-500 font-semibold',
                 'border' => 'border-red-500',
             ],
         ],

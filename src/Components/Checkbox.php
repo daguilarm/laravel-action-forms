@@ -2,14 +2,15 @@
 
 namespace Daguilarm\ActionForms\Components;
 
-use Daguilarm\ActionForms\FormComponent;
 use Illuminate\View\View;
+use Illuminate\Support\Collection;
+use Daguilarm\ActionForms\FormComponent;
 
 class Checkbox extends FormComponent
 {
     public string $uniqueKey;
 
-    public string $css;
+    public Collection $css;
 
     /**
      * Create a new component instance.
@@ -19,7 +20,13 @@ class Checkbox extends FormComponent
     public function __construct(public ?string $label = null, public ?string $width = 'full', public ?string $dependOn = null, public ?string $dependOnType = null)
     {
         $this->uniqueKey = parent::generateUniqueKey();
-        $this->css = parent::getConfigClasses(parent::getThemeCheckbox());
+        $this->css = collect([
+            'base' => parent::getConfigClasses(parent::getThemeCheckbox()),
+            'label' => parent::getConfigClasses(parent::getThemeCheckboxLabel()),
+            'error' => parent::getConfigClasses(parent::getThemeErrorMessages()),
+            'errorHighlight' => parent::getConfigClasses(parent::getThemeErrorMessagesHighlight()),
+            'helper' => parent::getConfigClasses(parent::getThemeHelper()),
+        ]);
     }
 
     /**

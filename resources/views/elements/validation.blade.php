@@ -1,4 +1,4 @@
 {{-- Validation errors --}}
 @error($element)
-    <div class="{{ config('action-forms.theme.messages.errors.base') }}">{{ $message }}</div>
+    <div class="{{ $css->get('error') }}">{{ $message }}</div>
 @enderror

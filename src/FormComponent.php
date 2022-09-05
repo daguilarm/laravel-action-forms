@@ -13,6 +13,14 @@ abstract class FormComponent extends Component
     abstract public function render(): View;
 
     /**
+     * Generate an unique key for the component
+     */
+    protected function generateUniqueKey(): string
+    {
+        return str()->uuid();
+    }
+
+    /**
      * Package theme: label
      */
     protected function getTheme(): array
@@ -20,9 +28,14 @@ abstract class FormComponent extends Component
         return array_merge(
             self::getThemeLabel(),
             self::getThemeInput(),
+            self::getThemeHelper(),
             self::getThemeCheckbox(),
+            self::getThemeCheckboxLabel(),
             self::getThemeTextarea(),
-            self::getThemeMessages(),
+            self::getThemeInputAddons(),
+            self::getThemeInputAddonsHighlight(),
+            self::getThemeErrorMessages(),
+            self::getThemeErrorMessagesHighlight(),
         );
     }
 
@@ -32,7 +45,8 @@ abstract class FormComponent extends Component
     protected function getThemeLabel(): array
     {
         return [
-            'label.text',
+            'label.base',
+            'label.general',
         ];
     }
 
@@ -52,6 +66,7 @@ abstract class FormComponent extends Component
     protected function getThemeInput(): array
     {
         return [
+            'input.base',
             'input.bg',
             'input.text',
             'input.border',
@@ -70,6 +85,16 @@ abstract class FormComponent extends Component
         return [
             'input.addons.text',
             'input.addons.bg',
+            'input.shadow',
+        ];
+    }
+
+    /**
+     * Package theme: input addons
+     */
+    protected function getThemeInputAddonsHighlight(): array
+    {
+        return [
             'input.addons.border',
         ];
     }
@@ -86,10 +111,34 @@ abstract class FormComponent extends Component
         ];
     }
 
+        /**
+     * Package theme: label for checkbox
+     */
+    protected function getThemeCheckboxLabel(): array
+    {
+        return [
+            'label.base',
+            'label.checkbox',
+        ];
+    }
+
     /**
      * Package theme: textarea
      */
     protected function getThemeTextarea(): array
+    {
+        return array_merge(
+            self::getThemeInput(), 
+            [
+                'textarea.rounded',
+            ]
+        );
+    }
+
+    /**
+     * Package theme: textarea
+     */
+    protected function getThemeTextareaCounter(): array
     {
         return [
             'textarea.counter',
@@ -99,10 +148,20 @@ abstract class FormComponent extends Component
     /**
      * Package theme: messages
      */
-    protected function getThemeMessages(): array
+    protected function getThemeErrorMessages(): array
     {
         return [
-            'messages.errors.base',
+            'messages.errors.text',
+            'messages.errors.border',
+        ];
+    }
+
+    /**
+     * Package theme: messages
+     */
+    protected function getThemeErrorMessagesHighlight(): array
+    {
+        return [
             'messages.errors.border',
         ];
     }
@@ -127,13 +186,5 @@ abstract class FormComponent extends Component
     protected function safeCssClasses(string $safeList = ''): string
     {
         return self::getConfigClasses(self::getTheme());
-    }
-
-    /**
-     * Generate an unique key for the component
-     */
-    protected function generateUniqueKey(): string
-    {
-        return str()->uuid();
     }
 }
