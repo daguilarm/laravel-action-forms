@@ -2,9 +2,9 @@
 
 namespace Daguilarm\ActionForms\Components;
 
-use Illuminate\View\View;
-use Illuminate\Support\Collection;
 use Daguilarm\ActionForms\FormComponent;
+use Illuminate\Support\Collection;
+use Illuminate\View\View;
 
 class Checkbox extends FormComponent
 {

@@ -111,7 +111,7 @@ abstract class FormComponent extends Component
         ];
     }
 
-        /**
+    /**
      * Package theme: label for checkbox
      */
     protected function getThemeCheckboxLabel(): array
@@ -128,7 +128,7 @@ abstract class FormComponent extends Component
     protected function getThemeTextarea(): array
     {
         return array_merge(
-            self::getThemeInput(), 
+            self::getThemeInput(),
             [
                 'textarea.rounded',
             ]

@@ -3,8 +3,8 @@
 namespace Daguilarm\ActionForms\Components;
 
 use Daguilarm\ActionForms\FormComponent;
-use Illuminate\View\View;
 use Illuminate\Support\Collection;
+use Illuminate\View\View;
 
 class Textarea extends FormComponent
 {
@@ -19,7 +19,7 @@ class Textarea extends FormComponent
      */
     public function __construct(public ?string $label = null, public ?string $width = 'full', public int $maxlength = 220, public int $rows = 4, public ?string $dependOn = null, public ?string $dependOnType = null, public ?string $counter = null)
     {
-        $this->counter = !is_null($counter) ? true : false;
+        $this->counter = ! is_null($counter) ? true : false;
         $this->uniqueKey = parent::generateUniqueKey();
         $this->css = collect([
             'base' => parent::getConfigClasses(parent::getThemeTextarea()),

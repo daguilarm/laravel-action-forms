@@ -25,16 +25,9 @@
     {{-- Element --}}
     <div class="mt-1.5">
 
-        {{-- Text version --}}
-        @if($viewAction === 'show')
-            <div class="flex">
+        {{-- If show and no value -> hide --}}
+        @unless($viewAction === 'show' && !$value)
 
-                {{--  --}}
-
-            </div>
-
-        {{-- Form version --}}
-        @else 
             <div x-data="">
                 <div class="flex items-center mb-4">
                 
@@ -57,8 +50,8 @@
                 {{-- Validation errors and Helper --}}
                 @include('action-forms::elements.helper-and-validation')
             </div>
+        @endunless
 
-        @endif {{-- / Form version --}}
     </div>
 
 </div> {{-- /Element container --}}
