@@ -3,7 +3,8 @@
 namespace Daguilarm\ActionForms\Components;
 
 use Daguilarm\ActionForms\FormComponent;
-use Illuminate\View\View;
+use Illuminate\Support\Facades\View;
+use Illuminate\View\View as ViewResponse;
 
 class Input extends FormComponent
 {
@@ -26,12 +27,18 @@ class Input extends FormComponent
         };
 
         $this->uniqueKey = parent::generateUniqueKey();
+
+        // Set the element type
+        View::composer('action-forms::*', function ($template) {
+            $template
+                ->with('elementType', 'input');
+        });
     }
 
     /**
      * Get the view / contents that represent the component.
      */
-    public function render(): View
+    public function render(): ViewResponse
     {
         return view('action-forms::components.input');
     }

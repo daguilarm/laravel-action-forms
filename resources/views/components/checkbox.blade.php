@@ -8,6 +8,11 @@
     'uniqueKey' => $uniqueKey,
 ])
 
+@php
+    $value = old($element, $data->{$element} ?? null);
+    $checked = $value ? true : false;
+@endphp
+
 {{-- Element container --}}
 <div 
     data-container="{{ $uniqueKey }}"
@@ -37,7 +42,8 @@
                         type="checkbox" 
                         data-element="{{ $uniqueKey }}"
                         class="{{ config('action-forms.theme.checkbox.base') }} {{ config('action-forms.theme.checkbox.focus') }}"
-                        value="{{ old($element, $data->{$element} ?? null) }}"
+                        value="{{ $value }}"
+                        {{ $checked ? 'checked' : '' }}
                         {{ $attributes }}
 
                         {{-- DependOn Conditions: Disabled --}}

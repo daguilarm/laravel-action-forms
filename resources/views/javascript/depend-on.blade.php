@@ -1,6 +1,6 @@
 {{-- Javascript: Depend On... --}}
 @if($dependOn)
-    <script defer>
+    <script>
         document
             .querySelector('[name={{ $dependOn }}]')
             .addEventListener('change', (element) => {  
@@ -29,4 +29,31 @@
                 }
         })
     </script>
+@endif
+
+@if($dependOn && $viewAction === 'edit')
+<script>
+    document
+        .addEventListener('DOMContentLoaded', (element) => {  
+            // Get the container and the current element  
+            let currentElement = document.querySelector('[data-element="{{ $uniqueKey }}"]');   
+
+            // The element is active
+            if(currentElement.value || currentElement.checked === true) {
+
+                @if($dependOnType === 'disabled') currentElement.disabled = false; @endif
+                @if($dependOnType === 'hidden') currentContainer.classList.remove('hidden'); @endif
+            
+            // The element is disabled
+            } else {
+
+                @if($dependOnType === 'disabled') currentElement.disabled = true; @endif
+                @if($dependOnType === 'hidden') currentContainer.classList.add('hidden'); @endif
+
+                // Reset value
+                currentElement.value = '';
+                currentElement.checked = false;
+            }
+    })
+</script>
 @endif
