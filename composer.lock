@@ -576,12 +576,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "7fa4beb386a139cabb730a7e3b9571ba8ea2a181"
+                "reference": "6284ef158f2710280792dda308d5b899c02eaaa3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/7fa4beb386a139cabb730a7e3b9571ba8ea2a181",
-                "reference": "7fa4beb386a139cabb730a7e3b9571ba8ea2a181",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/6284ef158f2710280792dda308d5b899c02eaaa3",
+                "reference": "6284ef158f2710280792dda308d5b899c02eaaa3",
                 "shasum": ""
             },
             "require": {
@@ -749,7 +749,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-09-02T15:28:42+00:00"
+            "time": "2022-09-05T14:20:46+00:00"
         },
         {
             "name": "laravel/serializable-closure",
@@ -1007,12 +1007,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "f5e93fad64cff5f45a1f79246dae15b31099b105"
+                "reference": "270f14821a115027608a6ea6578b7a8715638420"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/f5e93fad64cff5f45a1f79246dae15b31099b105",
-                "reference": "f5e93fad64cff5f45a1f79246dae15b31099b105",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/270f14821a115027608a6ea6578b7a8715638420",
+                "reference": "270f14821a115027608a6ea6578b7a8715638420",
                 "shasum": ""
             },
             "require": {
@@ -1023,6 +1023,7 @@
                 "aws/aws-sdk-php": "3.209.31 || 3.210.0",
                 "guzzlehttp/guzzle": "<7.0",
                 "guzzlehttp/ringphp": "<1.1.1",
+                "phpseclib/phpseclib": "3.0.15",
                 "symfony/http-client": "<5.2"
             },
             "require-dev": {
@@ -1036,7 +1037,7 @@
                 "friendsofphp/php-cs-fixer": "^3.5",
                 "google/cloud-storage": "^1.23",
                 "microsoft/azure-storage-blob": "^1.1",
-                "phpseclib/phpseclib": "^2.0",
+                "phpseclib/phpseclib": "^3.0.14",
                 "phpstan/phpstan": "^0.12.26",
                 "phpunit/phpunit": "^9.5.11",
                 "sabre/dav": "^4.3.1"
@@ -1090,7 +1091,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-08-17T19:19:45+00:00"
+            "time": "2022-09-04T21:15:12+00:00"
         },
         {
             "name": "league/mime-type-detection",
@@ -5477,12 +5478,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "2d589921f23d869846a52c541247e0bafca61ab3"
+                "reference": "0ef6c55a3f47f89d7a374e6f835197a0b5fcf900"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/2d589921f23d869846a52c541247e0bafca61ab3",
-                "reference": "2d589921f23d869846a52c541247e0bafca61ab3",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/0ef6c55a3f47f89d7a374e6f835197a0b5fcf900",
+                "reference": "0ef6c55a3f47f89d7a374e6f835197a0b5fcf900",
                 "shasum": ""
             },
             "require": {
@@ -5525,7 +5526,7 @@
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
                 "source": "https://github.com/nikic/PHP-Parser/tree/4.x"
             },
-            "time": "2022-06-04T10:44:36+00:00"
+            "time": "2022-09-04T07:30:47+00:00"
         },
         {
             "name": "nunomaduro/collision",
@@ -6380,12 +6381,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "eed4c9da531f6ebb4787235b6fb486e2c20f34e5"
+                "reference": "495d6cbbc79a6595b45a95dde848dee802bb30e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/eed4c9da531f6ebb4787235b6fb486e2c20f34e5",
-                "reference": "eed4c9da531f6ebb4787235b6fb486e2c20f34e5",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/495d6cbbc79a6595b45a95dde848dee802bb30e3",
+                "reference": "495d6cbbc79a6595b45a95dde848dee802bb30e3",
                 "shasum": ""
             },
             "require": {
@@ -6416,7 +6417,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/1.8.4"
+                "source": "https://github.com/phpstan/phpstan/tree/1.8.x"
             },
             "funding": [
                 {
@@ -6432,7 +6433,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-09-03T13:08:04+00:00"
+            "time": "2022-09-05T11:25:50+00:00"
         },
         {
             "name": "phpstan/phpstan-deprecation-rules",
@@ -6542,12 +6543,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "0ba23aa48d89c1b64f3aeadd01e24b15e4d78fad"
+                "reference": "c7dde1361feee0ecd796067096dc5bdde411fbef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/0ba23aa48d89c1b64f3aeadd01e24b15e4d78fad",
-                "reference": "0ba23aa48d89c1b64f3aeadd01e24b15e4d78fad",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/c7dde1361feee0ecd796067096dc5bdde411fbef",
+                "reference": "c7dde1361feee0ecd796067096dc5bdde411fbef",
                 "shasum": ""
             },
             "require": {
@@ -6611,7 +6612,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-09-02T05:42:13+00:00"
+            "time": "2022-09-04T05:57:33+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -8073,12 +8074,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/type.git",
-                "reference": "fcd2ed0d7605cbbfddc74c994160b834ba67c072"
+                "reference": "a0f3e755c775fdc960cd5552e046a860c82dd9f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/type/zipball/fcd2ed0d7605cbbfddc74c994160b834ba67c072",
-                "reference": "fcd2ed0d7605cbbfddc74c994160b834ba67c072",
+                "url": "https://api.github.com/repos/sebastianbergmann/type/zipball/a0f3e755c775fdc960cd5552e046a860c82dd9f9",
+                "reference": "a0f3e755c775fdc960cd5552e046a860c82dd9f9",
                 "shasum": ""
             },
             "require": {
@@ -8121,7 +8122,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-09-02T05:40:00+00:00"
+            "time": "2022-09-04T06:24:39+00:00"
         },
         {
             "name": "sebastian/version",

@@ -21,6 +21,7 @@ return [
         'label' => [
             'text' => 'text-base text-gray-500 font-medium',
         ],
+        'helper' => 'px-1 mt-1 -mb-1 text-sm text-gray-400 italic',
         // Input and textarea
         'input' => [
             'bg' => 'bg-white',
@@ -29,7 +30,6 @@ return [
             'focus' => 'focus:border-gray-500 focus:ring-gray-500', // Border color on focus for input, textarea,...
             'disabled' => 'disabled:bg-gray-200 disabled:text-gray-400 disabled:border-gray-300',
             'placeholder' => 'placeholder:text-gray-300 placeholder:italic',
-            'helper' => 'px-1 mt-1 -mb-1 text-sm text-gray-400 italic',
             'addons' => [
                 'text' => 'text-gray-50',
                 'bg' => 'bg-gray-400',
@@ -39,6 +39,7 @@ return [
         ],
         // Textarea elements
         'textarea' => [
+            // 'rounded' => 'rounded-md',
             'counter' => 'py-1.5 w-full italic text-right text-sm text-gray-400',
         ],
         'checkbox' => [
@@ -50,7 +51,7 @@ return [
             'errors' => [
                 'base' => 'p-1 mt-1 text-sm text-red-500 font-semibold',
                 'border' => 'border-red-500',
-            ]
+            ],
         ],
     ],
 

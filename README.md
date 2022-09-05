@@ -106,9 +106,9 @@ php artisan vendor:publish --provider="Daguilarm\ActionForms\CookieConsentServic
 ## Important!
 
 - In order to eliminate problems, always add an `id` attribute to each component.
-- Don't use all the dependencies. Each component will inform you of the dependencies it requires. **Only tailwindcss is required for all the components**.
+- Don't use all the dependencies. Each component will inform you of the dependencies it requires.
 
-## Create a form 
+## Create a Form component 
 
 ```html
 <x-form
@@ -141,29 +141,9 @@ The soported methods for the form are:
 - **update** and **edit**: Will send a `PATCH` `_method` to **Laravel**. You can use either.
 - **delete** and **destroy**: Will send a `DELETE` `_method` to **Laravel**. You can use either.
 
-## Input
+## General information about the different fields supported by the package
 
-> This component requires the **alpinejs** dependency.
-
-The `input` field use all the supported parameters, like: `type`, `name`, `placehoder`, `required`, etc... The basic example of an `input` field will be:
-
-```html
-<x-form>
-    <x-input
-        id="name"
-        type="text"
-        width="1/2"
-        name="name"
-        label="My name"
-        placehoder="..."
-        helper="This is a way to explain something..."
-        class="p-2"
-        required
-    />
-</x-form>
-```
-
-An `input` field, has also a list of custom parameters like:
+All the components (except `form`) share a series of common methods, apart from those specific to each one of them. Next, we will explain these common methods:
 
 ### label 
 
@@ -172,10 +152,6 @@ Will render a `<label>` tag like: `<label>My name</label/>`.
 ### width 
 
 The `width` parameter allow you to set the container width using **tailwindcss** styles like: `w-1/2`, `w-2/3`,... If you remove the `width` parameter, the default value will be `w-full`.
-
-### helper 
-
-Will show a helper message after the input.
 
 ### dependOn & dependOnType
 
@@ -206,6 +182,34 @@ In this case, the `surname` field will be hidden until the `name` field has a va
 
 The `dependOnType()` attribute admits two possible values: `hidden` or `disabled`.
 
+## Create an Input component 
+
+> This component requires the **alpinejs** dependency.
+
+The `input` field use all the supported parameters, like: `type`, `name`, `placehoder`, `required`, etc... The basic example of an `input` field will be:
+
+```html
+<x-form>
+    <x-input
+        id="name"
+        type="text"
+        width="1/2"
+        name="name"
+        label="My name"
+        placehoder="..."
+        helper="This is a way to explain something..."
+        class="p-2"
+        required
+    />
+</x-form>
+```
+
+An `input` field, has also a list of custom parameters like:
+
+### helper 
+
+Will show a helper message after the input.
+
 ### addons 
 
 You can add addons before, after or both. At the moment, it only supports text. In the future it will support icons.
@@ -234,7 +238,7 @@ You can add addons before, after or both. At the moment, it only supports text. 
 </x-form>
 ```
 
-## Textarea 
+## Create a Textarea component 
 
 > This component requires the **alpinejs** dependency.
 
@@ -246,8 +250,8 @@ You can add addons before, after or both. At the moment, it only supports text. 
         label="Description"
         placeholder="description..."
         maxlength="300"
-        :count="true"
         rows="10"
+        counter
         required
     />
 </x-form>
@@ -255,19 +259,7 @@ You can add addons before, after or both. At the moment, it only supports text. 
 
 An `textarea` field, has also a list of custom parameters like:
 
-### label 
-
-It works the same way as explained in the `input` field.
-
-### width 
-
-It works the same way as explained in the `input` field.
-
 ### helper 
-
-It works the same way as explained in the `input` field.
-
-### dependOn & dependOnType
 
 It works the same way as explained in the `input` field.
 
@@ -275,16 +267,33 @@ It works the same way as explained in the `input` field.
 
 It is used to determine the maximum number of characters allowed. By default it will be 220.
 
-### count 
-
-This field only admits boolean values. It is used to indicate if we want to show the characters used and the remaining characters. By default it is disabled.
-
 ### rows 
 
 Indicates the default number of rows that the textarea will have. The default value is 4.
 
-## Checkbox 
-working on it...
+### counter 
+
+This field is used to indicate if we want to show the characters used and the remaining characters. By default it is disabled.
+
+## Create a Checkbox component 
+
+```html
+<x-form>
+    <x-checkbox
+        type="checkbox"
+        width="w-1/3"
+        name="active"
+        label="Activo"
+        dependOn="name"
+        :checked="true"
+    />
+</x-form>
+```
+
+### checked 
+
+By default, the field will be unchecked. **If you want to set a default value, don't forget to send the value as a variable, 
+using the colon character.**
 
 ## Radio 
 ## File 

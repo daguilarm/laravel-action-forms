@@ -2,8 +2,8 @@
 
 namespace Daguilarm\ActionForms\Components;
 
-use Illuminate\Support\Facades\View;
 use Daguilarm\ActionForms\FormComponent;
+use Illuminate\Support\Facades\View;
 use Illuminate\View\View as ViewResponse;
 
 class Form extends FormComponent
@@ -16,7 +16,7 @@ class Form extends FormComponent
      * @return void
      */
     public function __construct(public string $action, public string $method, public string $view, public ?object $data)
-    {        
+    {
         // Create the form binding
         View::composer('action-forms::*', function ($template) {
             $template

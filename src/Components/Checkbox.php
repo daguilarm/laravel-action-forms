@@ -3,12 +3,13 @@
 namespace Daguilarm\ActionForms\Components;
 
 use Daguilarm\ActionForms\FormComponent;
-use Illuminate\Support\Facades\View;
-use Illuminate\View\View as ViewResponse;
+use Illuminate\View\View;
 
 class Checkbox extends FormComponent
 {
     public string $uniqueKey;
+
+    public string $css;
 
     /**
      * Create a new component instance.
@@ -18,18 +19,13 @@ class Checkbox extends FormComponent
     public function __construct(public ?string $label = null, public ?string $width = 'full', public ?string $dependOn = null, public ?string $dependOnType = null)
     {
         $this->uniqueKey = parent::generateUniqueKey();
-
-        // Set the element type
-        View::composer('action-forms::*', function ($template) {
-            $template
-                ->with('elementType', 'checkbox');
-        });
+        $this->css = parent::getConfigClasses(parent::getThemeCheckbox());
     }
 
     /**
      * Get the view / contents that represent the component.
      */
-    public function render(): ViewResponse
+    public function render(): View
     {
         return view('action-forms::components.checkbox');
     }

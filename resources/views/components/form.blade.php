@@ -27,6 +27,11 @@
     @endif
 </div>
 
+{{-- Javascript: dependOn --}}
+@includeWhen($viewAction !== 'show', 'action-forms::javascript.depend-on._function')
+
+
+{{-- Safe list (for tailwindcss) --}}
 @if(config('action-forms.tailwind-safe-list'))
     <span id="theme-safe-css" class="hidden {{ $safeCssClasses }}">Tailwind Safe List</span>
 @endif
