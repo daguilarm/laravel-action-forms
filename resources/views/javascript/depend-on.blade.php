@@ -6,14 +6,20 @@
             .addEventListener('change', (element) => {  
                 // Get the container and the current element  
                 let currentContainer = document.querySelector('[data-container="{{ $uniqueKey }}"]');  
-                let currentElement = document.querySelector('[data-element="{{ $uniqueKey }}"]');   
-
+                let currentElement = document.querySelector('[data-element="{{ $uniqueKey }}"]');  
+                
                 // The element is active
-                if(element.target.value || element.target.checked === true) {
+                if(
+                    // Input field
+                    (element.target.value && element.target.getAttribute('type') !== 'checkbox') || 
+                    // Checkbox
+                    (element.target.getAttribute('type') === 'checkbox' && element.target.checked === true)
+                ) {
 
                     @if($dependOnType === 'disabled') currentElement.disabled = false; @endif
                     @if($dependOnType === 'hidden') currentContainer.classList.remove('hidden'); @endif
-                
+                    console.log('error');
+
                 // The element is disabled
                 } else {
 
@@ -36,6 +42,7 @@
     document
         .addEventListener('DOMContentLoaded', (element) => {  
             // Get the container and the current element  
+            let currentContainer = document.querySelector('[data-container="{{ $uniqueKey }}"]');  
             let currentElement = document.querySelector('[data-element="{{ $uniqueKey }}"]');   
 
             // The element is active
