@@ -17,73 +17,54 @@
     $value = old($element, $data->{$element} ?? null);
 @endphp
 
-{{-- Element container --}}
-<div 
-    data-container="{{ $uniqueKey }}"
-    class="block {{ $width }} mb-6"
-    
-    {{-- DependOn Condition: hidden --}}
-    @includeWhen($dependOnValue && $dependOnType && $viewAction !== 'show', 'action-forms::javascript.depend-on.hidden')
->
-    {{-- Add label --}}
-    @includeWhen($label, 'action-forms::elements.label')
-    
-    {{-- Element --}}
-    <div class="mt-1.5">
+{{-- Show container --}}
+@if($viewAction === 'show')
+    @include('action-forms::elements.show')
+
+{{-- Form element container --}}
+@else 
+    <div 
+        data-container="{{ $uniqueKey }}"
+        class="block {{ $width }} mb-6"
         
-        {{-- Text version --}}
-        @if($viewAction === 'show')
-            <div class="flex">
-                
+        {{-- DependOn Condition: hidden --}}
+        @includeWhen($dependOnValue && $dependOnType && $viewAction !== 'show', 'action-forms::javascript.depend-on.hidden')
+    >
+        {{-- Add label --}}
+        @includeWhen($label, 'action-forms::elements.label')
+        
+        {{-- Element container --}}
+        <div x-data="{}">
+            <div class="flex mt-1.5">
+
                 {{-- Addon before --}}
                 @includeWhen($before, 'action-forms::elements.addon-before')
-                
-                {{-- Show container --}}
-                <div 
+
+                {{-- Input field --}}
+                <input 
+                    data-element="{{ $uniqueKey }}"
                     dusk="form-input-{{ $attributes->get('id') ?? $element }}"
-                    class="w-full p-2 border focus:outline-none {{ $addons }} {{ config('action-forms.theme.input.text') }} {{ config('action-forms.theme.input.bg') }} {{ config('action-forms.theme::input.shadow') }}"
-                >
-                    {{ $data->{$element} }}
-                </div>
+                    class="{{ $css->get('base') }} {{ $addons }} @include('action-forms::elements.validation-highlight')" 
+                    value="{{ $value }}"
+
+                    {{-- Native attributes --}}
+                    {{ $attributes }} 
+
+                    {{-- DependOn Conditions: Disabled --}}
+                    @includeWhen($dependOnValue && $dependOnType, 'action-forms::javascript.depend-on.disabled')
+                />
 
                 {{-- Addon after --}}
                 @includeWhen($after, 'action-forms::elements.addon-after')
-            </div> 
-        
-            {{-- Form version --}}
-        @else 
-            <div x-data="">
-                <div class="flex">
-
-                    {{-- Addon before --}}
-                    @includeWhen($before, 'action-forms::elements.addon-before')
-
-                    {{-- Input field --}}
-                    <input 
-                        data-element="{{ $uniqueKey }}"
-                        dusk="form-input-{{ $attributes->get('id') ?? $element }}"
-                        class="{{ $css->get('base') }} {{ $addons }} @include('action-forms::elements.validation-highlight')" 
-                        value="{{ $value }}"
-
-                        {{-- Native attributes --}}
-                        {{ $attributes }} 
-
-                        {{-- DependOn Conditions: Disabled --}}
-                        @includeWhen($dependOnValue && $dependOnType, 'action-forms::javascript.depend-on.disabled')
-                    />
-
-                    {{-- Addon after --}}
-                    @includeWhen($after, 'action-forms::elements.addon-after')
-                </div>
-
-                {{-- Validation errors and Helper --}}
-                @include('action-forms::elements.helper-and-validation')
             </div>
-        
-        @endif {{-- / Form version --}}
-    </div>
 
-</div> {{-- /Element container --}}
+            {{-- Validation errors and Helper --}}
+            @include('action-forms::elements.helper-and-validation')
+        </div>
 
-{{-- Javascript: Depend On... --}}
-@includeWhen($dependOnValue && $dependOnType && $viewAction !== 'show', 'action-forms::javascript.depend-on')
+    </div> {{-- /Element container --}}
+
+    {{-- Javascript: Depend On... --}}
+    @includeWhen($dependOnValue && $dependOnType && $viewAction !== 'show', 'action-forms::javascript.depend-on')
+
+@endif {{-- /Form element container --}}

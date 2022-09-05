@@ -19,7 +19,7 @@ return [
     */
     'theme' => [
         'label' => [
-            'base' => 'w-auto block font-medium text-gray-500',
+            'base' => 'w-full block font-medium text-gray-500',
             'general' => 'text-base',
             'checkbox' => 'ml-2 text-sm',
         ],
@@ -56,6 +56,7 @@ return [
                 'border' => 'border-red-500',
             ],
         ],
+        'empty-field' => '---',
     ],
 
     /*

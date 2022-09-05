@@ -21,8 +21,9 @@
                 'edit' => 'PATCH',
                 default => 'POST',
             })
-
-            {{ $slot }}
+            <div class="shadow rounded-md bg-gray-50 border border-100 px-8 py-6">
+                {{ $slot }}
+            </div>
         </form>
     @endif
 </div>

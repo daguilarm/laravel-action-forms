@@ -298,7 +298,7 @@ using the colon character.**
 ## Radio 
 ## File 
 ## Select 
-## Toggle (alpinejs)
+## Toggle/Boolean (alpinejs)
 ## Datalist/Search (alpinejs)
 ## Datetime (flatpickr) 
 ## Combobox (alpinejs)
