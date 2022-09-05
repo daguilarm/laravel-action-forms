@@ -7,7 +7,7 @@
             // Get the container and the current element  
             let childContainer = document.querySelector('[data-container="{{ $uniqueKey }}"]');  
             let childElement = document.querySelector('[data-element="{{ $uniqueKey }}"]'); 
-            window.__dependOn(parent.target, childContainer, childElement, @json($dependOnType));
+            window.__dependOn(parent.target, childContainer, childElement, @json($dependOnType), @json($value));
     });
     // For edit
     document
@@ -15,7 +15,7 @@
             // Get the container and the current element  
             let childContainer = document.querySelector('[data-container="{{ $uniqueKey }}"]');  
             let childElement = document.querySelector('[data-element="{{ $uniqueKey }}"]'); 
-            let parent = document.querySelector('[name="{{ $dependOn }}"]');  
-            window.__dependOn(parent, childContainer, childElement, @json($dependOnType));
+            let parent = document.querySelector('[name="{{ $dependOn }}"]'); 
+            window.__dependOn(parent, childContainer, childElement, @json($dependOnType), @json($value));
     })
 </script>

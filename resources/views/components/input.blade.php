@@ -13,6 +13,10 @@
     'css' => $css,
 ])
 
+@php
+    $value = old($element, $data->{$element} ?? null);
+@endphp
+
 {{-- Element container --}}
 <div 
     data-container="{{ $uniqueKey }}"
@@ -59,7 +63,7 @@
                         data-element="{{ $uniqueKey }}"
                         dusk="form-input-{{ $attributes->get('id') ?? $element }}"
                         class="{{ $css->get('base') }} {{ $addons }} @include('action-forms::elements.validation-highlight')" 
-                        value="{{ old($element, $data->{$element} ?? null) }}"
+                        value="{{ $value }}"
 
                         {{-- Native attributes --}}
                         {{ $attributes }} 

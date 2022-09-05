@@ -13,6 +13,10 @@
     'css' => $css,
 ])
 
+@php
+    $value = old($element, $data->{$element} ?? null);
+@endphp
+
 {{-- Element container --}}
 <div 
     data-container="{{ $uniqueKey }}"
@@ -59,7 +63,7 @@
                         
                         {{-- Native attributes --}}
                         {{ $attributes }} 
-                    >{{ trim(old($element, $data->{$element} ?? null)) }}</textarea>
+                    >{{ trim($value) }}</textarea>
                 </div>
 
                 {{-- Validation errors and Helper --}}
