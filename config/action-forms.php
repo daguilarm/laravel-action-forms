@@ -20,6 +20,7 @@ return [
     'theme' => [
         'form' => 'w-full shadow rounded-md bg-white px-8 py-6',
         'element' => 'block mb-8',
+        'disabled' => 'opacity-50',
         'label' => [
             'base' => 'w-full block font-medium text-cyan-700',
             'general' => 'text-base',

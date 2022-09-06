@@ -199,9 +199,6 @@ abstract class FormComponent extends Component
             $result .= config('action-forms.theme.'.$element).' ';
         }
 
-        // Add custom styles 
-        // $result .= 'peer-disabled:opacity-50';
-
         // Remove duplicate entries
         return trim(implode(' ', array_unique(explode(' ', $result))));
     }
@@ -211,6 +208,6 @@ abstract class FormComponent extends Component
      */
     protected function safeCssClasses(string $safeList = ''): string
     {
-        return self::getConfigClasses(self::getTheme());
+        return self::getConfigClasses(self::getTheme()) . ' ' . config('action-forms.theme.disabled');
     }
 }

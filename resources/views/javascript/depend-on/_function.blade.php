@@ -14,7 +14,7 @@
             // Enable elements
             if(type === 'disabled') {
                 childElement.disabled = false;
-                label.classList.remove('opacity-50');
+                label.classList.remove('{{ config('action-forms.theme.disabled') }}');
             }
             if(type === 'hidden') childContainer.classList.remove('hidden');
         
@@ -22,7 +22,7 @@
             // Enable elements
             if(type === 'disabled') {
                 childElement.disabled = false;
-                label.classList.remove('opacity-50');
+                label.classList.remove('{{ config('action-forms.theme.disabled') }}');
             }
             if(type === 'hidden') childContainer.classList.remove('hidden');
         
@@ -31,7 +31,7 @@
             // Disable elements
             if(type === 'disabled') {
                 childElement.disabled = true;
-                label.classList.add('opacity-50');
+                label.classList.add('{{ config('action-forms.theme.disabled') }}');
             }
             if(type === 'hidden') childContainer.classList.add('hidden');
             // Reset value
