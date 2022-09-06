@@ -110,7 +110,7 @@ php artisan vendor:publish --provider="Daguilarm\ActionForms\CookieConsentServic
 
 ## A few images  
 
-![Show action](https://github.com/daguilarm/laravel-action-forms/blob/master/resources/img/show.png?raw=true)
+![Show action](./resources/img/show.png?raw=true)
 
 ## Create a Form component 
 
