@@ -17,7 +17,7 @@ abstract class FormComponent extends Component
      */
     protected function generateUniqueKey(): string
     {
-        return str()->uuid();
+        return trim(str()->uuid()->toString());
     }
 
     /**
@@ -26,6 +26,7 @@ abstract class FormComponent extends Component
     protected function getTheme(): array
     {
         return array_merge(
+            self::getThemeForm(),
             self::getThemeLabel(),
             self::getThemeInput(),
             self::getThemeHelper(),
@@ -37,6 +38,16 @@ abstract class FormComponent extends Component
             self::getThemeErrorMessages(),
             self::getThemeErrorMessagesHighlight(),
         );
+    }
+
+    /**
+     * Package theme: form
+     */
+    protected function getThemeForm(): array
+    {
+        return [
+            'form',
+        ];
     }
 
     /**

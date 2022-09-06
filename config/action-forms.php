@@ -18,6 +18,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'theme' => [
+        'form' => 'w-full shadow rounded-md bg-white px-8 py-6',
         'label' => [
             'base' => 'w-full block font-medium text-gray-500',
             'general' => 'text-base',

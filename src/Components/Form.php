@@ -2,13 +2,16 @@
 
 namespace Daguilarm\ActionForms\Components;
 
-use Daguilarm\ActionForms\FormComponent;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\View;
+use Daguilarm\ActionForms\FormComponent;
 use Illuminate\View\View as ViewResponse;
 
 class Form extends FormComponent
 {
     public string $safeCssClasses = '';
+
+    public Collection $css;
 
     /**
      * Create a new component instance.
@@ -25,6 +28,10 @@ class Form extends FormComponent
         });
 
         $this->safeCssClasses = parent::safeCssClasses();
+
+        $this->css = collect([
+            'base' => parent::getConfigClasses(parent::getThemeForm()),
+        ]);
     }
 
     /**

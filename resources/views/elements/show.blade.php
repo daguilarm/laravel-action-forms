@@ -1,5 +1,5 @@
 <div 
-    class="w-full flex items-center p-3 border-b border-gray-100 text-sm" 
+    class="w-full flex items-center p-3 text-sm border-b border-gray-100 last:border-0" 
     dusk="form-input-{{ $attributes->get('id') ?? $element }}"
 >
     {{-- Label --}}

@@ -24,9 +24,9 @@
 {{-- Form element container --}}
 @else 
     <div 
+        x-data="{}"
         data-container="{{ $uniqueKey }}"
         class="block {{ $width }} mb-6"
-        
         {{-- DependOn Condition: hidden --}}
         @includeWhen($dependOnValue && $dependOnType && $viewAction !== 'show', 'action-forms::javascript.depend-on.hidden')
     >
@@ -34,7 +34,7 @@
         @includeWhen($label, 'action-forms::elements.label')
         
         {{-- Element container --}}
-        <div x-data="{}">
+        <div>
             <div class="flex mt-1.5">
 
                 {{-- Addon before --}}

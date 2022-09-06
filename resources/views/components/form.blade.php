@@ -9,8 +9,9 @@
             {{ $attributes }} 
             action="{{ $action }}" 
             dusk="form-create-{{ $attributes->get('id') ?? 'component' }}"
-            class="w-full"
+            class="{{ $css->get('base') }}"
             @isset($data) :data="$data" @endisset
+            autocomplete="off"
         >
             @csrf
             @method(match($method) {
@@ -21,9 +22,7 @@
                 'edit' => 'PATCH',
                 default => 'POST',
             })
-            <div class="shadow rounded-md bg-gray-50 border border-100 px-8 py-6">
-                {{ $slot }}
-            </div>
+            {{ $slot }}
         </form>
     @endif
 </div>
