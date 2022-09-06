@@ -110,7 +110,13 @@ php artisan vendor:publish --provider="Daguilarm\ActionForms\CookieConsentServic
 
 ## A few images  
 
+Show view:
+
 ![Show action](./resources/img/show.png?raw=true)
+
+Depend fields in action:
+
+![Show action](./resources/img/dependOn.gif?raw=true)
 
 ## Create a Form component 
 
