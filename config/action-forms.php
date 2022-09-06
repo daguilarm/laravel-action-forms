@@ -19,36 +19,38 @@ return [
     */
     'theme' => [
         'form' => 'w-full shadow rounded-md bg-white px-8 py-6',
+        'element' => 'block mb-8',
         'label' => [
-            'base' => 'w-full block font-medium text-gray-500',
+            'base' => 'w-full block font-medium text-cyan-700',
             'general' => 'text-base',
-            'checkbox' => 'ml-2 text-sm',
+            'checkbox' => 'ml-2 text-base',
         ],
-        'helper' => 'px-1 mt-1 -mb-1 text-sm text-gray-400 italic',
+        'helper' => 'px-1 mt-1 -mb-1 text-sm text-cyan-800 italic opacity-60',
         // Input and textarea
         'input' => [
             'base' => 'w-full p-2',
-            'bg' => 'bg-white',
-            'text' => 'text-base text-gray-500', // Text color for input, textarea,...
+            'bg' => 'bg-gray-50',
+            'text' => 'text-base text-cyan-700', // Text color for input, textarea,...
             'border' => 'border border-gray-300',
-            'focus' => 'focus:outline-none focus:border-gray-500 focus:ring-gray-500', // Border color on focus for input, textarea,...
+            'focus' => 'focus:outline-none focus:border-cyan-500 focus:ring-cyan-500', // Border color on focus for input, textarea,...
             'disabled' => 'disabled:bg-gray-200 disabled:text-gray-400 disabled:border-gray-300',
-            'placeholder' => 'placeholder:text-gray-300 placeholder:italic',
+            'placeholder' => 'placeholder:text-gray-600 placeholder:italic placeholder:opacity-40',
             'shadow' => 'shadow',
             'addons' => [
-                'text' => 'text-gray-50',
-                'bg' => 'bg-gray-400',
-                'border' => 'border border-gray-400',
+                'text' => 'text-white',
+                'bg' => 'bg-cyan-800',
+                'border' => 'border border-cyan-700',
             ],
         ],
         // Textarea elements
         'textarea' => [
             'rounded' => 'rounded-md',
-            'counter' => 'py-1.5 w-full italic text-right text-sm text-gray-400',
+            'counter' => 'py-1.5 w-full italic text-right text-sm text-cyan-400',
         ],
         'checkbox' => [
-            'base' => 'w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 ',
-            'focus' => 'focus:ring-blue-500',
+            'base' => 'w-5 h-5 text-cyan-600 bg-cyan-100 rounded border border-cyan-300 ',
+            'focus' => 'focus:ring-cyan-500',
+            'disabled' => 'disabled:border'
         ],
         'messages' => [
             'errors' => [

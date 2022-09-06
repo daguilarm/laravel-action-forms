@@ -26,7 +26,7 @@
     {{-- Element container --}}
     <div 
         data-container="{{ $uniqueKey }}"
-        class="block {{ $width }} mb-6"
+        class="{{ $width }} {{ $cssElement }}"
         x-data="{ count: 0 }" 
         x-init="count = $refs.{{ $element }}.value.length"
         {{-- DependOn Condition: hidden --}}

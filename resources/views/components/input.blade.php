@@ -26,7 +26,7 @@
     <div 
         x-data="{}"
         data-container="{{ $uniqueKey }}"
-        class="block {{ $width }} mb-6"
+        class="{{ $width }} {{ $cssElement }}"
         {{-- DependOn Condition: hidden --}}
         @includeWhen($dependOnValue && $dependOnType && $viewAction !== 'show', 'action-forms::javascript.depend-on.hidden')
     >

@@ -26,6 +26,7 @@ abstract class FormComponent extends Component
     protected function getTheme(): array
     {
         return array_merge(
+            self::getThemeElement(),
             self::getThemeForm(),
             self::getThemeLabel(),
             self::getThemeInput(),
@@ -47,6 +48,16 @@ abstract class FormComponent extends Component
     {
         return [
             'form',
+        ];
+    }
+
+    /**
+     * Package theme: element
+     */
+    protected function getThemeElement(): array
+    {
+        return [
+            'element',
         ];
     }
 
@@ -119,6 +130,7 @@ abstract class FormComponent extends Component
             'checkbox.base',
             'checkbox.focus',
             'checkbox.label',
+            'checkbox.disabled',
         ];
     }
 
@@ -186,6 +198,9 @@ abstract class FormComponent extends Component
         foreach ($list as $element) {
             $result .= config('action-forms.theme.'.$element).' ';
         }
+
+        // Add custom styles 
+        // $result .= 'peer-disabled:opacity-50';
 
         // Remove duplicate entries
         return trim(implode(' ', array_unique(explode(' ', $result))));

@@ -108,6 +108,10 @@ php artisan vendor:publish --provider="Daguilarm\ActionForms\CookieConsentServic
 - In order to eliminate problems, always add an `id` attribute to each component.
 - Don't use all the dependencies. Each component will inform you of the dependencies it requires.
 
+## A few images  
+
+![Show action](https://github.com/daguilarm/laravel-action-forms/blob/master/resources/img/show.png?raw=true)
+
 ## Create a Form component 
 
 ```html

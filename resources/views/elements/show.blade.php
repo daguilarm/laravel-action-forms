@@ -8,7 +8,7 @@
     </div>
                 
     {{-- Show container --}}
-    <div class="w-3/4 text-gray-500 font-semibold">
+    <div class="w-3/4 text-cyan-700 font-semibold">
         {{ ($value <= 0 || is_null($value) || $value === '') ? config('action-forms.theme.empty-field') : $value }}
     </div>
 

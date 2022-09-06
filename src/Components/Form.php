@@ -24,7 +24,8 @@ class Form extends FormComponent
         View::composer('action-forms::*', function ($template) {
             $template
                 ->with('data', isset($this->data) ? json_decode($this->data) : null)
-                ->with('viewAction', $this->view);
+                ->with('viewAction', $this->view)
+                ->with('cssElement', config('action-forms.theme.element'));
         });
 
         $this->safeCssClasses = parent::safeCssClasses();
