@@ -24,10 +24,19 @@
 
     {{-- Element container --}}
     <div 
-        x-data
-        @if($dependOn)
-            x-init="window.__af_dependOn('{{ $dependOn }}', '{{ $dependOnType }}', '{{ $booleanValue }}', '{{ $uniqueKey }}')"
-        @endif
+        x-data="{
+            parent: '{{ $dependOn }}',
+            init() {
+                if(this.parent) {
+                    window.__af_dependOn(
+                        '{{ $dependOn }}', 
+                        '{{ $dependOnType }}', 
+                        '{{ $booleanValue }}', 
+                        '{{ $uniqueKey }}'
+                    );
+                }
+            },
+        }"
         data-container="{{ $uniqueKey }}"
         class="{{ $width }} {{ $cssElement }}"
     >
