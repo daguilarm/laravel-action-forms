@@ -76,21 +76,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Components
-    |--------------------------------------------------------------------------
-    */
-    'components' => [
-
-        // Base
-        'form' => Components\Form::class,
-        'input' => Components\Input::class,
-        'textarea' => Components\Textarea::class,
-        'checkbox' => Components\Checkbox::class,
-        'radio' => Components\Radio::class,
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
     | Reset disabled fields
     |--------------------------------------------------------------------------
     | When you are using dependent field, if the parent is disabled the child will be reset.
@@ -112,5 +97,20 @@ return [
             'alpinejs' => 'https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js',
             'tailwind' => 'https://cdn.tailwindcss.com',
         ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Components
+    |--------------------------------------------------------------------------
+    */
+    'components' => [
+
+        // Base
+        'form' => Components\Form::class,
+        'input' => Components\Input::class,
+        'textarea' => Components\Textarea::class,
+        'checkbox' => Components\Checkbox::class,
+        'radio' => Components\Radio::class,
     ],
 ];
