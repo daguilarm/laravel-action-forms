@@ -54,7 +54,7 @@ return [
         // Textarea elements
         'textarea' => [
             'rounded' => 'rounded-md',
-            'counter' => 'py-1.5 w-full italic text-right text-sm text-cyan-400',
+            'counter' => 'py-1.5 w-full italic text-right text-xs text-cyan-700 opacity-70',
         ],
         // Checkbox
         'checkbox' => [

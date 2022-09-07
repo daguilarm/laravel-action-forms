@@ -303,12 +303,13 @@ This field is used to indicate if we want to show the characters used and the re
 ### checked 
 
 By default, the field will be unchecked. **If you want to set a default value, don't forget to send the value as a variable, 
-using the colon character.**
+using the colon character (:checked="true").**
 
-## Radio 
-## File 
-## Select 
-## Toggle/Boolean (alpinejs)
-## Datalist/Search (alpinejs)
-## Datetime (flatpickr) 
-## Combobox (alpinejs)
+## Roadmap
+- Radio (alpinejs)
+- File (alpinejs)
+- Select (alpinejs)
+- Toggle/Boolean (alpinejs)
+- Datalist/Search (alpinejs)
+- Datetime (alpinejs, flatpickr) 
+- Combobox (alpinejs)
