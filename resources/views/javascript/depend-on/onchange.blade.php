@@ -4,7 +4,7 @@
         document
             .querySelector('[name={{ $dependOn }}]')
             .addEventListener('change', () => {  
-                window.__dependOn(@json($dependOn), @json($dependOnType), @json($value ? true : false), @json($uniqueKey));
+                window.__af_dependOn(@json($dependOn), @json($dependOnType), @json($value ? true : false), @json($uniqueKey));
         });
     </script>
 @endpush

@@ -32,7 +32,7 @@
             init() {
                 if(this.parent) {
                     this.count = $refs.t__{{ $element }}.value.length;
-                    window.__dependOn(this.parent, '{{ $dependOnType }}', '{{ $booleanValue }}', '{{ $uniqueKey }}');
+                    window.__af_dependOn(this.parent, '{{ $dependOnType }}', '{{ $booleanValue }}', '{{ $uniqueKey }}');
                 } else {
                     this.count = $refs.t__{{ $element }}.value.length;
                 }

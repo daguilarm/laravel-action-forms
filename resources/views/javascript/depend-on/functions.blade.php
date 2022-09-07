@@ -1,31 +1,29 @@
 {{-- Javascript: Depend On... --}}
 @push('action-forms-scripts')
     <script $_key="{{ str()->uuid() }}">
-        window.__dependOn = function(parent, type, value, key) {
+        // Dependent base function
+        window.__af_dependOn = function(parent, type, value, key) {
             // Get all the elements
-            [parent, child, childContainer, label, value] = window.__getElements(parent, key, value);
+            [parent, child, childContainer, label, value] = window.__af_getElements(parent, key, value);
             // If element has not parent, then set all to default 
             if (parent === null) {
                 // Set default values
-                window.__setDefaultValues(parent, child);
+                window.__af_setDefaultValues(parent, child);
                 // The end
                 return;
             }
-
             // Init all the elements
-            window.__initElements(child, value);
-
+            window.__af_initElements(child, value);
             // If parent is a checkbox
             if(parent.getAttribute('type') === 'checkbox') {
                 window.__parentIsCheckbox(parent, child, childContainer, label, type);
-
             // If parent is a input, textarea
             } else {
-                window.__parentIsInput(parent, child, childContainer, label, type);
+                window.__af_parentIsInput(parent, child, childContainer, label, type);
             }
         }
-
-        window.__getElements = function(parent, key, value) {
+        // Get all the elements
+        window.__af_getElements = function(parent, key, value) {
             // Get the child values 
             childContainer = document.querySelector('[data-container="' + key + '"]');  
             child = document.querySelector('[data-element="' + key + '"]'); 
@@ -34,12 +32,11 @@
             // If is a string
             if (!parent.hasOwnProperty('value')) {
                 parent = document.querySelector('[data-parent="parent__' + parent + '"]');  
-            }
-                
+            }  
             return [parent, child, childContainer, label, value];
         }
-
-        window.__setDefaultValues = function(parent, child) {
+        // Set the default values
+        window.__af_setDefaultValues = function(parent, child) {
             // If not parent all default 
             if (parent === null) {
                 // Default values
@@ -48,15 +45,15 @@
                 label.classList.remove('{{ config('action-forms.theme.disabled') }}');
             }
         }
-
-        window.__initElements = function(child, value) {
+        // Init the elements
+        window.__af_initElements = function(child, value) {
             // If current element (child) is checked or not 
             if (child.getAttribute('type') === 'checkbox') {
                 child.checked = value ? true : false;
             }
         }
-
-        window.__parentIsInput = function(parent, child, childContainer, label, type) {
+        // If the parent is an input or textarea
+        window.__af_parentIsInput = function(parent, child, childContainer, label, type) {
             if(parent.value) {
                 // Hidden case
                 if(type === 'hidden') {
@@ -66,10 +63,10 @@
                     label.classList.remove('{{ config('action-forms.theme.disabled') }}');
                 }
             } else {
-                window.__resetElement(child, childContainer, label, type);
+                window.__af_resetElement(child, childContainer, label, type);
             }
         }
-
+        // If the parent is a checkbox
         window.__parentIsCheckbox = function(parent, child, childContainer, label, type) {
             if(parent.checked) {
                 // Hidden case
@@ -80,11 +77,11 @@
                     label.classList.remove('{{ config('action-forms.theme.disabled') }}');
                 }
             } else {
-                window.__resetElement(child, childContainer, label, type);
+                window.__af_resetElement(child, childContainer, label, type);
             }
         }
-
-        window.__resetElement = function(child, childContainer, label, type) {
+        // Reset the element
+        window.__af_resetElement = function(child, childContainer, label, type) {
             // Hidden case
             if(type === 'hidden') {
                 childContainer.classList.add('hidden');

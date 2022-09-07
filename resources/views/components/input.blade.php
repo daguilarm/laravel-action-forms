@@ -27,7 +27,7 @@
     <div 
         x-data
         @if($dependOn)
-            x-init="window.__dependOn('{{ $dependOn }}', '{{ $dependOnType }}', '{{ $booleanValue }}', '{{ $uniqueKey }}')"
+            x-init="window.__af_dependOn('{{ $dependOn }}', '{{ $dependOnType }}', '{{ $booleanValue }}', '{{ $uniqueKey }}')"
         @endif
         data-container="{{ $uniqueKey }}"
         class="{{ $width }} {{ $cssElement }}"
