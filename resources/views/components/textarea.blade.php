@@ -48,6 +48,7 @@
             <textarea 
                 x-ref="t__{{ $element }}" 
                 x-on:keyup="count = $refs.t__{{ $element }}.value.length"
+                @resetcounter="count = 0"
                 data-element="{{ $uniqueKey }}"
                 data-parent="parent__{{ $element }}"
                 maxlength="{{ $maxlength }}"

@@ -82,6 +82,7 @@
         }
         // Reset the element
         window.__af_resetElement = function(child, childContainer, label, type) {
+            window.__af_resetTextAreaCount(child);
             // Hidden case
             if(type === 'hidden') {
                 childContainer.classList.add('hidden');
@@ -97,6 +98,10 @@
                     child.value = '';
                 @endif
             }
+        }
+        // Reset the textarea count
+        window.__af_resetTextAreaCount = function(child) {
+            child.dispatchEvent(new CustomEvent('resetcounter'));
         }
     </script>
 @endpush
