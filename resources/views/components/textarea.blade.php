@@ -15,6 +15,7 @@
 
 @php
     $value = old($element, $data->{$element} ?? null);
+    $booleanValue = $value ? true : false;
 @endphp
 
 {{-- Show container --}}
@@ -25,29 +26,34 @@
 @else 
     {{-- Element container --}}
     <div 
+        x-data="{ 
+            count: 0,
+            parent: '{{ $dependOn }}',
+            init() {
+                if(this.parent) {
+                    this.count = $refs.t__{{ $element }}.value.length;
+                    window.__dependOn(this.parent, '{{ $dependOnType }}', '{{ $booleanValue }}', '{{ $uniqueKey }}');
+                } else {
+                    this.count = $refs.t__{{ $element }}.value.length;
+                }
+            },
+        }" 
         data-container="{{ $uniqueKey }}"
         class="{{ $width }} {{ $cssElement }}"
-        x-data="{ count: 0 }" 
-        x-init="count = $refs.{{ $element }}.value.length"
-        {{-- DependOn Condition: hidden --}}
-        @includeWhen($dependOnValue && $dependOnType && $viewAction !== 'show', 'action-forms::javascript.depend-on.hidden')
     >
         {{-- Add label --}}
         @includeWhen($label, 'action-forms::elements.label')
 
         <div>
             <textarea 
-                x-ref="{{ $element }}" 
-                x-on:keyup="count = $refs.{{ $element }}.value.length"
+                x-ref="t__{{ $element }}" 
+                x-on:keyup="count = $refs.t__{{ $element }}.value.length"
                 data-element="{{ $uniqueKey }}"
+                data-parent="parent__{{ $element }}"
                 maxlength="{{ $maxlength }}"
                 rows="{{ $rows }}"
                 dusk="form-textarea-{{ $attributes->get('id') ?? $element }}"
                 class="{{ $css->get('base') }} @include('action-forms::elements.validation-highlight')" 
-                
-                {{-- DependOn Conditions: Disabled --}}
-                @includeWhen($dependOnValue && $dependOnType, 'action-forms::javascript.depend-on.disabled')
-                
                 {{-- Native attributes --}}
                 {{ $attributes }} 
             >{{ trim($value) }}</textarea>
@@ -61,8 +67,7 @@
 
     </div> {{-- /Element container --}}
 
-    {{-- Javascript: Depend On... --}}
-    @includeWhen($dependOnValue && $dependOnType && $viewAction !== 'show', 'action-forms::javascript.depend-on')
 @endif 
 
-
+{{-- Push Javascript: Depend On... --}}
+@includeWhen($dependOnValue && $dependOnType && $viewAction !== 'show', 'action-forms::javascript.depend-on.onchange')

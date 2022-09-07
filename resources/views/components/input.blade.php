@@ -15,6 +15,7 @@
 
 @php
     $value = old($element, $data->{$element} ?? null);
+    $booleanValue = $value ? true : false;
 @endphp
 
 {{-- Show container --}}
@@ -24,11 +25,12 @@
 {{-- Form element container --}}
 @else 
     <div 
-        x-data="{}"
+        x-data
+        @if($dependOn)
+            x-init="window.__dependOn('{{ $dependOn }}', '{{ $dependOnType }}', '{{ $booleanValue }}', '{{ $uniqueKey }}')"
+        @endif
         data-container="{{ $uniqueKey }}"
         class="{{ $width }} {{ $cssElement }}"
-        {{-- DependOn Condition: hidden --}}
-        @includeWhen($dependOnValue && $dependOnType && $viewAction !== 'show', 'action-forms::javascript.depend-on.hidden')
     >
         {{-- Add label --}}
         @includeWhen($label, 'action-forms::elements.label')
@@ -43,15 +45,12 @@
                 {{-- Input field --}}
                 <input 
                     data-element="{{ $uniqueKey }}"
+                    data-parent="parent__{{ $element }}"
                     dusk="form-input-{{ $attributes->get('id') ?? $element }}"
                     class="{{ $css->get('base') }} {{ $addons }} @include('action-forms::elements.validation-highlight')" 
                     value="{{ $value }}"
-
                     {{-- Native attributes --}}
                     {{ $attributes }} 
-
-                    {{-- DependOn Conditions: Disabled --}}
-                    @includeWhen($dependOnValue && $dependOnType, 'action-forms::javascript.depend-on.disabled')
                 />
 
                 {{-- Addon after --}}
@@ -64,7 +63,7 @@
 
     </div> {{-- /Element container --}}
 
-    {{-- Javascript: Depend On... --}}
-    @includeWhen($dependOnValue && $dependOnType && $viewAction !== 'show', 'action-forms::javascript.depend-on')
-
 @endif {{-- /Form element container --}}
+
+{{-- Push Javascript: Depend On... --}}
+@includeWhen($dependOnValue && $dependOnType && $viewAction !== 'show', 'action-forms::javascript.depend-on.onchange')

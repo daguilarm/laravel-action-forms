@@ -17,8 +17,9 @@ class Checkbox extends FormComponent
      *
      * @return void
      */
-    public function __construct(public ?string $label = null, public ?string $width = 'full', public ?string $dependOn = null, public ?string $dependOnType = null)
+    public function __construct(public ?string $label = null, public ?string $width = 'full', public ?string $dependOn = null, public ?bool $asBoolean = null, public ?string $dependOnType = null)
     {
+        $this->asBoolean = $asBoolean ? true : false;
         $this->uniqueKey = parent::generateUniqueKey();
         $this->css = collect([
             'base' => parent::getConfigClasses(parent::getThemeCheckbox()),

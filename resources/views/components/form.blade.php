@@ -28,7 +28,7 @@
 </div>
 
 {{-- Javascript: dependOn --}}
-@includeWhen($viewAction !== 'show', 'action-forms::javascript.depend-on._function')
+@includeWhen($viewAction !== 'show', 'action-forms::javascript.depend-on.functions')
 
 
 {{-- Safe list (for tailwindcss) --}}

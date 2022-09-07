@@ -11,6 +11,7 @@
 
 @php
     $value = old($element, $data->{$element} ?? null);
+    $booleanValue = $value ? true : false;
     $checked = $value ? true : false;
 @endphp
 
@@ -23,26 +24,26 @@
 
     {{-- Element container --}}
     <div 
+        x-data
+        @if($dependOn)
+            x-init="window.__dependOn('{{ $dependOn }}', '{{ $dependOnType }}', '{{ $booleanValue }}', '{{ $uniqueKey }}')"
+        @endif
         data-container="{{ $uniqueKey }}"
         class="{{ $width }} {{ $cssElement }}"
-
-        {{-- DependOn Condition: hidden --}}
-        @includeWhen($dependOnValue && $dependOnType && $viewAction !== 'show', 'action-forms::javascript.depend-on.hidden')
     >
         {{-- Element --}}
-        <div x-data="">
+        <div>
             <div class="flex items-center mt-1.5 mb-4">
             
                 <input 
                     type="checkbox" 
                     data-element="{{ $uniqueKey }}"
+                    data-parent="parent__{{ $element }}"
+                    x-ref="__{{ $element }}"
                     class="{{ $css->get('base') }} @include('action-forms::elements.validation-highlight')"
                     value="{{ $value }}"
                     {{ $checked ? 'checked' : '' }}
                     {{ $attributes }}
-
-                    {{-- DependOn Conditions: Disabled --}}
-                    @includeWhen($dependOnValue && $dependOnType, 'action-forms::javascript.depend-on.disabled')
                 >
 
                 {{-- Label --}}
@@ -54,7 +55,7 @@
         </div>
     </div> {{-- /Element container --}}
 
-    {{-- Javascript: Depend On... --}}
-    @includeWhen($dependOnValue && $dependOnType && $viewAction !== 'show', 'action-forms::javascript.depend-on')
-
 @endif {{-- /Form element container --}}
+
+{{-- Push Javascript: Depend On... --}}
+@includeWhen($dependOnValue && $dependOnType && $viewAction !== 'show', 'action-forms::javascript.depend-on.onchange')

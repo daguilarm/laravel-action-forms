@@ -9,7 +9,14 @@
                 
     {{-- Show data --}}
     <div class="{{ config('action-forms.theme.show.data') }}">
-        {{ ($value <= 0 || is_null($value) || $value === '') ? config('action-forms.theme.empty-field') : $value }} 
+
+        {{-- As boolean --}}
+        @if(isset($asBoolean) && $asBoolean)
+            <div class="w-4 h-4 rounded-full {{ $value ? 'bg-green-500' : 'bg-gray-400' }}"></div>
+        {{-- Regular output --}}
+        @else
+            {{ ($value <= 0 || is_null($value) || $value === '') ? config('action-forms.theme.empty-field') : $value }} 
+        @endif
         
         {{-- Addon after --}}
         @isset($after)
