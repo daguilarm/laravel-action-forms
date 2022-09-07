@@ -124,7 +124,7 @@ Show view with boolean fields:
 
 ![Show action](./resources/img/show-boolean.png?raw=true)
 
-Depend fields in action:
+Dependent fields in action:
 
 ![Show action](./resources/img/dependOn.gif?raw=true)
 
