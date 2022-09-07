@@ -17,24 +17,30 @@ This package use:
 
 If you prefer, you can add this requirements using CDN. We have created a few **Blade Directives** in order to help you. You can add this **Blade Directives** between your `<head></head>`:
 
-```html
+```php
 <!-- This will add all the needed CDNs into your Blade template. -->
 @ActionForms
 ```
 
-```html
+```php
 <!-- This will add the alpinejs CDN into your Blade template. -->
 @ActionFormsAlpine
 ```
 
-```html
+```php
 <!-- This will add the tailwindcss CDN into your Blade template. -->
 @ActionFormsTailwind
 ```
 
-```html
+```php
 <!-- This will add the flatpickr CDN into your Blade template. -->
 @ActionFormsFlatpickr
+```
+
+At the end of your `<body>` tag add:
+
+```php
+@stack('action-forms-scripts')
 ```
 
 If you are using `PostCss` in your Tailwindcss configuration, you will need to add the following line in your `tailwind.config.js`:
