@@ -154,7 +154,7 @@ It is the current view action: `edit`, `create` or `show`. This is just for rend
 
 ### method
 
-The soported methods for the form are:
+The soported methods that can be used in the form are:
 
 - **post**: Is the default value if you keep this attribute empty. Will send a `POST` `_method` to **Laravel**.
 - **get**: Will send a `GET` `_method` to **Laravel**.
