@@ -110,7 +110,11 @@ php artisan vendor:publish --provider="Daguilarm\ActionForms\CookieConsentServic
 
 ## A few images  
 
-Show view:
+Show view without boolean fields:
+
+![Show action](./resources/img/show-no-boolean.png?raw=true)
+
+Show view with boolean fields:
 
 ![Show action](./resources/img/show.png?raw=true)
 
