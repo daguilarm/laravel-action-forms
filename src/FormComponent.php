@@ -17,7 +17,7 @@ abstract class FormComponent extends Component
      */
     protected function generateUniqueKey(): string
     {
-        return trim(str()->uuid()->toString());
+        return md5(str()->uuid()->toString());
     }
 
     /**
@@ -26,6 +26,7 @@ abstract class FormComponent extends Component
     protected function getTheme(): array
     {
         return array_merge(
+            self::getThemeShow(),
             self::getThemeElement(),
             self::getThemeForm(),
             self::getThemeLabel(),
@@ -39,6 +40,19 @@ abstract class FormComponent extends Component
             self::getThemeErrorMessages(),
             self::getThemeErrorMessagesHighlight(),
         );
+    }
+
+    /**
+     * Package theme: show
+     */
+    protected function getThemeShow(): array
+    {
+        return [
+            'show.container',
+            'show.label',
+            'show.data',
+            'show.after',
+        ];
     }
 
     /**

@@ -18,6 +18,14 @@ return [
     |--------------------------------------------------------------------------
     */
     'theme' => [
+        // Show view
+        'show' => [
+            'container' => 'w-full flex items-center p-3 text-sm border-b border-gray-100 last:border-0',
+            'label' => 'w-1/4 text-gray-400',
+            'data' => 'w-3/4 text-cyan-700 font-semibold',
+            'after' => 'p-1 text-gray-400 italic text-xs',
+        ],
+        // Form view
         'form' => 'w-full shadow rounded-md bg-white px-8 py-6',
         'element' => 'block mb-8',
         'disabled' => 'opacity-50',
@@ -48,11 +56,13 @@ return [
             'rounded' => 'rounded-md',
             'counter' => 'py-1.5 w-full italic text-right text-sm text-cyan-400',
         ],
+        // Checkbox
         'checkbox' => [
             'base' => 'w-5 h-5 text-cyan-600 bg-cyan-100 rounded border border-cyan-300 ',
             'focus' => 'focus:ring-cyan-500',
             'disabled' => 'disabled:border'
         ],
+        // Messages
         'messages' => [
             'errors' => [
                 'base' => 'p-1 mt-1',
@@ -60,6 +70,7 @@ return [
                 'border' => 'border-red-500',
             ],
         ],
+        // Empty field
         'empty-field' => '---',
     ],
 
