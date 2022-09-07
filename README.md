@@ -122,7 +122,7 @@ Show view without boolean fields:
 
 Show view with boolean fields:
 
-![Show action](./resources/img/show.png?raw=true)
+![Show action](./resources/img/show-boolean.png?raw=true)
 
 Depend fields in action:
 
