@@ -150,7 +150,7 @@ It is the current model result. You have to pass the data for model binding.
 
 ### view
 
-It is the current view action: `edit`, `create` or `show`. This is for render the custom view for each action. This is a very important field.
+It is the current view action: `edit`, `create` or `show`. This is just for render the custom view for each action. It is a very important field.
 
 ### method
 
