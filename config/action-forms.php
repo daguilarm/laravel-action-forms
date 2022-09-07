@@ -60,7 +60,7 @@ return [
         'checkbox' => [
             'base' => 'w-5 h-5 text-cyan-600 bg-cyan-100 rounded border border-cyan-300 ',
             'focus' => 'focus:ring-cyan-500',
-            'disabled' => 'disabled:border'
+            'disabled' => 'disabled:border',
         ],
         // Messages
         'messages' => [
@@ -86,6 +86,7 @@ return [
         'input' => Components\Input::class,
         'textarea' => Components\Textarea::class,
         'checkbox' => Components\Checkbox::class,
+        'radio' => Components\Radio::class,
     ],
 
     /*

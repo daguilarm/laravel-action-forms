@@ -222,8 +222,8 @@ abstract class FormComponent extends Component
      */
     protected function safeCssClasses(string $safeList = ''): string
     {
-        return self::getConfigClasses(self::getTheme()) 
-            . ' ' . config('action-forms.theme.disabled')
-            . ' w-4 h-4 rounded-full bg-green-500 bg-gray-400';
+        return self::getConfigClasses(self::getTheme())
+            .' '.config('action-forms.theme.disabled')
+            .' w-4 h-4 rounded-full bg-green-500 bg-gray-400';
     }
 }
