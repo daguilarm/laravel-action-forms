@@ -24,17 +24,11 @@
 {{-- Form element container --}}
 @else 
     <div 
-        x-data="{
-            {{-- Get the parent --}}
-            @if($dependOn)
-                parent: document.querySelector('[name={{ $dependOn }}]'),
-            @else 
-                parent: null,
-            @endif
-            value: '{{ $value }}',
-            {{ $element }}: {{ $dependOn ? 'true' : 'false' }},
-        }"
+        x-data="{}"
+        data-container="{{ $uniqueKey }}"
         class="{{ $width }} {{ $cssElement }}"
+        {{-- DependOn Condition: hidden --}}
+        @includeWhen($dependOnValue && $dependOnType && $viewAction !== 'show', 'action-forms::javascript.depend-on.hidden')
     >
         {{-- Add label --}}
         @includeWhen($label, 'action-forms::elements.label')
@@ -48,12 +42,7 @@
 
                 {{-- Input field --}}
                 <input 
-                    @if($dependOn)
-                        x-bind:disabled="this.{{ $dependOn }} ? true : false"
-                        x-on:onchange="this.{{ $element }} = $event.detail.{{ $element }}"
-                    @endif
-                    x-ref="{{ $element }}"
-                    x-on:keydown="$dispatch('onchange', { {{ $element }}: $refs.{{ $element }}.value ? true : false})"
+                    data-element="{{ $uniqueKey }}"
                     dusk="form-input-{{ $attributes->get('id') ?? $element }}"
                     class="{{ $css->get('base') }} {{ $addons }} @include('action-forms::elements.validation-highlight')" 
                     value="{{ $value }}"
@@ -61,6 +50,8 @@
                     {{-- Native attributes --}}
                     {{ $attributes }} 
 
+                    {{-- DependOn Conditions: Disabled --}}
+                    @includeWhen($dependOnValue && $dependOnType, 'action-forms::javascript.depend-on.disabled')
                 />
 
                 {{-- Addon after --}}
@@ -72,5 +63,8 @@
         </div>
 
     </div> {{-- /Element container --}}
+
+    {{-- Javascript: Depend On... --}}
+    @includeWhen($dependOnValue && $dependOnType && $viewAction !== 'show', 'action-forms::javascript.depend-on')
 
 @endif {{-- /Form element container --}}
