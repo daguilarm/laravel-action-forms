@@ -85,11 +85,17 @@
             // Hidden case
             if(type === 'hidden') {
                 childContainer.classList.add('hidden');
-                child.value = '';
+                // Reset child if parent is disabled
+                @if(config('action-forms.reset_disabled'))
+                    child.value = '';
+                @endif
             } else {
                 child.disabled = true;
-                child.value = '';
                 label.classList.add('{{ config('action-forms.theme.disabled') }}');
+                // Reset child if parent is disabled
+                @if(config('action-forms.reset_disabled'))
+                    child.value = '';
+                @endif
             }
         }
     </script>
