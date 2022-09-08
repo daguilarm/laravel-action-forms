@@ -16,8 +16,7 @@
 
 @php
     $value = old($element, $data->{$element} ?? null);
-    $booleanValue = $value ? true : false;
-    $checked = $value ? true : false;
+    $booleanValue = $value ? true : false;;
 @endphp
 
 {{-- Include: javascript + show view --}}
@@ -47,30 +46,29 @@
     >
         {{-- Element --}}
         <div>
-            <div class="mt-1.5 mb-4 {{ $position === 'vertical' ? 'block' : 'flex items-center' }}">
-                {{-- Label --}}
-                @includeWhen($label, 'action-forms::elements.label')
-                {{-- Radio elements --}}
+            {{-- Label  --}}
+            @includeWhen($label, 'action-forms::elements.label')
+            {{-- Radio elements --}}
+            <div class="mt-2 mb-4 {{ $css->get('item') }}">
                 @foreach($options as $key => $text)
-                    <div class="flex">
+                    <div class="flex items-center mt-1">
                         {{-- Checkbox field --}}
                         <input 
-                            type="checkbox" 
+                            type="radio" 
                             data-element="{{ $uniqueKey }}"
                             data-parent="parent__{{ $element }}"
                             x-ref="{{ $key }}__{{ $element }}"
                             class="{{ $css->get('base') }} @include('action-forms::elements.validation-highlight')"
                             value="{{ $key }}"
-                            id="{{ $element }}_{{ $key }}"
                             name="{{ $element }}"
-                            {{ $checked ? 'checked' : '' }}
+                            {{ $value === $key ? 'checked' : '' }}
                         >
-                        <span class="af_element_disabled_{{ $uniqueKey }} ml-2">{{ $text }}</span>
+                        <span class="af_element_disabled_{{ $uniqueKey }} ml-2 text-gray-600">{{ $text }}</span>
                     </div>
                 @endforeach
             </div>
-            {{-- Validation errors and Helper --}}
-            @include('action-forms::elements.helper-and-validation')
         </div>
+        {{-- Validation errors and Helper --}}
+        @include('action-forms::elements.helper-and-validation')
     </div> {{-- /Element container --}}
 @endif {{-- /Form-element container --}}

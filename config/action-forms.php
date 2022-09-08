@@ -33,6 +33,7 @@ return [
             'base' => 'w-full block font-medium text-cyan-700',
             'general' => 'text-base',
             'checkbox' => 'ml-2 text-base',
+            'radio' => 'text-base',
         ],
         'helper' => 'px-1 mt-1 -mb-1 text-sm text-cyan-800 italic opacity-60',
         // Input and textarea
@@ -42,7 +43,7 @@ return [
             'text' => 'text-base text-cyan-700', // Text color for input, textarea,...
             'border' => 'border border-gray-300',
             'focus' => 'focus:outline-none focus:border-cyan-500 focus:ring-cyan-500', // Border color on focus for input, textarea,...
-            'disabled' => 'disabled:bg-gray-200 disabled:text-gray-400 disabled:border-gray-300',
+            'disabled' => 'disabled:bg-gray-200 disabled:text-gray-300 disabled:border-gray-200',
             'placeholder' => 'placeholder:text-gray-600 placeholder:italic placeholder:opacity-40',
             'shadow' => 'shadow',
             'addons' => [
@@ -58,9 +59,15 @@ return [
         ],
         // Checkbox
         'checkbox' => [
-            'base' => 'w-5 h-5 text-cyan-600 bg-cyan-100 rounded border border-cyan-300 ',
+            'base' => 'w-4 h-4 text-cyan-600 bg-cyan-100 rounded border border-cyan-300 accent-cyan-600',
             'focus' => 'focus:ring-cyan-500',
             'disabled' => 'disabled:border',
+        ],
+        'radio' => [
+            'layout' => [
+                'horizontal' => 'flex items-center space-x-4 overflow-x-hidden',
+                'vertical' => 'block',
+            ],
         ],
         // Messages
         'messages' => [

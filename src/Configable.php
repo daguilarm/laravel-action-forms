@@ -18,6 +18,7 @@ trait Configable
             self::getThemeHelper(),
             self::getThemeCheckbox(),
             self::getThemeCheckboxLabel(),
+            self::getThemeRadioLabel(),
             self::getThemeTextarea(),
             self::getThemeInputAddons(),
             self::getThemeInputAddonsHighlight(),
@@ -140,6 +141,17 @@ trait Configable
         return [
             'label.base',
             'label.checkbox',
+        ];
+    }
+
+    /**
+     * Package theme: label for radio
+     */
+    protected function getThemeRadioLabel(): array
+    {
+        return [
+            'label.base',
+            'label.radio',
         ];
     }
 

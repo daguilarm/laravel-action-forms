@@ -128,6 +128,18 @@ Dependent fields in action:
 
 ![Show action](./resources/img/dependOn.gif?raw=true)
 
+Dependent fields disabled:
+
+![Show action](./resources/img/dependOn-disabled.png?raw=true)
+
+Radio field vertical:
+
+![Show action](./resources/img/radio-vertical.png?raw=true)
+
+Radio field horizontal:
+
+![Show action](./resources/img/radio-horizontal.png?raw=true)
+
 ## Create a Form component 
 
 ```html
@@ -332,6 +344,31 @@ This field is used to indicate if we want to show the characters used and the re
 By default, the field will be unchecked. 
 
 > If you want to set a default value, don't forget to send the value as a variable, using the colon character `:checked="true"`.
+
+## Create a Radio component 
+
+```html
+<x-form>
+    <x-radio
+        width="w-1/3"
+        name="role"
+        label="Role"
+        dependOn="active"
+        position="vertical"
+        :options="[
+            0 => 'Root',
+            1 => 'Admin',
+            2 => 'Editor',
+            3 => 'User',
+            4 => 'Guest',
+        ]"
+    />
+</x-form>
+```
+
+### position 
+
+### options
 
 ## Roadmap
 - Radio (alpinejs)

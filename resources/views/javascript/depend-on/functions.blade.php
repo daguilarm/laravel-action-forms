@@ -15,11 +15,11 @@
             // Init all the elements
             __af_initElements(child, value);
             // If parent is a checkbox
-            if(parent.getAttribute('type') === 'checkbox') {
-                __af_parentIsCheckbox(parent, child, childContainer, label, type);
+            if(parent.getAttribute('type') === 'checkbox' || parent.getAttribute('type') === 'radio') {
+                __af_parentIsInputOrCheckbox(parent, child, childContainer, label, type, parent.checked);
             // If parent is a input, textarea
             } else {
-                __af_parentIsInput(parent, child, childContainer, label, type);
+                __af_parentIsInputOrCheckbox(parent, child, childContainer, label, type, parent.value);
             }
         }
         // Get all the elements
@@ -32,7 +32,11 @@
             value = value > 0 ? true : false;
             // If is a string
             if (!parent.hasOwnProperty('value')) {
-                parent = document.querySelector('[data-parent="parent__' + parent + '"]');  
+                parent = document.querySelector('[data-parent="parent__' + parent + '"]');
+                // Radio button case -> multiple elements with the same value
+                if(parent.getAttribute('type') === 'radio' && parent.value) {
+                    parent = document.querySelector('input[data-parent="parent__' + parent + '"]:checked');
+                }
             }  
             return [parent, child, childContainer, label, value];
         }
@@ -56,27 +60,9 @@
                 }
             });
         }
-        // If the parent is an input or textarea
-        __af_parentIsInput = function(parent, child, childContainer, label, type) {
-            if(parent.value) {
-                // Hidden case
-                if(type === 'hidden') {
-                    childContainer.classList.remove('hidden');
-                } else {
-                    // All the children: remove the disabled state
-                    child.forEach(function(element) {
-                        element.disabled = false;
-                    });
-                    // Enable all the labels
-                    [].map.call(label, element => element.classList.remove('{{ config('action-forms.theme.disabled') }}'));
-                }
-            } else {
-                __af_resetElement(child, childContainer, label, type);
-            }
-        }
-        // If the parent is a checkbox
-        __af_parentIsCheckbox = function(parent, child, childContainer, label, type) {
-            if(parent.checked) {
+        // If the parent is an input, textarea or checkbox
+        __af_parentIsInputOrCheckbox = function(parent, child, childContainer, label, type, condition) {
+            if(condition) {
                 // Hidden case
                 if(type === 'hidden') {
                     childContainer.classList.remove('hidden');
@@ -109,16 +95,15 @@
                 // All the children: add the disabled state
                 child.forEach(function(element) {
                     element.disabled = true;
+                    element.checked = false;
+                    // Reset child if parent is disabled
+                    @if(config('action-forms.reset_disabled'))
+                        // All the children: reset the value
+                        element.value = '';
+                    @endif
                 });
                 // Disable all the labels
                 [].map.call(label, element => element.classList.add('{{ config('action-forms.theme.disabled') }}'));
-                // Reset child if parent is disabled
-                @if(config('action-forms.reset_disabled'))
-                    // All the children: reset the value
-                    child.forEach(function(element) {
-                        element.value = '';
-                    });
-                @endif
             }
             // Reset the counter if...
             __af_updateTextAreaCount(child);

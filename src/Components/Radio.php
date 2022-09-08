@@ -25,10 +25,13 @@ class Radio extends FormComponent
         $this->asBoolean = $asBoolean ? true : false;
         $this->css = collect([
             'base' => $this->getConfigClasses($this->getThemeCheckbox()),
-            'label' => $this->getConfigClasses($this->getThemeCheckboxLabel()),
+            'label' => $this->getConfigClasses($this->getThemeRadioLabel()),
             'error' => $this->getConfigClasses($this->getThemeErrorMessages()),
             'errorHighlight' => $this->getConfigClasses($this->getThemeErrorMessagesHighlight()),
             'helper' => $this->getConfigClasses($this->getThemeHelper()),
+            'item' => $this->position === 'vertical' 
+                ? config('action-forms.theme.radio.layout.vertical') 
+                : config('action-forms.theme.radio.layout.horizontal'),
         ]);
     }
 
