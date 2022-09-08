@@ -1,1 +1,1 @@
-radio
+{{ $label }}
