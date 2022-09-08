@@ -8,7 +8,7 @@
             // If element has not parent, then set all to default 
             if (parent === null) {
                 // Set default values
-                window.__af_setDefaultValues(parent, child);
+                window.__af_setDefaultValues(parent, child, label);
                 // The end
                 return;
             }
@@ -26,8 +26,9 @@
         window.__af_getElements = function(parent, key, value) {
             // Get the child values 
             childContainer = document.querySelector('[data-container="' + key + '"]');  
-            child = document.querySelector('[data-element="' + key + '"]'); 
-            label = document.getElementById('label-' + key);
+            // All the children (querySelectorAll)
+            child = document.querySelectorAll('[data-element="' + key + '"]'); 
+            label = document.getElementsByClassName('af_element_disabled_' + key);
             value = value > 0 ? true : false;
             // If is a string
             if (!parent.hasOwnProperty('value')) {
@@ -36,21 +37,24 @@
             return [parent, child, childContainer, label, value];
         }
         // Set the default values
-        window.__af_setDefaultValues = function(parent, child) {
-            // If not parent all default 
-            if (parent === null) {
-                // Default values
-                child.disabled = false;
-                childContainer.classList.remove('hidden');
-                label.classList.remove('{{ config('action-forms.theme.disabled') }}');
-            }
+        window.__af_setDefaultValues = function(parent, child, label) {
+            // Show the container
+            childContainer.classList.remove('hidden');
+            // Default values: remove the disabled state
+            child.forEach(function(element) {
+                element.disabled = false;
+            });
+            // Enable all the labels
+            [].map.call(label, element => element.classList.remove('{{ config('action-forms.theme.disabled') }}'));
         }
         // Init the elements
         window.__af_initElements = function(child, value) {
-            // If current element (child) is checked or not 
-            if (child.getAttribute('type') === 'checkbox') {
-                child.checked = value ? true : false;
-            }
+            child.forEach(function(element) {
+                // If current element (child) is checked or not 
+                if (element.getAttribute('type') === 'checkbox') {
+                    element.checked = value ? true : false;
+                }
+            });
         }
         // If the parent is an input or textarea
         window.__af_parentIsInput = function(parent, child, childContainer, label, type) {
@@ -59,8 +63,12 @@
                 if(type === 'hidden') {
                     childContainer.classList.remove('hidden');
                 } else {
-                    child.disabled = false;
-                    label.classList.remove('{{ config('action-forms.theme.disabled') }}');
+                    // All the children: remove the disabled state
+                    child.forEach(function(element) {
+                        element.disabled = false;
+                    });
+                    // Enable all the labels
+                    [].map.call(label, element => element.classList.remove('{{ config('action-forms.theme.disabled') }}'));
                 }
             } else {
                 window.__af_resetElement(child, childContainer, label, type);
@@ -73,8 +81,12 @@
                 if(type === 'hidden') {
                     childContainer.classList.remove('hidden');
                 } else {
-                    child.disabled = false;
-                    label.classList.remove('{{ config('action-forms.theme.disabled') }}');
+                    // All the children: remove the disabled state
+                    child.forEach(function(element) {
+                        element.disabled = false;
+                    });
+                    // Enable all the labels
+                    [].map.call(label, element => element.classList.remove('{{ config('action-forms.theme.disabled') }}'));
                 }
             } else {
                 window.__af_resetElement(child, childContainer, label, type);
@@ -87,22 +99,35 @@
                 childContainer.classList.add('hidden');
                 // Reset child if parent is disabled
                 @if(config('action-forms.reset_disabled'))
-                    child.value = '';
+                    // All the children: reset the value
+                    child.forEach(function(element) {
+                        element.value = '';
+                    });
                 @endif
             } else {
-                child.disabled = true;
-                label.classList.add('{{ config('action-forms.theme.disabled') }}');
+                // All the children: add the disabled state
+                child.forEach(function(element) {
+                    element.disabled = true;
+                });
+                // Disable all the labels
+                [].map.call(label, element => element.classList.add('{{ config('action-forms.theme.disabled') }}'));
                 // Reset child if parent is disabled
                 @if(config('action-forms.reset_disabled'))
-                    child.value = '';
+                    // All the children: reset the value
+                    child.forEach(function(element) {
+                        element.value = '';
+                    });
                 @endif
             }
             // Reset the counter if...
             window.__af_updateTextAreaCount(child);
         }
         // Reset the textarea count
-        window.__af_updateTextAreaCount = function(child, count = 0) {
-            child.dispatchEvent(new CustomEvent('updatecounter', {detail: {value: count}}));
+        window.__af_updateTextAreaCount = function(child, count = 0, element = null) {
+            // Remember we are working with a list of children.
+            // The textarea allways has only one element.
+            // So just take the first one (an unique) for fire an event.
+            child[0].dispatchEvent(new CustomEvent('updatecounter', {detail: {value: count}}));
         }
     </script>
 @endpush

@@ -50,7 +50,7 @@
             <div class="flex mt-1.5">
                 {{-- Addon before --}}
                 @if($before)
-                    <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 {{ $css->get('addons') }} @error($element) {{ $css->get('errorHighlight') }} @else {{ $css->get('addonsHighlight') }} @enderror">
+                    <span class="af_element_disabled_{{ $uniqueKey }} inline-flex items-center px-3 rounded-l-md border border-r-0 {{ $css->get('addons') }} @error($element) {{ $css->get('errorHighlight') }} @else {{ $css->get('addonsHighlight') }} @enderror">
                         {{ $before }}
                     </span>
                 @endif
@@ -66,7 +66,7 @@
                 />
                 {{-- Addon after --}}
                 @if($after)
-                    <span class="inline-flex items-center px-3 rounded-r-md border border-l-0 {{ $css->get('addons') }} @error($element) {{ $css->get('errorHighlight') }} @else {{ $css->get('addonsHighlight') }} @enderror">
+                    <span class="af_element_disabled_{{ $uniqueKey }} inline-flex items-center px-3 rounded-r-md border border-l-0 {{ $css->get('addons') }} @error($element) {{ $css->get('errorHighlight') }} @else {{ $css->get('addonsHighlight') }} @enderror">
                         {{ $after }}
                     </span>
                 @endif

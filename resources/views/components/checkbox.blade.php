@@ -46,7 +46,7 @@
             <div class="flex items-center mt-1.5 mb-4">
                 {{-- Checkbox field --}}
                 <input 
-                    type="radio" 
+                    type="checkbox" 
                     data-element="{{ $uniqueKey }}"
                     data-parent="parent__{{ $element }}"
                     x-ref="__{{ $element }}"

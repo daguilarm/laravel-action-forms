@@ -2,7 +2,7 @@
     <label 
         for="{{ $element }}" 
         id="label-{{ $uniqueKey }}"
-        class="{{ $css->get('label') }}"
+        class="af_element_disabled_{{ $uniqueKey }} {{ $css->get('label') }}"
     >
         {{ $label }}
     </label>

@@ -5,6 +5,7 @@
     'conditional' => $conditional,
     'width' => $width,
     'label' => $label,
+    'id' => $id,
     'dependOn' => $dependOn,
     'dependOnType' => $dependOnType,
     'helper' => $helper,
@@ -53,16 +54,18 @@
                 @foreach($options as $key => $text)
                     <div class="flex">
                         {{-- Checkbox field --}}
-                            <input 
+                        <input 
                             type="checkbox" 
                             data-element="{{ $uniqueKey }}"
                             data-parent="parent__{{ $element }}"
                             x-ref="{{ $key }}__{{ $element }}"
                             class="{{ $css->get('base') }} @include('action-forms::elements.validation-highlight')"
                             value="{{ $key }}"
+                            id="{{ $element }}_{{ $key }}"
+                            name="{{ $element }}"
                             {{ $checked ? 'checked' : '' }}
                         >
-                        <span class="ml-2">{{ $text }}</span>
+                        <span class="af_element_disabled_{{ $uniqueKey }} ml-2">{{ $text }}</span>
                     </div>
                 @endforeach
             </div>
