@@ -215,7 +215,7 @@ Show or hide a component base on a condition:
         required
     />
 
-> If you want to set a default condition, don't forget to send the value as a variable, using the colon character (:conditional="true").
+> If you want to set a default condition, don't forget to send the value as a variable, using the colon character: `:conditional="true"`.
 
 ## Create an Input component 
 
@@ -329,7 +329,7 @@ This field is used to indicate if we want to show the characters used and the re
 
 By default, the field will be unchecked. 
 
-> If you want to set a default value, don't forget to send the value as a variable, using the colon character (:checked="true").
+> If you want to set a default value, don't forget to send the value as a variable, using the colon character `:checked="true"`.
 
 ## Roadmap
 - Radio (alpinejs)
