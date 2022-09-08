@@ -89,6 +89,7 @@
                     [].map.call(label, element => element.classList.remove('{{ config('action-forms.theme.disabled') }}'));
                 }
             } else {
+                // Reset all children
                 window.__af_resetElement(child, childContainer, label, type);
             }
         }
@@ -118,6 +119,10 @@
                         element.value = '';
                     });
                 @endif
+
+                // Start cascade
+                let children = document.querySelectorAll('[data-parent="' + child[0] + '"]');
+                [].map.call(children, element => window.__af_dependOn(child[0], type, element.value, element.datasets.element)));
             }
             // Reset the counter if...
             window.__af_updateTextAreaCount(child);
