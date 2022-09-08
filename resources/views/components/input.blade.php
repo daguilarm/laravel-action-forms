@@ -1,4 +1,5 @@
 @props([
+    'conditional' => $conditional,
     'dependOn' => $dependOn,
     'dependOnType' => $dependOnType ?? 'disabled',
     'dependOnValue' => $dependOn ? true : false,
@@ -26,11 +27,12 @@
 @else 
     <div 
         x-data="{
+            conditional: '{{ $conditional }}',
             parent: '{{ $dependOn }}',
             init() {
                 if(this.parent) {
                     window.__af_dependOn(
-                        '{{ $dependOn }}', 
+                        this.parent, 
                         '{{ $dependOnType }}', 
                         '{{ $booleanValue }}', 
                         '{{ $uniqueKey }}'
@@ -38,6 +40,7 @@
                 }
             },
         }"
+        x-show="conditional"
         data-container="{{ $uniqueKey }}"
         class="{{ $width }} {{ $cssElement }}"
     >

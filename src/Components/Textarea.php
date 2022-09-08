@@ -2,12 +2,15 @@
 
 namespace Daguilarm\ActionForms\Components;
 
+use Daguilarm\ActionForms\Configable;
 use Daguilarm\ActionForms\FormComponent;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 
 class Textarea extends FormComponent
 {
+    use Configable;
+
     public string $uniqueKey;
 
     public Collection $css;
@@ -17,17 +20,17 @@ class Textarea extends FormComponent
      *
      * @return void
      */
-    public function __construct(public ?string $label = null, public ?string $width = 'full', public int $maxlength = 220, public int $rows = 4, public ?string $dependOn = null, public ?string $dependOnType = null, public ?string $counter = null)
+    public function __construct(public ?string $label = null, public ?string $width = 'full', public ?string $dependOn = null, public ?string $dependOnType = null, public bool $conditional = true, public int $maxlength = 220, public int $rows = 4, public ?string $counter = null)
     {
         $this->counter = ! is_null($counter) ? true : false;
-        $this->uniqueKey = parent::generateUniqueKey();
+        $this->uniqueKey = $this->generateUniqueKey();
         $this->css = collect([
-            'base' => parent::getConfigClasses(parent::getThemeTextarea()),
-            'label' => parent::getConfigClasses(parent::getThemeLabel()),
-            'counter' => parent::getConfigClasses(parent::getThemeTextareaCounter()),
-            'error' => parent::getConfigClasses(parent::getThemeErrorMessages()),
-            'errorHighlight' => parent::getConfigClasses(parent::getThemeErrorMessagesHighlight()),
-            'helper' => parent::getConfigClasses(parent::getThemeHelper()),
+            'base' => $this->getConfigClasses($this->getThemeTextarea()),
+            'label' => $this->getConfigClasses($this->getThemeLabel()),
+            'counter' => $this->getConfigClasses($this->getThemeTextareaCounter()),
+            'error' => $this->getConfigClasses($this->getThemeErrorMessages()),
+            'errorHighlight' => $this->getConfigClasses($this->getThemeErrorMessagesHighlight()),
+            'helper' => $this->getConfigClasses($this->getThemeHelper()),
         ]);
     }
 

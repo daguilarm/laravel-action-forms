@@ -1,4 +1,5 @@
 @props([
+    'conditional' => $conditional,
     'dependOn' => $dependOn,
     'dependOnType' => $dependOnType ?? 'disabled',
     'dependOnValue' => $dependOn ? true : false,
@@ -28,6 +29,7 @@
     <div 
         x-data="{ 
             count: 0,
+            conditional: '{{ $conditional }}',
             parent: '{{ $dependOn }}',
             init() {
                 if(this.parent) {
@@ -38,6 +40,7 @@
                 }
             },
         }" 
+        x-show="conditional"
         data-container="{{ $uniqueKey }}"
         class="{{ $width }} {{ $cssElement }}"
     >

@@ -2,15 +2,16 @@
 
 namespace Daguilarm\ActionForms\Components;
 
+use Daguilarm\ActionForms\Configable;
 use Daguilarm\ActionForms\FormComponent;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 
 class Input extends FormComponent
 {
-    public string $addons = '';
+    use Configable;
 
-    public string $uniqueKey;
+    public string $addons = '';
 
     public Collection $css;
 
@@ -19,18 +20,19 @@ class Input extends FormComponent
      *
      * @return void
      */
-    public function __construct(public ?string $label = null, public ?string $width = 'full', public ?string $dependOn = null, public ?string $dependOnType = null, public ?string $before = null, public ?string $after = null)
+    public function __construct(public ?string $label = null, public ?string $width = 'full', public ?string $dependOn = null, public bool $conditional = true, public ?string $dependOnType = null, public ?string $before = null, public ?string $after = null)
     {
-        $this->addons = self::getAddonsClasses();
-        $this->uniqueKey = parent::generateUniqueKey();
+        parent::__construct();
+
+        $this->addons = $this->getAddonsClasses();
         $this->css = collect([
-            'base' => parent::getConfigClasses(parent::getThemeInput()),
-            'label' => parent::getConfigClasses(parent::getThemeLabel()),
-            'addons' => parent::getConfigClasses(parent::getThemeInputAddons()),
-            'addonsHighlight' => parent::getConfigClasses(parent::getThemeInputAddonsHighlight()),
-            'error' => parent::getConfigClasses(parent::getThemeErrorMessages()),
-            'errorHighlight' => parent::getConfigClasses(parent::getThemeErrorMessagesHighlight()),
-            'helper' => parent::getConfigClasses(parent::getThemeHelper()),
+            'base' => $this->getConfigClasses($this->getThemeInput()),
+            'label' => $this->getConfigClasses($this->getThemeLabel()),
+            'addons' => $this->getConfigClasses($this->getThemeInputAddons()),
+            'addonsHighlight' => $this->getConfigClasses($this->getThemeInputAddonsHighlight()),
+            'error' => $this->getConfigClasses($this->getThemeErrorMessages()),
+            'errorHighlight' => $this->getConfigClasses($this->getThemeErrorMessagesHighlight()),
+            'helper' => $this->getConfigClasses($this->getThemeHelper()),
         ]);
     }
 

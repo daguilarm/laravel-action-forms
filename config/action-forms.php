@@ -79,7 +79,7 @@ return [
     | Reset disabled fields
     |--------------------------------------------------------------------------
     | When you are using dependent field, if the parent is disabled the child will be reset.
-    | Even if has a value in the DB. 
+    | Even if has a value in the DB.
     | If the parent is disabled the child is empty.
     | If is disabled, the field will be hidden or disabled but will keep the value.
     | The true value, looks like the correct way to show the data by default, but...

@@ -2,12 +2,15 @@
 
 namespace Daguilarm\ActionForms\Components;
 
+use Daguilarm\ActionForms\Configable;
 use Daguilarm\ActionForms\FormComponent;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 
 class Checkbox extends FormComponent
 {
+    use Configable;
+
     public string $uniqueKey;
 
     public Collection $css;
@@ -17,16 +20,16 @@ class Checkbox extends FormComponent
      *
      * @return void
      */
-    public function __construct(public ?string $label = null, public ?string $width = 'full', public ?string $dependOn = null, public ?bool $asBoolean = null, public ?string $dependOnType = null)
+    public function __construct(public ?string $label = null, public ?string $width = 'full', public ?string $dependOn = null, public ?string $dependOnType = null, public bool $conditional = true, public bool $asBoolean = false)
     {
         $this->asBoolean = $asBoolean ? true : false;
-        $this->uniqueKey = parent::generateUniqueKey();
+        $this->uniqueKey = $this->generateUniqueKey();
         $this->css = collect([
-            'base' => parent::getConfigClasses(parent::getThemeCheckbox()),
-            'label' => parent::getConfigClasses(parent::getThemeCheckboxLabel()),
-            'error' => parent::getConfigClasses(parent::getThemeErrorMessages()),
-            'errorHighlight' => parent::getConfigClasses(parent::getThemeErrorMessagesHighlight()),
-            'helper' => parent::getConfigClasses(parent::getThemeHelper()),
+            'base' => $this->getConfigClasses($this->getThemeCheckbox()),
+            'label' => $this->getConfigClasses($this->getThemeCheckboxLabel()),
+            'error' => $this->getConfigClasses($this->getThemeErrorMessages()),
+            'errorHighlight' => $this->getConfigClasses($this->getThemeErrorMessagesHighlight()),
+            'helper' => $this->getConfigClasses($this->getThemeHelper()),
         ]);
     }
 

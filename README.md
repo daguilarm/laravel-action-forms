@@ -202,6 +202,21 @@ In this case, the `surname` field will be hidden until the `name` field has a va
 
 The `dependOnType()` attribute admits two possible values: `hidden` or `disabled`.
 
+### Conditional 
+
+Show or hide a component base on a condition:
+
+    <x-input
+        id="surname"
+        type="text"
+        name="surname"
+        label="Surname"
+        :conditional="auth()->user()->id === 1"
+        required
+    />
+
+> If you want to set a default condition, don't forget to send the value as a variable, using the colon character (:conditional="true").
+
 ## Create an Input component 
 
 > This component requires the **alpinejs** dependency.
@@ -312,8 +327,9 @@ This field is used to indicate if we want to show the characters used and the re
 
 ### checked 
 
-By default, the field will be unchecked. **If you want to set a default value, don't forget to send the value as a variable, 
-using the colon character (:checked="true").**
+By default, the field will be unchecked. 
+
+> If you want to set a default value, don't forget to send the value as a variable, using the colon character (:checked="true").
 
 ## Roadmap
 - Radio (alpinejs)
