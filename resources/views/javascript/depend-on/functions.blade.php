@@ -2,28 +2,28 @@
 @push('action-forms-scripts')
     <script $_key="{{ str()->uuid() }}">
         // Dependent base function
-        window.__af_dependOn = function(parent, type, value, key) {
+        __af_dependOn = function(parent, type, value, key) {
             // Get all the elements
-            [parent, child, childContainer, label, value] = window.__af_getElements(parent, key, value);
+            [parent, child, childContainer, label, value] =__af_getElements(parent, key, value);
             // If element has not parent, then set all to default 
             if (parent === null) {
                 // Set default values
-                window.__af_setDefaultValues(parent, child, label);
+                __af_setDefaultValues(parent, child, label);
                 // The end
                 return;
             }
             // Init all the elements
-            window.__af_initElements(child, value);
+            __af_initElements(child, value);
             // If parent is a checkbox
             if(parent.getAttribute('type') === 'checkbox') {
-                window.__af_parentIsCheckbox(parent, child, childContainer, label, type);
+                __af_parentIsCheckbox(parent, child, childContainer, label, type);
             // If parent is a input, textarea
             } else {
-                window.__af_parentIsInput(parent, child, childContainer, label, type);
+                __af_parentIsInput(parent, child, childContainer, label, type);
             }
         }
         // Get all the elements
-        window.__af_getElements = function(parent, key, value) {
+        __af_getElements = function(parent, key, value) {
             // Get the child values 
             childContainer = document.querySelector('[data-container="' + key + '"]');  
             // All the children (querySelectorAll)
@@ -37,7 +37,7 @@
             return [parent, child, childContainer, label, value];
         }
         // Set the default values
-        window.__af_setDefaultValues = function(parent, child, label) {
+        __af_setDefaultValues = function(parent, child, label) {
             // Show the container
             childContainer.classList.remove('hidden');
             // Default values: remove the disabled state
@@ -48,7 +48,7 @@
             [].map.call(label, element => element.classList.remove('{{ config('action-forms.theme.disabled') }}'));
         }
         // Init the elements
-        window.__af_initElements = function(child, value) {
+        __af_initElements = function(child, value) {
             child.forEach(function(element) {
                 // If current element (child) is checked or not 
                 if (element.getAttribute('type') === 'checkbox') {
@@ -57,7 +57,7 @@
             });
         }
         // If the parent is an input or textarea
-        window.__af_parentIsInput = function(parent, child, childContainer, label, type) {
+        __af_parentIsInput = function(parent, child, childContainer, label, type) {
             if(parent.value) {
                 // Hidden case
                 if(type === 'hidden') {
@@ -71,11 +71,11 @@
                     [].map.call(label, element => element.classList.remove('{{ config('action-forms.theme.disabled') }}'));
                 }
             } else {
-                window.__af_resetElement(child, childContainer, label, type);
+                __af_resetElement(child, childContainer, label, type);
             }
         }
         // If the parent is a checkbox
-        window.__af_parentIsCheckbox = function(parent, child, childContainer, label, type) {
+        __af_parentIsCheckbox = function(parent, child, childContainer, label, type) {
             if(parent.checked) {
                 // Hidden case
                 if(type === 'hidden') {
@@ -90,11 +90,11 @@
                 }
             } else {
                 // Reset all children
-                window.__af_resetElement(child, childContainer, label, type);
+                __af_resetElement(child, childContainer, label, type);
             }
         }
         // Reset the element
-        window.__af_resetElement = function(child, childContainer, label, type) {
+        __af_resetElement = function(child, childContainer, label, type) {
             // Hidden case
             if(type === 'hidden') {
                 childContainer.classList.add('hidden');
@@ -119,16 +119,12 @@
                         element.value = '';
                     });
                 @endif
-
-                // Start cascade
-                let children = document.querySelectorAll('[data-parent="' + child[0] + '"]');
-                [].map.call(children, element => window.__af_dependOn(child[0], type, element.value, element.datasets.element)));
             }
             // Reset the counter if...
-            window.__af_updateTextAreaCount(child);
+            __af_updateTextAreaCount(child);
         }
         // Reset the textarea count
-        window.__af_updateTextAreaCount = function(child, count = 0, element = null) {
+        __af_updateTextAreaCount = function(child, count = 0, element = null) {
             // Remember we are working with a list of children.
             // The textarea allways has only one element.
             // So just take the first one (an unique) for fire an event.

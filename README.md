@@ -202,6 +202,8 @@ In this case, the `surname` field will be hidden until the `name` field has a va
 
 The `dependOnType()` attribute admits two possible values: `hidden` or `disabled`.
 
+> **The dependent system only works on one level**. That is, a parent element enables or disables their children elements, but it does not trigger a cascade of events towards its own children and these to their children, etc...
+
 ### Conditional 
 
 Show or hide a component base on a condition:
