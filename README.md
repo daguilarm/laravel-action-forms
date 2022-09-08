@@ -326,6 +326,8 @@ This field is used to indicate if we want to show the characters used and the re
 
 ## Create a Checkbox component 
 
+> This component requires the **alpinejs** dependency.
+
 ```html
 <x-form>
     <x-checkbox
@@ -346,6 +348,8 @@ By default, the field will be unchecked.
 > If you want to set a default value, don't forget to send the value as a variable, using the colon character `:checked="true"`.
 
 ## Create a Radio component 
+
+> This component requires the **alpinejs** dependency.
 
 ```html
 <x-form>
@@ -371,7 +375,7 @@ By default, the field will be unchecked.
 ### options
 
 ## Roadmap
-- Radio (alpinejs)
+
 - File (alpinejs)
 - Select (alpinejs)
 - Toggle/Boolean (alpinejs)
