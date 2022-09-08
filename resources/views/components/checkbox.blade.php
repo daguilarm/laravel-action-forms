@@ -16,13 +16,11 @@
     $checked = $value ? true : false;
 @endphp
 
-{{-- Show container --}}
-@if($viewAction === 'show')
-    @include('action-forms::elements.show')
+{{-- Include: javascript + show view --}}
+@include('action-forms::component')
 
-{{-- Form element container --}}
-@else 
-
+{{-- Form-element container --}}
+@if($viewAction !== 'show') 
     {{-- Element container --}}
     <div 
         x-data="{
@@ -46,7 +44,7 @@
         {{-- Element --}}
         <div>
             <div class="flex items-center mt-1.5 mb-4">
-            
+                {{-- Checkbox field --}}
                 <input 
                     type="checkbox" 
                     data-element="{{ $uniqueKey }}"
@@ -57,17 +55,11 @@
                     {{ $checked ? 'checked' : '' }}
                     {{ $attributes }}
                 >
-
                 {{-- Label --}}
                 @includeWhen($label, 'action-forms::elements.label')
             </div>
-
             {{-- Validation errors and Helper --}}
             @include('action-forms::elements.helper-and-validation')
         </div>
     </div> {{-- /Element container --}}
-
-@endif {{-- /Form element container --}}
-
-{{-- Push Javascript: Depend On... --}}
-@includeWhen($dependOnValue && $dependOnType && $viewAction !== 'show', 'action-forms::javascript.depend-on.onchange')
+@endif {{-- /Form-element container --}}

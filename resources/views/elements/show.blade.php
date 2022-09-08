@@ -19,8 +19,8 @@
         @endif
         
         {{-- Addon after --}}
-        @isset($after)
+        @if($after)
             <span class="{{ config('action-forms.theme.show.after') }}">{{ $after }}</span>
-        @endisset
+        @endif
     </div>
 </div> 

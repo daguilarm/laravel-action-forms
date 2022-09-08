@@ -19,12 +19,11 @@
     $booleanValue = $value ? true : false;
 @endphp
 
-{{-- Show container --}}
-@if($viewAction === 'show')
-    @include('action-forms::elements.show')
+{{-- Include: javascript + show view --}}
+@include('action-forms::component')
 
-{{-- Form element container --}}
-@else 
+{{-- Form-element container --}}
+@if($viewAction !== 'show') 
     {{-- Element container --}}
     <div 
         x-data="{ 
@@ -46,8 +45,8 @@
     >
         {{-- Add label --}}
         @includeWhen($label, 'action-forms::elements.label')
-
         <div>
+            {{-- Texarea fuekd --}}
             <textarea 
                 x-ref="t__{{ $element }}" 
                 x-on:keyup="count = $refs.t__{{ $element }}.value.length"
@@ -62,16 +61,13 @@
                 {{ $attributes }} 
             >{{ trim($value) }}</textarea>
         </div>
-
         {{-- Validation errors and Helper --}}
         @include('action-forms::elements.helper-and-validation')
-
         {{-- Chars counter --}}
-        @includeWhen($counter, 'action-forms::elements.counter')
-
+        @if($counter)
+            <div class="{{ $css->get('counter') }}">
+                <span x-html="count"></span> / <span x-html="$refs.t__{{ $element }}.maxLength"></span>
+            </div>
+        @endif
     </div> {{-- /Element container --}}
-
 @endif 
-
-{{-- Push Javascript: Depend On... --}}
-@includeWhen($dependOnValue && $dependOnType && $viewAction !== 'show', 'action-forms::javascript.depend-on.onchange')

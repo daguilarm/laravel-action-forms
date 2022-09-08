@@ -19,12 +19,11 @@
     $booleanValue = $value ? true : false;
 @endphp
 
-{{-- Show container --}}
-@if($viewAction === 'show')
-    @include('action-forms::elements.show')
+{{-- Include: javascript + show view --}}
+@include('action-forms::component')
 
-{{-- Form element container --}}
-@else 
+{{-- Form-element container --}}
+@if($viewAction !== 'show') 
     <div 
         x-data="{
             conditional: '{{ $conditional }}',
@@ -50,10 +49,12 @@
         {{-- Element container --}}
         <div>
             <div class="flex mt-1.5">
-
                 {{-- Addon before --}}
-                @includeWhen($before, 'action-forms::elements.addon-before')
-
+                @if($before)
+                    <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 {{ $css->get('addons') }} @error($element) {{ $css->get('errorHighlight') }} @else {{ $css->get('addonsHighlight') }} @enderror">
+                        {{ $before }}
+                    </span>
+                @endif
                 {{-- Input field --}}
                 <input 
                     data-element="{{ $uniqueKey }}"
@@ -64,18 +65,15 @@
                     {{-- Native attributes --}}
                     {{ $attributes }} 
                 />
-
                 {{-- Addon after --}}
-                @includeWhen($after, 'action-forms::elements.addon-after')
+                @if($after)
+                    <span class="inline-flex items-center px-3 rounded-r-md border border-l-0 {{ $css->get('addons') }} @error($element) {{ $css->get('errorHighlight') }} @else {{ $css->get('addonsHighlight') }} @enderror">
+                        {{ $after }}
+                    </span>
+                @endif
             </div>
-
             {{-- Validation errors and Helper --}}
             @include('action-forms::elements.helper-and-validation')
         </div>
-
     </div> {{-- /Element container --}}
-
 @endif {{-- /Form element container --}}
-
-{{-- Push Javascript: Depend On... --}}
-@includeWhen($dependOnValue && $dependOnType && $viewAction !== 'show', 'action-forms::javascript.depend-on.onchange')
