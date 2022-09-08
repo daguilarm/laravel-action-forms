@@ -11,8 +11,6 @@ class Textarea extends FormComponent
 {
     use Configable;
 
-    public string $uniqueKey;
-
     public Collection $css;
 
     /**
@@ -22,8 +20,9 @@ class Textarea extends FormComponent
      */
     public function __construct(public ?string $label = null, public ?string $width = 'full', public ?string $dependOn = null, public ?string $dependOnType = null, public bool $conditional = true, public int $maxlength = 220, public int $rows = 4, public ?string $counter = null)
     {
+        parent::__construct();
+        
         $this->counter = ! is_null($counter) ? true : false;
-        $this->uniqueKey = $this->generateUniqueKey();
         $this->css = collect([
             'base' => $this->getConfigClasses($this->getThemeTextarea()),
             'label' => $this->getConfigClasses($this->getThemeLabel()),

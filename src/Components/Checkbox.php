@@ -11,8 +11,6 @@ class Checkbox extends FormComponent
 {
     use Configable;
 
-    public string $uniqueKey;
-
     public Collection $css;
 
     /**
@@ -22,8 +20,9 @@ class Checkbox extends FormComponent
      */
     public function __construct(public ?string $label = null, public ?string $width = 'full', public ?string $dependOn = null, public ?string $dependOnType = null, public bool $conditional = true, public bool $asBoolean = false)
     {
+        parent::__construct();
+        
         $this->asBoolean = $asBoolean ? true : false;
-        $this->uniqueKey = $this->generateUniqueKey();
         $this->css = collect([
             'base' => $this->getConfigClasses($this->getThemeCheckbox()),
             'label' => $this->getConfigClasses($this->getThemeCheckboxLabel()),
