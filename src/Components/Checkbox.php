@@ -18,7 +18,7 @@ class Checkbox extends FormComponent
      *
      * @return void
      */
-    public function __construct(public ?string $label = null, public ?string $width = 'full', public ?string $dependOn = null, public ?string $dependOnType = null, public bool $conditional = true, public bool $asBoolean = false)
+    public function __construct(public ?string $label = null, public string $width = 'full', public ?string $dependOn = null, public string $dependOnType = 'disabled', public bool $conditional = true, public ?string $helper = null, public bool $asBoolean = false)
     {
         parent::__construct();
         

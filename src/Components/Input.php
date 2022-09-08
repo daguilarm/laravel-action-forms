@@ -20,7 +20,7 @@ class Input extends FormComponent
      *
      * @return void
      */
-    public function __construct(public ?string $label = null, public ?string $width = 'full', public ?string $dependOn = null, public bool $conditional = true, public ?string $dependOnType = null, public ?string $before = null, public ?string $after = null)
+    public function __construct(public ?string $label = null, public string $width = 'full', public ?string $dependOn = null, public string $dependOnType = 'disabled', public bool $conditional = true, public ?string $helper = null, public ?string $before = null, public ?string $after = null)
     {
         parent::__construct();
 

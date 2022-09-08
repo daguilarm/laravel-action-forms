@@ -1,17 +1,16 @@
 @props([
-    'conditional' => $conditional,
-    'dependOn' => $dependOn,
-    'dependOnType' => $dependOnType ?? 'disabled',
-    'dependOnValue' => $dependOn ? true : false,
-    'after' => $after,
-    'before' => $before,
-    'addons' => $addons,
-    'label' => $label,
-    'width' => $width ?? 'w-full',
     'element' => $attributes->get('name'),
-    'helper' => $helper ?? null,
     'uniqueKey' => $uniqueKey,
     'css' => $css,
+    'conditional' => $conditional,
+    'width' => $width,
+    'label' => $label,
+    'dependOn' => $dependOn,
+    'dependOnType' => $dependOnType,
+    'helper' => $helper,
+    'addons' => $addons,
+    'after' => $after,
+    'before' => $before,
 ])
 
 @php

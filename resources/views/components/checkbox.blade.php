@@ -1,13 +1,13 @@
 @props([
-    'conditional' => $conditional,
-    'dependOn' => $dependOn,
-    'dependOnType' => $dependOnType ?? 'disabled',
-    'dependOnValue' => $dependOn ? true : false,
-    'label' => $label,
     'element' => $attributes->get('name'),
-    'helper' => $helper ?? null,
     'uniqueKey' => $uniqueKey,
     'css' => $css,
+    'conditional' => $conditional,
+    'width' => $width,
+    'label' => $label,
+    'dependOn' => $dependOn,
+    'dependOnType' => $dependOnType,
+    'helper' => $helper,
 ])
 
 @php
@@ -46,7 +46,7 @@
             <div class="flex items-center mt-1.5 mb-4">
                 {{-- Checkbox field --}}
                 <input 
-                    type="checkbox" 
+                    type="radio" 
                     data-element="{{ $uniqueKey }}"
                     data-parent="parent__{{ $element }}"
                     x-ref="__{{ $element }}"

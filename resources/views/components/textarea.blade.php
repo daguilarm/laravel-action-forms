@@ -1,17 +1,16 @@
 @props([
+    'element' => $attributes->get('name'),
+    'uniqueKey' => $uniqueKey,
+    'css' => $css,
     'conditional' => $conditional,
-    'dependOn' => $dependOn,
-    'dependOnType' => $dependOnType ?? 'disabled',
-    'dependOnValue' => $dependOn ? true : false,
+    'width' => $width,
     'label' => $label,
-    'width' => $width ?? 'w-full',
+    'dependOn' => $dependOn,
+    'dependOnType' => $dependOnType,
+    'helper' => $helper,
     'maxlength' => $maxlength,
     'rows' => $rows,
     'counter' => $counter,
-    'element' => $attributes->get('name'),
-    'helper' => $helper ?? null,
-    'uniqueKey' => $uniqueKey,
-    'css' => $css,
 ])
 
 @php
