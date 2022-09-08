@@ -16,7 +16,7 @@
             window.__af_initElements(child, value);
             // If parent is a checkbox
             if(parent.getAttribute('type') === 'checkbox') {
-                window.__parentIsCheckbox(parent, child, childContainer, label, type);
+                window.__af_parentIsCheckbox(parent, child, childContainer, label, type);
             // If parent is a input, textarea
             } else {
                 window.__af_parentIsInput(parent, child, childContainer, label, type);
@@ -67,7 +67,7 @@
             }
         }
         // If the parent is a checkbox
-        window.__parentIsCheckbox = function(parent, child, childContainer, label, type) {
+        window.__af_parentIsCheckbox = function(parent, child, childContainer, label, type) {
             if(parent.checked) {
                 // Hidden case
                 if(type === 'hidden') {
@@ -82,7 +82,6 @@
         }
         // Reset the element
         window.__af_resetElement = function(child, childContainer, label, type) {
-            window.__af_resetTextAreaCount(child);
             // Hidden case
             if(type === 'hidden') {
                 childContainer.classList.add('hidden');
@@ -98,10 +97,12 @@
                     child.value = '';
                 @endif
             }
+            // Reset the counter if...
+            window.__af_updateTextAreaCount(child);
         }
         // Reset the textarea count
-        window.__af_resetTextAreaCount = function(child) {
-            child.dispatchEvent(new CustomEvent('resetcounter'));
+        window.__af_updateTextAreaCount = function(child, count = 0) {
+            child.dispatchEvent(new CustomEvent('updatecounter', {detail: {value: count}}));
         }
     </script>
 @endpush

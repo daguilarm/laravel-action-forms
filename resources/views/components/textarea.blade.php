@@ -30,9 +30,9 @@
             count: 0,
             conditional: '{{ $conditional }}',
             parent: '{{ $dependOn }}',
+            counterVisible: false,
             init() {
                 if(this.parent) {
-                    this.count = $refs.t__{{ $element }}.value.length;
                     window.__af_dependOn(this.parent, '{{ $dependOnType }}', '{{ $booleanValue }}', '{{ $uniqueKey }}');
                 } else {
                     this.count = $refs.t__{{ $element }}.value.length;
@@ -50,7 +50,9 @@
             <textarea 
                 x-ref="t__{{ $element }}" 
                 x-on:keyup="count = $refs.t__{{ $element }}.value.length"
-                @resetcounter="count = 0"
+                x-on:updatecounter="count = $event.detail.value"
+                x-on:focus="$dispatch('updatecounter', {value: $refs.t__{{ $element }}.value.length}); counterVisible = true;"
+                x-on:click.outside="counterVisible = false"
                 data-element="{{ $uniqueKey }}"
                 data-parent="parent__{{ $element }}"
                 maxlength="{{ $maxlength }}"
@@ -65,7 +67,10 @@
         @include('action-forms::elements.helper-and-validation')
         {{-- Chars counter --}}
         @if($counter)
-            <div class="{{ $css->get('counter') }}">
+            <div 
+                class="{{ $css->get('counter') }}"
+                x-show="counterVisible"
+            >
                 <span x-html="count"></span> / <span x-html="$refs.t__{{ $element }}.maxLength"></span>
             </div>
         @endif
