@@ -7,6 +7,7 @@
     'label' => $label,
     'dependOn' => $dependOn,
     'dependOnType' => $dependOnType,
+    'dependOnValue' => $dependOnValue,
     'helper' => $helper,
     'maxlength' => $maxlength,
     'rows' => $rows,
@@ -32,7 +33,13 @@
             counterVisible: false,
             init() {
                 if(this.parent) {
-                    window.__af_dependOn(this.parent, '{{ $dependOnType }}', '{{ $booleanValue }}', '{{ $uniqueKey }}');
+                    window.__af_dependOn(
+                        this.parent, 
+                        '{{ $dependOnType }}', 
+                        '{{ $booleanValue }}', 
+                        '{{ $dependOnValue }}', 
+                        '{{ $uniqueKey }}'
+                    );
                 } else {
                     this.count = $refs.t__{{ $element }}.value.length;
                 }
@@ -54,6 +61,8 @@
                 x-on:click.outside="counterVisible = false"
                 data-element="{{ $uniqueKey }}"
                 data-parent="parent__{{ $element }}"
+                data-depend="depend_on__{{ $dependOn }}"
+                data-value="{{ trim($value) }}"
                 maxlength="{{ $maxlength }}"
                 rows="{{ $rows }}"
                 dusk="form-textarea-{{ $attributes->get('id') ?? $element }}"

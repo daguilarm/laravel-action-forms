@@ -7,12 +7,13 @@
     'label' => $label,
     'dependOn' => $dependOn,
     'dependOnType' => $dependOnType,
+    'dependOnValue' => $dependOnValue,
     'helper' => $helper,
+    'value' => $value,
 ])
 
 @php
     $value = old($element, $data->{$element} ?? null);
-    $booleanValue = $value ? true : false;
     $checked = $value ? true : false;
 @endphp
 
@@ -31,7 +32,8 @@
                     window.__af_dependOn(
                         '{{ $dependOn }}', 
                         '{{ $dependOnType }}', 
-                        '{{ $booleanValue }}', 
+                        '{{ $dependOnValue }}', 
+                        '{{ $checked }}', 
                         '{{ $uniqueKey }}'
                     );
                 }
@@ -49,11 +51,15 @@
                     type="checkbox" 
                     data-element="{{ $uniqueKey }}"
                     data-parent="parent__{{ $element }}"
+                    data-depend="depend_on__{{ $dependOn }}"
+                    data-value="{{ $value }}"
+                    data-checked="{{ $checked ? 1 : 0 }}"
                     x-ref="__{{ $element }}"
                     class="{{ $css->get('base') }} @include('action-forms::elements.validation-highlight')"
-                    value="{{ $value }}"
                     {{ $checked ? 'checked' : '' }}
                     {{ $attributes }}
+                    :value="$el.checked ? $el.dataset.value : null"
+                    @click="console.log($el.value)"
                 >
                 {{-- Label --}}
                 @includeWhen($label, 'action-forms::elements.label')

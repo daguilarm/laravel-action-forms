@@ -8,6 +8,7 @@
     'id' => $id,
     'dependOn' => $dependOn,
     'dependOnType' => $dependOnType,
+    'dependOnValue' => $dependOnValue,
     'helper' => $helper,
     'options' => $options,
     'position' => $position,
@@ -16,7 +17,7 @@
 
 @php
     $value = old($element, $data->{$element} ?? null);
-    $booleanValue = $value ? true : false;;
+    $checked = $value ? true : false;
 @endphp
 
 {{-- Include: javascript + show view --}}
@@ -34,7 +35,8 @@
                     window.__af_dependOn(
                         '{{ $dependOn }}', 
                         '{{ $dependOnType }}', 
-                        '{{ $booleanValue }}', 
+                        '{{ $dependOnValue }}', 
+                        '{{ $checked }}', 
                         '{{ $uniqueKey }}'
                     );
                 }
@@ -50,6 +52,17 @@
             @includeWhen($label, 'action-forms::elements.label')
             {{-- Radio elements --}}
             <div class="mt-2 mb-4 {{ $css->get('item') }}">
+                {{-- Hack: only workd if there is an empty fiend --}}
+                <input 
+                    type="radio" 
+                    data-element="{{ $uniqueKey }}"
+                    data-parent="parent__{{ $element }}"
+                    data-depend="depend_on__{{ $dependOn }}"
+                    data-checked="{{ $checked ? 1 : 0 }}"
+                    name="{{ $element }}"
+                    class="hidden"
+                >
+                {{-- Radio buttons --}}
                 @foreach($options as $key => $text)
                     <div class="flex items-center mt-1">
                         {{-- Checkbox field --}}
@@ -57,10 +70,14 @@
                             type="radio" 
                             data-element="{{ $uniqueKey }}"
                             data-parent="parent__{{ $element }}"
-                            x-ref="{{ $key }}__{{ $element }}"
-                            class="{{ $css->get('base') }} @include('action-forms::elements.validation-highlight')"
+                            data-depend="depend_on__{{ $dependOn }}"
+                            data-value="{{ $key }}"
+                            data-checked="{{ $checked ? 1 : 0 }}"
+                            @click="__af_dependOnRadio($el, '{{ $dependOnType }}', '{{ $dependOnValue }}')"
                             value="{{ $key }}"
+                            id="radio_{{ $key }}__{{ $id ?? $element }}"
                             name="{{ $element }}"
+                            class="{{ $css->get('base') }} @include('action-forms::elements.validation-highlight')"
                             {{ $value === $key ? 'checked' : '' }}
                         >
                         <span class="af_element_disabled_{{ $uniqueKey }} ml-2 text-gray-600">{{ $text }}</span>

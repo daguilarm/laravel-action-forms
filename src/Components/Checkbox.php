@@ -18,10 +18,19 @@ class Checkbox extends FormComponent
      *
      * @return void
      */
-    public function __construct(public ?string $label = null, public string $width = 'full', public ?string $dependOn = null, public string $dependOnType = 'disabled', public bool $conditional = true, public ?string $helper = null, public bool $asBoolean = false)
-    {
+    public function __construct(
+        public ?string $label = null,
+        public string $width = 'full',
+        public ?string $dependOn = null,
+        public string $dependOnType = 'disabled',
+        public mixed $dependOnValue = null,
+        public ?bool $conditional = null,
+        public ?string $helper = null,
+        public bool $asBoolean = false,
+        public ?string $value = null,
+    ) {
         parent::__construct();
-        
+
         $this->asBoolean = $asBoolean ? true : false;
         $this->css = collect([
             'base' => $this->getConfigClasses($this->getThemeCheckbox()),

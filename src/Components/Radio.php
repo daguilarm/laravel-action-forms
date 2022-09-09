@@ -2,10 +2,10 @@
 
 namespace Daguilarm\ActionForms\Components;
 
-use Illuminate\View\View;
-use Illuminate\Support\Collection;
 use Daguilarm\ActionForms\Configable;
 use Daguilarm\ActionForms\FormComponent;
+use Illuminate\Support\Collection;
+use Illuminate\View\View;
 
 class Radio extends FormComponent
 {
@@ -18,8 +18,19 @@ class Radio extends FormComponent
      *
      * @return void
      */
-    public function __construct(public ?string $label = null, public string $width = 'full', public ?string $id = null, public ?string $dependOn = null, public string $dependOnType = 'disabled', public bool $conditional = true, public ?string $helper = null, public bool $asBoolean = false, public string $position = 'vertical', public array $options = [])
-    {
+    public function __construct(
+        public ?string $label = null,
+        public string $width = 'full',
+        public ?string $dependOn = null,
+        public string $dependOnType = 'disabled',
+        public mixed $dependOnValue = null,
+        public ?bool $conditional = null,
+        public ?string $helper = null,
+        public ?string $id = null,
+        public bool $asBoolean = false,
+        public string $position = 'vertical',
+        public array $options = []
+    ) {
         parent::__construct();
 
         $this->asBoolean = $asBoolean ? true : false;
@@ -29,8 +40,8 @@ class Radio extends FormComponent
             'error' => $this->getConfigClasses($this->getThemeErrorMessages()),
             'errorHighlight' => $this->getConfigClasses($this->getThemeErrorMessagesHighlight()),
             'helper' => $this->getConfigClasses($this->getThemeHelper()),
-            'item' => $this->position === 'vertical' 
-                ? config('action-forms.theme.radio.layout.vertical') 
+            'item' => $this->position === 'vertical'
+                ? config('action-forms.theme.radio.layout.vertical')
                 : config('action-forms.theme.radio.layout.horizontal'),
         ]);
     }
