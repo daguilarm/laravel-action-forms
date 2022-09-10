@@ -18,19 +18,8 @@
 {{-- Form-element container --}}
 @if($viewAction !== 'show') 
     <div 
-        x-data="{
-            parent: '{{ $dependOn }}',
-            conditional: @json($conditional),
-            value: `{{ $value }}`,
-            valueEqueal: '{{ $dependOnValue }}',
-            type: '{{ $dependOnType }}',
-            disabled: false,
-            visible: true,
-            init() {
-                this.disabled = af__disableOrEnable(this.parent, this.value, this.valueEqual, this.conditional, false, null);
-                this.visible = this.type === 'hidden' ? !this.disabled : true;
-            },
-        }"
+        
+        x-data="formData('{{ $dependOn }}', @json($conditional), `{{ $value }}`, '{{ $dependOnValue }}', '{{ $dependOnType }}', databaseValue = null, $refs.__{{ $uniqueKey }})"
         id="{{ $uniqueKey }}"
         class="{{ $width }} {{ $cssElement }}"
         :class="disabled ? '{{ config('action-forms.theme.disabled') }}' : ''"
@@ -51,7 +40,7 @@
                 {{-- Input field --}}
                 <input 
                     x-ref="__{{ $uniqueKey }}"
-                    x-on:change="this.disabled = window.af__enableOrDisableChildren($el)"
+                    x-on:change="enableOrDisableChildren($el)"
                     :value="value"
                     :disabled="disabled"
                     data-key="{{ $uniqueKey }}"

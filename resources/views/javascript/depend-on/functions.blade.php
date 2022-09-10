@@ -63,25 +63,30 @@
             // disable or enable all the children
             [].map.call(children, element => {
                 let container = document.getElementById(element.dataset.key);
-                window.af__reset_element(container, element);
+                window.af__reset_element(container, element, parent);
             });
         },
         // Reset element
-        window.af__reset_element = function(container, element) {
+        window.af__reset_element = function(container, element, parent) {
             // Reset container
             container.visible = element.value ? false : true;
             container.classList.remove('{{ config('action-forms.theme.disabled') }}')
             // Reset element and set default values
-            element.disabled = element.value ? true : false;
-            element.checked = element.databaseValue ? true : false;
-            // // Checkboxes and radio button
-            // if(window.af__isCheckable(element)) {
-            //     // element.disabled = element.value ? true : false;
-            //     element.checked = element.databaseValue ? true : false;
-            // // Input, selects and textareas
-            // } else {
-            //     element.disabled = element.value ? true : false;
-            // }
+            // Checkboxes and radio button
+            if(af__isCheckable(element)) {
+                // element.disabled = element.value ? true : false;
+                element.checked = element.databaseValue ? true : false;
+                // If parent is checkable depend on database value
+                if(af__isCheckable(parent)) {
+                    element.disabled = databaseValue.value ? false : true;
+                // If parent is not checkable, then depend on parent value
+                } else {
+                    element.disabled = parent.value ? false : true;
+                }
+            // Input, selects and textareas
+            } else {
+                element.disabled = element.value ? true : false;
+            }
             // Reset values on disable or hide
             if(window.af__resetValues) {
                 element.value = '';

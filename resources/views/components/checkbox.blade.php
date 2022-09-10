@@ -34,8 +34,8 @@
         }"
         id="{{ $uniqueKey }}"
         class="{{ $width }} {{ $cssElement }}"
-        :class="disabled ? '{{ config('action-forms.theme.disabled') }}' : ''"
         x-show="visible"
+        :class="disabled ? '{{ config('action-forms.theme.disabled') }}' : '';"
     >
         {{-- Element --}}
         <div>
