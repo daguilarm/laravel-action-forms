@@ -1,6 +1,6 @@
 {{-- Form field javascript --}}
 @once('action-forms-scripts')
-    <script $_key="{{ str()->uuid() }}">
+    <script defer $_key="{{ str()->uuid() }}">
         document.addEventListener('alpine:init', () => {
             Alpine.data('formData', (parent, conditional, value, valueEqual, type, databaseValue = null, currentElement) => ({
                 parent: parent,
@@ -63,9 +63,13 @@
                             this.currentElement.checked = true;
                             this.currentElement.disabled = this.isAnEmptyField(this.currentElement.dataset.value) ? true : false;
                         }
-                        // Create action -> disable checkable element
+                        // Default values for checkable element: create and edit
                         if(this.isCheckable(this.currentElement)) {
-                            return this.isAnEmptyField(this.currentElement.dataset.value) ? true : false;
+                            if(parent.value) {
+                                return false;
+                            } else {
+                                return true;
+                            }
                         }
                         return false;
                     // We are not in the edit action
