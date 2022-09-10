@@ -17,25 +17,19 @@
 @if($viewAction !== 'show') 
     {{-- Element container --}}
     <div 
-        x-data="{
-            parent: '{{ $dependOn }}',
-            conditional: @json($conditional),
-            value: '{{ $value }}',
-            valueEqueal: '{{ $dependOnValue }}',
-            databaseValue: '{{ $databaseValue }}',
-            type: '{{ $dependOnType }}',
-            disabled: false,
-            visible: true,
-            checked: this.databaseValue ? true : false,
-            init() {
-                this.disabled = af__disableOrEnable(this.parent, this.value, this.valueEqual, this.conditional, false, $refs.__{{ $uniqueKey }});
-                this.visible = this.type === 'hidden' ? !this.disabled : true;
-            },
-        }"
+        x-data="formData(
+            '{{ $dependOn }}', 
+            @json($conditional), 
+            `{{ $value }}`, 
+            '{{ $dependOnValue }}', 
+            '{{ $dependOnType }}', 
+            databaseValue = null, 
+            $refs.__{{ $uniqueKey }}
+        )"
         id="{{ $uniqueKey }}"
         class="{{ $width }} {{ $cssElement }}"
         x-show="visible"
-        :class="disabled ? '{{ config('action-forms.theme.disabled') }}' : '';"
+        :class="disabled ? disabledClass : ''"
     >
         {{-- Element --}}
         <div>
@@ -44,7 +38,7 @@
                 <input 
                     type="checkbox"
                     x-ref="__{{ $uniqueKey }}"
-                    x-on:change="this.disabled = window.af__enableOrDisableChildren($el)"
+                    x-on:change="this.enableOrDisableChildren($el)"
                     :disabled="disabled"
                     :checked="checked"
                     :value="value"

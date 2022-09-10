@@ -18,12 +18,19 @@
 {{-- Form-element container --}}
 @if($viewAction !== 'show') 
     <div 
-        
-        x-data="formData('{{ $dependOn }}', @json($conditional), `{{ $value }}`, '{{ $dependOnValue }}', '{{ $dependOnType }}', databaseValue = null, $refs.__{{ $uniqueKey }})"
+        x-data="formData(
+            '{{ $dependOn }}', 
+            @json($conditional), 
+            `{{ $value }}`, 
+            '{{ $dependOnValue }}', 
+            '{{ $dependOnType }}', 
+            databaseValue = null, 
+            $refs.__{{ $uniqueKey }}
+        )"
         id="{{ $uniqueKey }}"
         class="{{ $width }} {{ $cssElement }}"
-        :class="disabled ? '{{ config('action-forms.theme.disabled') }}' : ''"
         x-show="visible"
+        :class="disabled ? disabledClass : ''"
     >
         {{-- Add label --}}
         @includeWhen($label, 'action-forms::elements.label')
