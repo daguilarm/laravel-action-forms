@@ -38,7 +38,7 @@
                 <input 
                     type="checkbox"
                     x-ref="__{{ $uniqueKey }}"
-                    x-on:change="this.enableOrDisableChildren($el)"
+                    x-on:change="enableOrDisableChildren($el)"
                     :disabled="disabled"
                     :checked="checked"
                     :value="value"

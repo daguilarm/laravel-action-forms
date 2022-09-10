@@ -67,6 +67,7 @@
                         if(this.isCheckable(this.currentElement)) {
                             return parent.value ? false : true;
                         }
+                        // Not checkable field
                         return false;
                     // We are not in the edit action
                     } else {
