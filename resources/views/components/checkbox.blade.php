@@ -43,7 +43,7 @@
                     :checked="checked"
                     :value="value"
                     data-key="{{ $uniqueKey }}"
-                    data-value="{{ $value }}"
+                    data-value="{{ $databaseValue }}"
                     data-parent="{{ $dependOn }}"
                     data-field="__{{ $uniqueKey }}"
                     data-equal="{{ $dependOnValue }}"

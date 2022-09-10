@@ -9,6 +9,7 @@
                 valueEqueal: valueEqual,
                 databaseValue: databaseValue,
                 type: type,
+                currentElement: currentElement,
                 disabled: false,
                 visible: true,
                 checked: databaseValue ? true : false,
@@ -29,13 +30,17 @@
                     } else {
                         // Set the parent element 
                         let parentField = document.querySelector('[name=' + parent + ']');
-                        return this.hasParent(conditional, parentField);
+                        return this.hasParent(parentField);
                     }
                 },
-                hasParent(conditional, parent) {
+                hasParent(parent) {
                     // Show or hide base on condition
-                    if(conditional) {
+                    if(this.conditional) {
                         this.visible = conditional ? true : false;
+                        // If not visible, then reset values base on config setup
+                        if(!this.visible) {
+                            this.resetFieldValueBaseOnConfigSetup();
+                        }
                         return !visible;
                     // With no condition
                     } else { 
@@ -50,26 +55,34 @@
                 isCheckable(element) {
                     return element.getAttribute('type') === 'checkbox' || element.getAttribute('type') === 'radio';
                 },
-                parentIsNotCheckable(parent, value, hasChildren, currentElement) {
+                parentIsNotCheckable(parent) {
                     // If the child has a value, we are in the edit action, so the field is enable
-                    if(value) {
+                    if(this.value) {
+                        // Edit action -> checked or unchecked field base on database value
+                        if(this.isCheckable(this.currentElement) && !this.isAnEmptyField(this.currentElement.dataset.value)) {
+                            this.currentElement.checked = true;
+                            this.currentElement.disabled = this.isAnEmptyField(this.currentElement.dataset.value) ? true : false;
+                        }
+                        // Create action -> disable checkable element
+                        if(this.isCheckable(this.currentElement)) {
+                            return this.isAnEmptyField(this.currentElement.dataset.value) ? true : false;
+                        }
                         return false;
                     // We are not in the edit action
                     } else {
                         // If parent has a value and valueEqual is not defined, then enable child
-                        if(parent.value && !valueEqual) {
+                        if(parent.value && !this.valueEqual) {
                             return false;
                         }
                         // If parent has a value and is equal to valueEqual, then enable child
-                        if(parent.value && valueEqual && parent.value === valueEqual) {
+                        if(parent.value && this.valueEqual && parent.value === this.valueEqual) {
                             return false;
                         } 
                     }
                     // Check for children
-                    if(hasChildren) {
+                    if(this.hasChildren) {
                         this.enableOrDisableChildren(currentElement);
                     }
-
                     return true;
                 },
                 parentIsCheckable() {
@@ -102,6 +115,12 @@
                         element.checked = false;
                     }
                 },
+                isAnEmptyField(value) {
+                    if(value == null || value == undefined || value == false || value ==  '' || value == 0 || value == NaN) {
+                        return true;
+                    }
+                    return false;
+                }
             }))
         })
     </script>
