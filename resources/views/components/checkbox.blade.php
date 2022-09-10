@@ -28,7 +28,7 @@
             visible: true,
             checked: this.databaseValue ? true : false,
             init() {
-                this.disabled = af__disableOrEnable(this.parent, this.value, this.valueEqual, this.conditional, false, null);
+                this.disabled = af__disableOrEnable(this.parent, this.value, this.valueEqual, this.conditional, false, $refs.__{{ $uniqueKey }});
                 this.visible = this.type === 'hidden' ? !this.disabled : true;
             },
         }"

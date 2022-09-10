@@ -11,13 +11,19 @@
                 disabled = false;
             // If field has parent, then start the magic!
             } else {
+
                 // Show or hide base on condition
                 if(conditional) {
                     visible = conditional ? true : false;
                     disabled = ! visible;
                 // Edit action
                 } else if(value) {
-                    return false;
+                    // Is not checkable: input, select, textarea,...
+                    if(!af__isCheckable(currentElement)) {
+                        return false;
+                    }
+                    // Is checkable
+                    return currentElement.databaseValue ? false : true;
                 // With no condition
                 } else {
                     // Get all the parents
@@ -25,7 +31,7 @@
                     // One by one
                     [].map.call(fieldParent, element => {
                         // If parent is a checkbox or a radio button
-                        if(element.getAttribute('type') === 'checkbox' || element.getAttribute('type') === 'radio') {
+                        if(af__isCheckable(element)) {
                             // If parent is checked, then enable child
                             if(element.checked) {
                                 disabled = false;
@@ -68,11 +74,22 @@
             // Reset element and set default values
             element.disabled = element.value ? true : false;
             element.checked = element.databaseValue ? true : false;
+            // // Checkboxes and radio button
+            // if(window.af__isCheckable(element)) {
+            //     // element.disabled = element.value ? true : false;
+            //     element.checked = element.databaseValue ? true : false;
+            // // Input, selects and textareas
+            // } else {
+            //     element.disabled = element.value ? true : false;
+            // }
             // Reset values on disable or hide
             if(window.af__resetValues) {
                 element.value = '';
                 element.checked = false;
             }
+        }
+        window.af__isCheckable = function(element) {
+            return element.getAttribute('type') === 'checkbox' || element.getAttribute('type') === 'radio';
         }
         // // Textarea: counter of words
         // window.af__updateTextarea = function (element) {
