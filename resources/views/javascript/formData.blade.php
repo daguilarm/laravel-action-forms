@@ -65,11 +65,7 @@
                         }
                         // Default values for checkable element: create and edit
                         if(this.isCheckable(this.currentElement)) {
-                            if(parent.value) {
-                                return false;
-                            } else {
-                                return true;
-                            }
+                            return parent.value ? false : true;
                         }
                         return false;
                     // We are not in the edit action
