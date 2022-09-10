@@ -9,57 +9,55 @@
     'dependOnType' => $dependOnType,
     'dependOnValue' => $dependOnValue,
     'helper' => $helper,
-    'value' => $value,
+    'value' => af__value($attributes, 'name', $data),
+    'databaseValue' => $data->{$attributes->get('name')} ?? null,
 ])
-
-@php
-    $value = old($element, $data->{$element} ?? null);
-    $checked = $value ? true : false;
-@endphp
-
-{{-- Include: javascript + show view --}}
-@include('action-forms::component')
 
 {{-- Form-element container --}}
 @if($viewAction !== 'show') 
     {{-- Element container --}}
     <div 
         x-data="{
-            conditional: '{{ $conditional }}',
             parent: '{{ $dependOn }}',
+            conditional: @json($conditional),
+            value: '{{ $value }}',
+            valueEqueal: '{{ $dependOnValue }}',
+            databaseValue: '{{ $databaseValue }}',
+            type: '{{ $dependOnType }}',
+            disabled: false,
+            visible: true,
+            checked: this.databaseValue ? true : false,
             init() {
-                if(this.parent) {
-                    window.__af_dependOn(
-                        '{{ $dependOn }}', 
-                        '{{ $dependOnType }}', 
-                        '{{ $dependOnValue }}', 
-                        '{{ $checked }}', 
-                        '{{ $uniqueKey }}'
-                    );
-                }
+                this.disabled = af__disableOrEnable(this.parent, this.value, this.valueEqual, this.conditional, false, null);
+                this.visible = this.type === 'hidden' ? !this.disabled : true;
             },
         }"
-        x-show="conditional"
-        data-container="{{ $uniqueKey }}"
+        id="{{ $uniqueKey }}"
         class="{{ $width }} {{ $cssElement }}"
+        :class="disabled ? '{{ config('action-forms.theme.disabled') }}' : ''"
+        x-show="visible"
     >
         {{-- Element --}}
         <div>
             <div class="flex items-center mt-1.5 mb-4">
                 {{-- Checkbox field --}}
                 <input 
-                    type="checkbox" 
-                    data-element="{{ $uniqueKey }}"
-                    data-parent="parent__{{ $element }}"
-                    data-depend="depend_on__{{ $dependOn }}"
+                    type="checkbox"
+                    x-ref="__{{ $uniqueKey }}"
+                    x-on:change="this.disabled = window.af__enableOrDisableChildren($el)"
+                    :disabled="disabled"
+                    :checked="checked"
+                    :value="value"
+                    data-key="{{ $uniqueKey }}"
                     data-value="{{ $value }}"
-                    data-checked="{{ $checked ? 1 : 0 }}"
-                    x-ref="__{{ $element }}"
-                    class="{{ $css->get('base') }} @include('action-forms::elements.validation-highlight')"
-                    {{ $checked ? 'checked' : '' }}
-                    {{ $attributes }}
-                    :value="$el.checked ? $el.dataset.value : null"
-                    @click="console.log($el.value)"
+                    data-parent="{{ $dependOn }}"
+                    data-field="__{{ $uniqueKey }}"
+                    data-equal="{{ $dependOnValue }}"
+                    data-condition="{{ $conditional }}"
+                    dusk="form-input-{{ $attributes->get('id') ?? $element }}"
+                    class="{{ $css->get('base') }} @include('action-forms::elements.validation-highlight')" 
+                    {{-- Native attributes --}}
+                    {{ $attributes }} 
                 >
                 {{-- Label --}}
                 @includeWhen($label, 'action-forms::elements.label')

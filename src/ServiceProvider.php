@@ -3,6 +3,7 @@
 namespace Daguilarm\ActionForms;
 
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider as PackageProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 
@@ -18,8 +19,14 @@ final class ServiceProvider extends PackageProvider
         $this->bootDirectives();
         $this->bootBladeComponents();
 
+        // Publish assets
         if ($this->app->runningInConsole()) {
             $this->bootPublishAssets();
+        }
+
+        // Load helpers
+        if (File::exists(__DIR__.'\src\Helpers.php')) {
+            require __DIR__.'\src\Helpers.php';
         }
     }
 

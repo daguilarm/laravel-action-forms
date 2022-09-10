@@ -31,7 +31,7 @@
 </div>
 
 {{-- Javascript: dependOn --}}
-{{-- @includeWhen($viewAction !== 'show', 'action-forms::javascript.depend-on.functions') --}}
+@includeWhen($viewAction !== 'show', 'action-forms::javascript.depend-on.functions')
 
 
 {{-- Safe list (for tailwindcss) --}}

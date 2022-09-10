@@ -12,61 +12,56 @@
     'maxlength' => $maxlength,
     'rows' => $rows,
     'counter' => $counter,
+    'value' => af__value($attributes, 'name', $data),
 ])
-
-@php
-    $value = old($element, $data->{$element} ?? null);
-    $booleanValue = $value ? true : false;
-@endphp
-
-{{-- Include: javascript + show view --}}
-@include('action-forms::component')
 
 {{-- Form-element container --}}
 @if($viewAction !== 'show') 
     {{-- Element container --}}
     <div 
-        x-data="{ 
-            count: 0,
-            conditional: '{{ $conditional }}',
+        x-data="{
             parent: '{{ $dependOn }}',
+            conditional: @json($conditional),
+            value: `{{ $value }}`,
+            valueEqueal: '{{ $dependOnValue }}',
+            type: '{{ $dependOnType }}',
             counterVisible: false,
+            count: 0,
+            disabled: false,
+            visible: true,
             init() {
-                if(this.parent) {
-                    window.__af_dependOn(
-                        this.parent, 
-                        '{{ $dependOnType }}', 
-                        '{{ $booleanValue }}', 
-                        '{{ $dependOnValue }}', 
-                        '{{ $uniqueKey }}'
-                    );
-                } else {
-                    this.count = $refs.t__{{ $element }}.value.length;
-                }
+                this.disabled = af__disableOrEnable(this.parent, this.value, this.valueEqual, this.conditional, false, null);
+                this.visible = this.type === 'hidden' ? !this.disabled : true;
             },
-        }" 
-        x-show="conditional"
-        data-container="{{ $uniqueKey }}"
+        }"
+        id="{{ $uniqueKey }}"
         class="{{ $width }} {{ $cssElement }}"
+        :class="disabled ? '{{ config('action-forms.theme.disabled') }}' : ''"
+        x-show="visible"
     >
         {{-- Add label --}}
         @includeWhen($label, 'action-forms::elements.label')
         <div>
-            {{-- Texarea fuekd --}}
+            {{-- Texarea field --}}
             <textarea 
-                x-ref="t__{{ $element }}" 
-                x-on:keyup="count = $refs.t__{{ $element }}.value.length"
+                x-ref="__{{ $uniqueKey }}"
+                x-on:keyup="count = $el.value.length"
                 x-on:updatecounter="count = $event.detail.value"
-                x-on:focus="$dispatch('updatecounter', {value: $refs.t__{{ $element }}.value.length}); counterVisible = true;"
+                x-on:focus="$dispatch('updatecounter', {value: $el.value.length}); counterVisible = true;"
                 x-on:click.outside="counterVisible = false"
-                data-element="{{ $uniqueKey }}"
-                data-parent="parent__{{ $element }}"
-                data-depend="depend_on__{{ $dependOn }}"
-                data-value="{{ trim($value) }}"
+                x-on:change="this.disabled = window.af__enableOrDisableChildren($el)"
+                :value="value"
+                :disabled="disabled"
+                data-key="{{ $uniqueKey }}"
+                data-value="{{ $value }}"
+                data-parent="{{ $dependOn }}"
+                data-field="__{{ $uniqueKey }}"
+                data-equal="{{ $dependOnValue }}"
+                data-condition="{{ $conditional }}"
+                dusk="form-input-{{ $attributes->get('id') ?? $element }}"
+                class="{{ $css->get('base') }} @include('action-forms::elements.validation-highlight')"
                 maxlength="{{ $maxlength }}"
-                rows="{{ $rows }}"
-                dusk="form-textarea-{{ $attributes->get('id') ?? $element }}"
-                class="{{ $css->get('base') }} @include('action-forms::elements.validation-highlight')" 
+                rows="{{ $rows }}" 
                 {{-- Native attributes --}}
                 {{ $attributes }} 
             >{{ trim($value) }}</textarea>
@@ -79,7 +74,7 @@
                 class="{{ $css->get('counter') }}"
                 x-show="counterVisible"
             >
-                <span x-html="count"></span> / <span x-html="$refs.t__{{ $element }}.maxLength"></span>
+                <span x-html="count"></span> / <span x-html="$refs.__{{ $uniqueKey }}.maxLength"></span>
             </div>
         @endif
     </div> {{-- /Element container --}}
