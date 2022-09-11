@@ -66,8 +66,8 @@
     @endif
 </div>
 
-{{-- Javascript: dependOn --}}
-@includeWhen($viewAction !== 'show', 'action-forms::javascript.formData')
+{{-- Javascript: form elements --}}
+@includeWhen($viewAction !== 'show', 'action-forms::javascript.elements-js')
 
 
 {{-- Safe list (for tailwindcss) --}}
