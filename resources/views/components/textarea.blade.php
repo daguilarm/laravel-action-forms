@@ -73,4 +73,6 @@
             </div>
         @endif
     </div> {{-- /Element container --}}
-@endif 
+@else 
+    @include('action-forms::elements.show')
+@endif {{-- /Form element container --}}

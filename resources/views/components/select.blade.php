@@ -72,4 +72,6 @@
             @include('action-forms::elements.helper-and-validation')
         </div>
     </div> {{-- /Element container --}}
+@else 
+    @include('action-forms::elements.show')
 @endif {{-- /Form element container --}}
