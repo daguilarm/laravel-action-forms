@@ -18,6 +18,8 @@ return [
     |--------------------------------------------------------------------------
     */
     'theme' => [
+        // Restore button 
+        'restore' => 'float-right bg-yellow-500 shadow hover:bg-yellow-600 text-white p-2 -mr-2 rounded-md cursor-pointer',
         // Show view
         'show' => [
             'container' => 'w-full flex items-center p-3 text-sm border-b border-gray-100 last:border-0',

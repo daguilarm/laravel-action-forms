@@ -57,7 +57,7 @@
                 default => 'POST',
             })
             {{-- Show restore button --}}
-            @includeWhen(config('action-forms.restore_disabled'), 'action-forms::elements.restore')
+            @includeWhen(config('action-forms.restore_disabled') && $viewAction === 'edit', 'action-forms::elements.restore')
             {{-- Show components --}}
             {{ $slot }}
             {{-- Show buttons --}}

@@ -10,6 +10,7 @@ trait Configable
     protected function getTheme(): array
     {
         return array_merge(
+            self::getThemeRestore(),
             self::getThemeShow(),
             self::getThemeElement(),
             self::getThemeForm(),
@@ -25,6 +26,16 @@ trait Configable
             self::getThemeErrorMessages(),
             self::getThemeErrorMessagesHighlight(),
         );
+    }
+
+    /**
+     * Package theme: restore button
+     */
+    protected function getThemeRestore(): array
+    {
+        return [
+            'restore',
+        ];
     }
 
     /**

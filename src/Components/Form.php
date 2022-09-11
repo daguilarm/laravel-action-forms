@@ -35,6 +35,7 @@ class Form extends Component
 
         $this->css = collect([
             'base' => $this->getConfigClasses($this->getThemeForm()),
+            'restore' => $this->getConfigClasses($this->getThemeRestore()),
         ]);
     }
 
