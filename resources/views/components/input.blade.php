@@ -20,7 +20,7 @@
     <div 
         x-data="formData(
             '{{ $dependOn }}', 
-            @json($conditional), 
+            @json($conditional ?? true), 
             `{{ $value }}`, 
             '{{ $dependOnValue }}', 
             '{{ $dependOnType }}', 

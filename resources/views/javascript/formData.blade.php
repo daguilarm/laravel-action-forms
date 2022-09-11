@@ -5,8 +5,8 @@
             Alpine.data('formData', (parent, conditional, value, valueEqual, type, databaseValue = null, currentElement) => ({
                 parent: parent,
                 conditional: conditional,
-                value: value,
-                valueEqueal: valueEqual,
+                value: value ? value.replace(/(\r\n|\n|\r)/gm,"") : value, // Fixed multilines values
+                valueEqual: valueEqual,
                 databaseValue: databaseValue,
                 type: type,
                 currentElement: currentElement,
@@ -18,10 +18,20 @@
                 disabledClass: '{{ config('action-forms.theme.disabled') }}',
                 resetValuesOnDisabled: '{{ config('action-forms.reset_disabled') }}',
                 init() {
-                    this.disabled = this.disableOrEnable(this.parent, this.value, this.valueEqual, this.conditional, false, currentElement);
-                    this.visible = this.type === 'hidden' 
-                        ? !this.disabled 
-                        : true;
+                    // Show or hide base on condition
+                    if(!this.conditional) {
+                        // this.visible = false;
+                        this.disabled = true;
+                        this.value = '';
+                        // This way end here
+                        return true;
+                    // Rest of the cases
+                    } else {
+                        this.disabled = this.disableOrEnable(this.parent, this.value, this.valueEqual, this.conditional, false, currentElement);
+                        this.visible = this.type === 'hidden' 
+                            ? !this.disabled 
+                            : true;
+                    }
                 },
                 // Disable or enable fields
                 disableOrEnable(parent, value, valueEqual, conditional, hasChildren, currentElement, disabled = true) {
@@ -36,23 +46,12 @@
                     }
                 },
                 hasParent(parent) {
-                    // Show or hide base on condition
-                    if(this.conditional) {
-                        this.visible = conditional ? true : false;
-                        // If not visible, then reset values base on config setup
-                        if(!this.visible) {
-                            this.resetFieldValueBaseOnConfigSetup();
-                        }
-                        return !visible;
-                    // With no condition
-                    } else { 
-                        // Parent is checkable 
-                        if(this.isCheckable(parent)) {
-                            return this.parentIsCheckable(parent);
-                        } 
-                        // Parent is not checkable
-                        return this.parentIsNotCheckable(parent);
-                    }
+                    // Parent is checkable 
+                    if(this.isCheckable(parent)) {
+                        return this.parentIsCheckable(parent);
+                    } 
+                    // Parent is not checkable
+                    return this.parentIsNotCheckable(parent);
                 },
                 isCheckable(element) {
                     return element.getAttribute('type') === 'checkbox' || element.getAttribute('type') === 'radio';
@@ -60,7 +59,7 @@
                 parentIsNotCheckable(parent) {
                     // If the child has a value, we are in the edit action, so the field is enable
                     if(this.value) {
-                        // Edit action -> checked or unchecked field base on database value
+                        // Child is checkable
                         if(this.isCheckable(this.currentElement) && !this.isAnEmptyField(this.currentElement.dataset.value)) {
                             this.currentElement.checked = true;
                             this.currentElement.disabled = this.isAnEmptyField(this.currentElement.dataset.value) ? true : false;
@@ -73,23 +72,35 @@
                         return false;
                     // We are not in the edit action
                     } else {
-                        // If parent has a value and valueEqual is not defined, then enable child
+                        // If parent has a value and valueEqual is not defined, then enable the child
                         if(parent.value && !this.valueEqual) {
                             return false;
                         }
-                        // If parent has a value and is equal to valueEqual, then enable child
+                        // If parent has a value and is equal to valueEqual, then enable the child
                         if(parent.value && this.valueEqual && parent.value === this.valueEqual) {
                             return false;
                         } 
                     }
                     // Check for children
                     if(this.hasChildren) {
-                        this.enableOrDisableChildren(currentElement);
+                        this.enableOrDisableChildren(this.currentElement);
                     }
                     return true;
                 },
-                parentIsCheckable() {
-
+                parentIsCheckable(parent) {
+                    // If parent is checked, the child is enabled.
+                    if(parent.checked) {
+                        return false;
+                    }
+                    // Child is disabled
+                    // Check for children
+                    if(this.hasChildren) {
+                        this.enableOrDisableChildren(this.currentElement);
+                    }
+                    // Child maybe is reset
+                    this.value = '';
+                    // Child is disabled
+                    return true;
                 },
                 enableOrDisableChildren(parent) {
                     let children = document.querySelectorAll('[data-parent=' + parent.name + ']');
@@ -97,13 +108,13 @@
                     children.forEach(element => {
                         // Get the container
                         let container = document.getElementById(element.dataset.key);
-                        // If parent has a value, then the child element is enable
-                        if(parent.value) {
-                            container.classList.remove(this.disabledClass);
-                            element.disabled = false;
-                            // Checkable children... 
-                            element.checked = element.databaseValue ? true : false;
-                        // Child element is disabled
+                        // If parent is checkable and is checked
+                        if(this.isCheckable(parent) && parent.checked) {
+                            this.enableChildren(parent, container, element);
+                        // If parent is not checkable and has a value
+                        } else if(!this.isCheckable(parent) && parent.value) {
+                            this.enableChildren(parent, container, element);
+                        // If parent has not value, then child element is disabled
                         } else {
                             container.classList.add(this.disabledClass);
                             element.disabled = true;
@@ -111,10 +122,19 @@
                         }
                     });
                 },
+                enableChildren(parent, container, element) {
+                    container.classList.remove(this.disabledClass);
+                    element.disabled = false;
+                    // Checkable children... 
+                    if(this.isCheckable(element)) {
+                        element.checked = element.databaseValue ? true : false;
+                    }
+                },
                 resetFieldValueBaseOnConfigSetup(element) {
                     // Reset values on disable or hide
                     if(this.resetValuesOnDisabled) {
                         element.value = '';
+                        this.value = '';
                         element.checked = false;
                     }
                 },

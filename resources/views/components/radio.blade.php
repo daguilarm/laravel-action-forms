@@ -14,29 +14,26 @@
     'position' => $position,
     'options' => $options,
     'value' => af__value($attributes, 'name', $data),
+    'databaseValue' => $data->{$attributes->get('name')} ?? null,
 ])
 
 {{-- Form-element container --}}
 @if($viewAction !== 'show') 
     {{-- Element container --}}
     <div 
-        x-data="{
-            parent: '{{ $dependOn }}',
-            conditional: @json($conditional),
-            value: '{{ $value }}',
-            valueEqueal: '{{ $dependOnValue }}',
-            type: '{{ $dependOnType }}',
-            disabled: false,
-            visible: true,
-            init() {
-                this.disabled = af__disableOrEnable(this.parent, this.value, this.valueEqual, this.conditional, false, null);
-                this.visible = this.type === 'hidden' ? !this.disabled : true;
-            },
-        }"
+        x-data="formData(
+            '{{ $dependOn }}', 
+            @json($conditional ?? true), 
+            `{{ $value }}`, 
+            '{{ $dependOnValue }}', 
+            '{{ $dependOnType }}', 
+            '{{ $databaseValue }}', 
+            $refs.__{{ $uniqueKey }}
+        )"
         id="{{ $uniqueKey }}"
         class="{{ $width }} {{ $cssElement }}"
-        :class="disabled ? '{{ config('action-forms.theme.disabled') }}' : ''"
         x-show="visible"
+        :class="disabled ? disabledClass : ''"
     >
         {{-- Element --}}
         <div>
@@ -59,14 +56,14 @@
                     <div class="flex items-center mt-1">
                         {{-- Checkbox field --}}
                         <input 
-                            type="radio" 
+                            type="radio"
                             x-ref="__{{ $uniqueKey }}"
-                            x-on:change="this.disabled = window.af__enableOrDisableChildren($el)"
+                            x-on:click="enableOrDisableChildren($el)"
                             :disabled="disabled"
-                            :checked="value ? true : false"
                             :value="value"
+                            :checked="value === databaseValue"
                             data-key="{{ $uniqueKey }}"
-                            data-value="{{ $value }}"
+                            data-value="{{ $databaseValue }}"
                             data-parent="{{ $dependOn }}"
                             data-field="__{{ $uniqueKey }}"
                             data-equal="{{ $dependOnValue }}"

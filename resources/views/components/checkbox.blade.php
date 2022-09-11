@@ -19,7 +19,7 @@
     <div 
         x-data="formData(
             '{{ $dependOn }}', 
-            @json($conditional), 
+            @json($conditional ?? true), 
             `{{ $value }}`, 
             '{{ $dependOnValue }}', 
             '{{ $dependOnType }}', 
@@ -38,7 +38,7 @@
                 <input 
                     type="checkbox"
                     x-ref="__{{ $uniqueKey }}"
-                    x-on:change="enableOrDisableChildren($el)"
+                    x-on:click="enableOrDisableChildren($el)"
                     :disabled="disabled"
                     :checked="checked"
                     :value="value"
