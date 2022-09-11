@@ -19,25 +19,19 @@
 @if($viewAction !== 'show') 
     {{-- Element container --}}
     <div 
-        x-data="{
-            parent: '{{ $dependOn }}',
-            conditional: @json($conditional),
-            value: `{{ $value }}`,
-            valueEqueal: '{{ $dependOnValue }}',
-            type: '{{ $dependOnType }}',
-            counterVisible: false,
-            count: 0,
-            disabled: false,
-            visible: true,
-            init() {
-                this.disabled = af__disableOrEnable(this.parent, this.value, this.valueEqual, this.conditional, false, null);
-                this.visible = this.type === 'hidden' ? !this.disabled : true;
-            },
-        }"
+        x-data="formData(
+            '{{ $dependOn }}', 
+            @json($conditional), 
+            `{{ $value }}`, 
+            '{{ $dependOnValue }}', 
+            '{{ $dependOnType }}', 
+            databaseValue = null, 
+            $refs.__{{ $uniqueKey }}
+        )"
         id="{{ $uniqueKey }}"
         class="{{ $width }} {{ $cssElement }}"
-        :class="disabled ? '{{ config('action-forms.theme.disabled') }}' : ''"
         x-show="visible"
+        :class="disabled ? disabledClass : ''"
     >
         {{-- Add label --}}
         @includeWhen($label, 'action-forms::elements.label')
@@ -49,7 +43,7 @@
                 x-on:updatecounter="count = $event.detail.value"
                 x-on:focus="$dispatch('updatecounter', {value: $el.value.length}); counterVisible = true;"
                 x-on:click.outside="counterVisible = false"
-                x-on:change="this.disabled = window.af__enableOrDisableChildren($el)"
+                x-on:change="enableOrDisableChildren($el)"
                 :value="value"
                 :disabled="disabled"
                 data-key="{{ $uniqueKey }}"

@@ -13,6 +13,8 @@
                 disabled: false,
                 visible: true,
                 checked: databaseValue ? true : false,
+                counterVisible: false,
+                count: 0,
                 disabledClass: '{{ config('action-forms.theme.disabled') }}',
                 resetValuesOnDisabled: '{{ config('action-forms.reset_disabled') }}',
                 init() {
