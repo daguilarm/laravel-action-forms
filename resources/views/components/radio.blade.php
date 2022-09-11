@@ -61,7 +61,7 @@
                             x-on:click="enableOrDisableChildren($el)"
                             :disabled="disabled"
                             :value="value"
-                            :checked="value === databaseValue"
+                            :checked="!isAnEmptyField(value) && value === databaseValue"
                             data-key="{{ $uniqueKey }}"
                             data-value="{{ $databaseValue }}"
                             data-parent="{{ $dependOn }}"

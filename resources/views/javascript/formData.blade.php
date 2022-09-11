@@ -3,6 +3,7 @@
     <script defer $_key="{{ str()->uuid() }}">
         document.addEventListener('alpine:init', () => {
             Alpine.data('formData', (parent, conditional, value, valueEqual, type, databaseValue = null, currentElement) => ({
+                // Set the values
                 parent: parent,
                 conditional: conditional,
                 value: value ? value.replace(/(\r\n|\n|\r)/gm,"") : value, // Fixed multilines values
@@ -17,6 +18,7 @@
                 count: 0,
                 disabledClass: '{{ config('action-forms.theme.disabled') }}',
                 resetValuesOnDisabled: '{{ config('action-forms.reset_disabled') }}',
+                // Init the component
                 init() {
                     // Show or hide base on condition
                     if(!this.conditional) {
@@ -45,6 +47,7 @@
                         return this.hasParent(parentField);
                     }
                 },
+                // Get the element parent
                 hasParent(parent) {
                     // Parent is checkable 
                     if(this.isCheckable(parent)) {
@@ -53,9 +56,7 @@
                     // Parent is not checkable
                     return this.parentIsNotCheckable(parent);
                 },
-                isCheckable(element) {
-                    return element.getAttribute('type') === 'checkbox' || element.getAttribute('type') === 'radio';
-                },
+                // Parent element is not checkable
                 parentIsNotCheckable(parent) {
                     // If the child has a value, we are in the edit action, so the field is enable
                     if(this.value) {
@@ -87,10 +88,22 @@
                     }
                     return true;
                 },
+                // Parent element is checkable
                 parentIsCheckable(parent) {
-                    // If parent is checked, the child is enabled.
-                    if(parent.checked) {
-                        return false;
+                    // Is a radio button, so has multiples parent
+                    if(this.isRadiable(parent)) {
+                        // If radio button, then parent are multiples 
+                        let isChecked = document.querySelectorAll('[name=' + this.parent + ']:checked');
+                        // If parent is checked, the child is enabled.
+                        if(isChecked[0]) {
+                            return false;
+                        }
+                    // It is a checkbox 
+                    } else {
+                        // If parent is checked, the child is enabled.
+                        if(parent.checked) {
+                            return false;
+                        }
                     }
                     // Child is disabled
                     // Check for children
@@ -102,6 +115,7 @@
                     // Child is disabled
                     return true;
                 },
+                // Enable or disable children
                 enableOrDisableChildren(parent) {
                     let children = document.querySelectorAll('[data-parent=' + parent.name + ']');
                     // disable or enable all the children
@@ -122,6 +136,7 @@
                         }
                     });
                 },
+                // Enable children
                 enableChildren(parent, container, element) {
                     container.classList.remove(this.disabledClass);
                     element.disabled = false;
@@ -130,6 +145,7 @@
                         element.checked = element.databaseValue ? true : false;
                     }
                 },
+                // Reset values when disabled if this option is checked in config
                 resetFieldValueBaseOnConfigSetup(element) {
                     // Reset values on disable or hide
                     if(this.resetValuesOnDisabled) {
@@ -138,12 +154,9 @@
                         element.checked = false;
                     }
                 },
-                isAnEmptyField(value) {
-                    if(value == null || value == undefined || value == false || value ==  '' || value == 0 || value == NaN) {
-                        return true;
-                    }
-                    return false;
-                }
+                // isAnEmptyField(value) -> it is on parent element -> form.blade.php
+                // isCheckable(element) -> it is on parent element -> form.blade.php
+                // isRadiable(element) -> it is on parent element -> form.blade.php
             }))
         })
     </script>

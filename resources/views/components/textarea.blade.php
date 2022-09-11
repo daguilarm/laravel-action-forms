@@ -40,6 +40,7 @@
             <textarea 
                 x-ref="__{{ $uniqueKey }}"
                 x-on:keyup="count = $el.value.length"
+                x-on:keyup.shift.enter="restoreData($refs.__{{ $uniqueKey }})"
                 x-on:updatecounter="count = $event.detail.value"
                 x-on:focus="$dispatch('updatecounter', {value: $el.value.length}); counterVisible = true;"
                 x-on:click.outside="counterVisible = false"

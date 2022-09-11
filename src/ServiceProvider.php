@@ -69,20 +69,24 @@ final class ServiceProvider extends PackageProvider
      */
     private function bootDirectives(): void
     {
-        Blade::directive('ActionForms', function (string $expression) {
-            return "<?php echo '<script defer src=\"".config('action-forms.cdn.javascript.alpinejs')."\"></script><script src=\"https://cdn.tailwindcss.com\"></script><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css\"><script src=\"https://cdn.jsdelivr.net/npm/flatpickr\"></script>'; ?>";
+        Blade::directive('ActionFormsCss', function (string $expression) {
+            return "{!! '<style>.af__disabled{background:(0,0,0,0.6)}.af__enabled{background:(0,0,0,1)}</style>'; !!}";
+        });
+
+        Blade::directive('ActionFormsScripts', function (string $expression) {
+            return "{!! '<script defer src=\"".config('action-forms.cdn.javascript.alpinejs')."\"></script><script src=\"https://cdn.tailwindcss.com\"></script><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css\"><script src=\"https://cdn.jsdelivr.net/npm/flatpickr\"></script>' !!}";
         });
 
         Blade::directive('ActionFormsAlpine', function (string $expression) {
-            return "<?php echo '<script defer src=\"".config('action-forms.cdn.javascript.alpinejs')."\"></script>'; ?>";
+            return "{!! '<script defer src=\"".config('action-forms.cdn.javascript.alpinejs')."\"></script>' !!}";
         });
 
         Blade::directive('ActionFormsTailwind', function (string $expression) {
-            return "<?php echo '<script src=\"https://cdn.tailwindcss.com\"></script>'; ?>";
+            return "{!! '<script src=\"https://cdn.tailwindcss.com\"></script>' !!}";
         });
 
         Blade::directive('ActionFormsFlatpickr', function (string $expression) {
-            return "<?php echo '<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css\"><script src=\"https://cdn.jsdelivr.net/npm/flatpickr\"></script>'; ?>";
+            return "{!! '<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css\"><script src=\"https://cdn.jsdelivr.net/npm/flatpickr\"></script>' !!}";
         });
     }
 
