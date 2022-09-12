@@ -6,11 +6,7 @@
     'width' => $width,
     'label' => $label,
     'dependOn' => $dependOn,
-    'dependOnType' => $dependOnType,
-    'dependOnValue' => $dependOnValue,
     'helper' => $helper,
-    'value' => af__value($attributes, 'name', $data),
-    'default' => $default,
 ])
 
 {{-- Form-element container --}}
@@ -18,10 +14,10 @@
     <div 
         x-data="formData(
             '{{ $dependOn }}', 
-            @json($conditional ?? true), 
-            `{{ $value }}`, 
-            '{{ $dependOnValue }}', 
-            '{{ $dependOnType }}', 
+            Boolean(@json($conditional ?? true)), 
+            ``, 
+            '', 
+            'disabled', 
             databaseValue = null, 
             $refs.__{{ $uniqueKey }}
         )"
@@ -37,26 +33,19 @@
         <div>
             <div class="flex mt-1.5">
                 {{-- Select field --}}
-                <select 
+                <input 
+                    type="file" 
                     x-ref="__{{ $uniqueKey }}"
-                    x-on:change="enableOrDisableChildren($el)"
                     :disabled="disabled"
                     data-key="{{ $uniqueKey }}"
-                    data-value="{{ $value }}"
                     data-parent="{{ $dependOn }}"
                     data-field="__{{ $uniqueKey }}"
-                    data-equal="{{ $dependOnValue }}"
                     data-condition="{{ $conditional }}"
                     dusk="form-input-{{ $attributes->get('id') ?? $element }}"
                     class="{{ $css->get('base') }} @include('action-forms::elements.validation-highlight')" 
                     {{-- Native attributes --}}
                     {{ $attributes }} 
                 />
-                    <option></option>
-                    @foreach($options as $key => $value)
-                        <option value="{{ $key }}" {{ $key == $default ? 'selected' : '' }}>{{ $value }}</option>
-                    @endforeach
-                </select>
             </div>
             {{-- Validation errors and Helper --}}
             @include('action-forms::elements.helper-and-validation')

@@ -176,6 +176,16 @@ trait Configable
     }
 
     /**
+     * Package theme: file
+     */
+    protected function getThemeFile(): array
+    {
+        return [
+            'file.base',
+        ];
+    }
+
+    /**
      * Package theme: button
      */
     protected function getThemeButton(): array

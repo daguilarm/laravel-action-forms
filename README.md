@@ -147,6 +147,10 @@ php artisan vendor:publish --provider="Daguilarm\ActionForms\CookieConsentServic
 
 ![Show action](./resources/img/radio-horizontal.png?raw=true)
 
+**Select and File:**
+
+![Show action](./resources/img/select-and-file.png?raw=true)
+
 ## Create a Form component 
 
 ```html

@@ -89,7 +89,7 @@ return [
             'base' => 'block w-full rounded-md border border-slate-200 bg-slate-50 mt-1 py-3 pl-3 pr-10 text-base text-cyan-700 focus:border-cyan-500 focus:outline-none focus:ring-cyan-500',
         ],
         'file' => [
-            'base' => 'block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100',  
+            'base' => 'block w-full text-sm text-slate-400 file:cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-stale-100 file:text-cyan-800 hover:file:bg-cyan-700 hover:file:text-white',  
         ],
         // Button
         'button' => [
