@@ -403,7 +403,28 @@ You will need to add and `array` with the `value` and the `text` to be displayed
 
 ## Select 
 
-working on it...
+```html
+<x-select
+    width="w-1/3"
+    name="country"
+    label="Select country"
+    :options="[
+        0 => 'Spain',
+        1 => 'Portugal',
+        2 => 'France',
+        3 => 'Italy',
+    ]"
+    default="0"
+/>
+```
+
+### options
+
+You will need to add and `array` with the `value` and the `text` to be displayed.
+
+### default 
+
+You can set a default value. This option will be selected by default.
 
 ## Button 
 

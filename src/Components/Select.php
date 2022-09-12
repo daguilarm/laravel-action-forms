@@ -29,20 +29,18 @@ class Select extends FormComponent
         public ?string $id = null,
         public bool $asBoolean = false,
         public string $position = 'vertical',
-        public array $options = []
+        public array $options = [],
+        public ?string $default = null,
     ) {
         parent::__construct();
 
         $this->asBoolean = $asBoolean ? true : false;
         $this->css = collect([
-            'base' => $this->getConfigClasses($this->getThemeCheckbox()),
-            'label' => $this->getConfigClasses($this->getThemeRadioLabel()),
+            'base' => $this->getConfigClasses($this->getThemeSelect()),
+            'label' => $this->getConfigClasses($this->getThemeLabel()),
             'error' => $this->getConfigClasses($this->getThemeErrorMessages()),
             'errorHighlight' => $this->getConfigClasses($this->getThemeErrorMessagesHighlight()),
             'helper' => $this->getConfigClasses($this->getThemeHelper()),
-            'item' => $this->position === 'vertical'
-                ? config('action-forms.theme.radio.layout.vertical')
-                : config('action-forms.theme.radio.layout.horizontal'),
         ]);
     }
 
@@ -51,6 +49,6 @@ class Select extends FormComponent
      */
     public function render(): View
     {
-        return view('action-forms::components.radio');
+        return view('action-forms::components.select');
     }
 }

@@ -86,7 +86,7 @@ return [
         ],
         // Select
         'select' => [
-            'base' => '',
+            'base' => 'block w-full rounded-md border border-slate-200 bg-slate-50 mt-1 py-3 pl-3 pr-10 text-base text-cyan-700 focus:border-cyan-500 focus:outline-none focus:ring-cyan-500',
         ],
         // Button
         'button' => [
