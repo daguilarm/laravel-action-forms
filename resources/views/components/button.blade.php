@@ -12,7 +12,7 @@
     <button 
         id="button-{{ $uniqueKey }}"
         type="{{ $type }}"
-        class="{{ $css->get('base') }} bg-{{ $background }}-500 hover:bg-{{ $background }}-600 border-{{ $background }}-400 text-white"
+        class="{{ $css->get('base') }} bg-{{ $background }}-{{ config('action-forms.theme.color_darkness.base') }} hover:bg-{{ $background }}-{{ config('action-forms.theme.color_darkness.hover') }} border-{{ $background }}-{{ config('action-forms.theme.color_darkness.border') }} text-white"
     >
         {{ $text }}
     </button>

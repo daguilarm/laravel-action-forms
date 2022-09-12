@@ -26,6 +26,11 @@ return [
             'danger' => 'red',
             'success' => 'green',
         ],
+        'color_darkness' => [
+            'base' => '500',
+            'hover' => '600',
+            'border' => '400',
+        ],
         // Restore button 
         'restore' => 'float-right bg-yellow-500 shadow hover:bg-yellow-600 text-white p-2 -mr-2 rounded-md cursor-pointer',
         // Show view
