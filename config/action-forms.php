@@ -18,7 +18,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'theme' => [
-        // Colors 
+        // Colors
         'colors' => [
             'primary' => 'cyan',
             'secondary' => 'slate',
@@ -31,7 +31,7 @@ return [
             'hover' => '600',
             'border' => '400',
         ],
-        // Restore button 
+        // Restore button
         'restore' => 'float-right bg-yellow-500 shadow hover:bg-yellow-600 text-white p-2 -mr-2 rounded-md cursor-pointer',
         // Show view
         'show' => [
@@ -128,20 +128,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Components
+    | Components prefix
     |--------------------------------------------------------------------------
+    | By default the component will be like thid: <x-form></x-form>
+    | You can custom the component like: <x-mycustom-form></x-mycustom-form>
     */
     'components_prefix' => '',
-    
-    'components' => [
-
-        // Base
-        'form' => Components\Form::class,
-        'input' => Components\Input::class,
-        'textarea' => Components\Textarea::class,
-        'checkbox' => Components\Checkbox::class,
-        'radio' => Components\Radio::class,
-        'select' => Components\Select::class,
-        'button' => Components\Button::class,
-    ],
 ];

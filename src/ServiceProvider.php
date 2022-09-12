@@ -25,8 +25,8 @@ final class ServiceProvider extends PackageProvider
         }
 
         // Load helpers
-        if (File::exists(__DIR__.'\src\Helpers.php')) {
-            require __DIR__.'\src\Helpers.php';
+        if (File::exists(__DIR__ . '\src\Helpers.php')) {
+            require __DIR__ . '\src\Helpers.php';
         }
     }
 
@@ -35,7 +35,8 @@ final class ServiceProvider extends PackageProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/action-forms.php', 'action-forms');
+        $this->mergeConfigFrom(__DIR__ . '/../config/action-forms.php', 'action-forms');
+        $this->mergeConfigFrom(__DIR__ . '/../config/action-forms-tailwind-safe.php', 'action-forms-tailwind-safe');
     }
 
     /**
@@ -44,7 +45,7 @@ final class ServiceProvider extends PackageProvider
     private function bootResources(): void
     {
         //Load the views
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'action-forms');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'action-forms');
     }
 
     /**
@@ -57,7 +58,7 @@ final class ServiceProvider extends PackageProvider
         $this->callAfterResolving(BladeCompiler::class, function (BladeCompiler $blade) {
             $prefix = config('action-forms.components_prefix', '');
 
-            foreach (config('action-forms.components', []) as $alias => $component) {
+            foreach (self::getBladeComponents() as $alias => $component) {
                 $componentClass = is_string($component) ? $component : $component['class'];
                 $blade->component($componentClass, $alias, $prefix);
             }
@@ -74,11 +75,11 @@ final class ServiceProvider extends PackageProvider
         });
 
         Blade::directive('ActionFormsScripts', function (string $expression) {
-            return "{!! '<script defer src=\"".config('action-forms.cdn.javascript.alpinejs')."\"></script><script src=\"https://cdn.tailwindcss.com\"></script><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css\"><script src=\"https://cdn.jsdelivr.net/npm/flatpickr\"></script>' !!}";
+            return "{!! '<script defer src=\"" . config('action-forms.cdn.javascript.alpinejs') . "\"></script><script src=\"https://cdn.tailwindcss.com\"></script><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css\"><script src=\"https://cdn.jsdelivr.net/npm/flatpickr\"></script>' !!}";
         });
 
         Blade::directive('ActionFormsAlpine', function (string $expression) {
-            return "{!! '<script defer src=\"".config('action-forms.cdn.javascript.alpinejs')."\"></script>' !!}";
+            return "{!! '<script defer src=\"" . config('action-forms.cdn.javascript.alpinejs') . "\"></script>' !!}";
         });
 
         Blade::directive('ActionFormsTailwind', function (string $expression) {
@@ -96,7 +97,24 @@ final class ServiceProvider extends PackageProvider
     private function bootPublishAssets(): void
     {
         $this->publishes([
-            __DIR__.'/../resources/views' => $this->app->resourcePath('views/vendor/laravel-action-forms'),
+            __DIR__ . '/../resources/views' => $this->app->resourcePath('views/vendor/laravel-action-forms'),
         ], 'views');
+    }
+
+    private function getBladeComponents(): array
+    {
+        return [
+            // Base
+            'form' => Components\Form::class,
+            // Elements
+            'input' => Components\Input::class,
+            'textarea' => Components\Textarea::class,
+            'checkbox' => Components\Checkbox::class,
+            'radio' => Components\Radio::class,
+            'select' => Components\Select::class,
+            'button' => Components\Button::class,
+            // Layers
+            'group' => Components\Group::class,
+        ];
     }
 }

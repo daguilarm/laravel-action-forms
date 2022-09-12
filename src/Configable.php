@@ -1,7 +1,6 @@
 <?php
 
 namespace Daguilarm\ActionForms;
-use Prophecy\Promise\ReturnArgumentPromise;
 
 trait Configable
 {
@@ -192,7 +191,7 @@ trait Configable
     protected function getThemeButtonColor(): string
     {
         return collect(config('action-forms.theme.colors'))
-            ->map(function($value, $key) {
+            ->map(function ($value, $key) {
                 return 'bg-' . $value . '-600 hover:bg-' . $value . '-700 border-' . $value . '-400';
             })
             ->implode(' ');
@@ -236,7 +235,7 @@ trait Configable
     {
         // Populate with all the data
         foreach ($list as $element) {
-            $result .= config('action-forms.theme.'.$element).' ';
+            $result .= config('action-forms.theme.' . $element) . ' ';
         }
 
         // Remove duplicate entries

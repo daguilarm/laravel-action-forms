@@ -50,23 +50,28 @@ module.exports = {
     content: [
         ...
         './vendor/daguilarm/laravel-action-forms/resources/views/**/*.php',
+        './vendor/daguilarm/laravel-action-forms/config/*.php',
     ],
 ```
 
-With this, when `PostCss` scans the all package views it will find a hidden tag (`<span class="hidden ..."></span>`) containing all the classes used by the package (disable this feature if you are not using `PostCss`). You can disable this feature in the config file:
+With this, when `PostCss` scans the all package, so we have a file in `config/action-forms-tailwind-safe.php` where you can add your tailwind safe list:
 
 ```js
-/*
-|--------------------------------------------------------------------------
-| Tailwindcss
-|--------------------------------------------------------------------------
-| Generate a container with all the tailwind used by the theme
-|
-*/
-'tailwind-safe-list' => false,
+// Tailwind Safe list
+return [
+    'border border-slate-400 border-red-400 border-yellow-400 border-cyan-400 border-green-400',
+    'text-white',
+    'w-4 h-4',
+    'rounded-md rounded-full',
+    'bg-slate-500 bg-red-500 bg-yellow-500 bg-cyan-500 bg-green-500',
+    'hover:bg-slate-600 hover:bg-red-600 hover:bg-yellow-600 hover:bg-cyan-600 hover:bg-green-600',
+    'flex items-center justify-start justify-end justify-center',
+    'space-x-4 space-y-4',
+    'w-1/5 w-1/4 w-1/3 w-2/5 w-1/2 w-3/5 w-2/3 w-3/4 w-4/5 w-11/12 w-full',
+];
 ```
 
-> Remember: if you are using `tailwind-safe-list`, you will need to clear views each time you change something in the package theme.
+> Remember: if you are using `action-forms-tailwind-safe`, you will need to clear views each time you change something in the package theme.
 
 You can also modify the package theme, using the config file:
 
@@ -102,6 +107,8 @@ You can also modify the package theme, using the config file:
     ],
 ],
 ```
+
+> In the config file, you will find a lot of configuration options.
 
 For this you need to publish the configuration file:
 
@@ -183,7 +190,21 @@ Will render a `<label>` tag like: `<label>My name</label/>`.
 
 ### width 
 
-The `width` parameter allow you to set the container width using **tailwindcss** styles like: `w-1/2`, `w-2/3`,... If you remove the `width` parameter, the default value will be `w-full`.
+The `width` parameter allow you to set the container width using **tailwindcss** styles like: `w-1/2`, `w-2/3`,... If you remove the `width` parameter, the default value will be `w-full`. The defult values supported by the package are:
+
+- w-1/5: 20%
+- w-1/4: 25%
+- w-1/3: 33.33%
+- w-2/5: 40%
+- w-1/2: 50% 
+- w-3/5: 60% 
+- w-2/3: 66% 
+- w-3/4: 75% 
+- w-4/5: 80% 
+- w-11/12: 91.6%
+- w-ful: 100%
+
+You can add more in the in the file `config/action-forms-tailwind-safe.php`.
 
 ### dependOn & dependOnType
 
@@ -372,7 +393,116 @@ By default, the field will be unchecked.
 
 ### position 
 
+You can display the radio button in horizontal or in vertical, using: `position="horizontal"` or `position="vertical"`.
+
 ### options
+
+You will need to add and `array` with the `value` and the `text` to be displayed.
+
+> Don't forget to send the value as a variable, using the colon character `:options="[]"`.
+
+## Button 
+
+You can display different types of buttons on your form, which are easily configurable.
+
+```html
+<x-button
+    text="Cancel"
+    type="button"
+    color="danger"
+    :javascript="[
+        'x-on:click' => 'console.log(`hellow`)',
+        'x-on:change' => 'this.change($el)',
+    ]"
+/>
+```
+
+### text
+
+Will the the button text. In the future will be posible to add icons.
+
+## type
+
+You must define the button type. The supported one are: `submit` and `button`.
+
+## color
+
+The allowed colors are: primary, secondary, danger, warning and success.
+
+# javascript 
+
+You can customize your buttons with javascript:
+
+```html
+<x-button
+    :javascript="[
+        'x-on:click' => 'console.log(`hello world`)',
+        'x-on:change' => 'this.change($el)',
+    ]"
+/>
+```
+
+It will render: 
+
+```html
+<button... x-on:click="console.log('hello world')" x-on:change="this.change($el)"/>...</button>
+```
+
+> It is important that if you have to add single or double quotes into the javascript, you replace them with any of the following symbols:
+
+- `
+- \\
+- #
+
+For example:
+
+```html
+<x-button
+    :javascript="[
+        'x-on:click' => 'console.log(`hello world`)',
+        'x-on:click' => 'console.log(\\hello world\\)',
+        'x-on:click' => 'console.log(#hello world#)',
+    ]"
+/>
+```
+
+## Groups 
+
+It may be the case that you need to group several elements in a single container:
+
+```html
+<x-group 
+    align="right" 
+    width="w-1/3"
+    position="horizontal"
+>
+    <x-button
+        text="Cancel"
+        type="button"
+        color="danger"
+        :javascript="[
+            '@change' => 'this.change($el)',
+        ]"
+    />
+    <x-button
+        text="Submit"
+        type="submit"
+        color="success"
+    />
+</x-group>
+```
+
+### width 
+
+Same as the other elements.
+
+### align 
+
+You can align the items inside the container using: `left`, `center` and `right`.
+
+### position 
+
+The element can be in `vertical` or in `horizontal`. The default value is `horizontal`.
 
 ## Roadmap
 

@@ -22,6 +22,7 @@ class Button extends FormComponent
         public string $text,
         public string $type = 'submit',
         public string $color = 'primary',
+        public array $javascript = [],
     ) {
         parent::__construct();
 
