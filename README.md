@@ -454,9 +454,9 @@ It will render:
 
 > It is important that if you have to add single or double quotes into the javascript, you replace them with any of the following symbols:
 
-- `
-- \\
-- #
+- `&prime;`
+- `\\`
+- `#` 
 
 For example:
 
