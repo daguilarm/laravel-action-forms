@@ -6,7 +6,7 @@
 - [Requirements and configuration](#requirements-and-configuration)
 - [Screenshots](#a-few-images)
 - [Form](#create-a-form-component)
-    - [Default Methods for all the elements](#general-information-about-the-different-fields-supported-by-the-package)
+    - [Default Methods for all the components](#general-information-about-the-different-fields-supported-by-the-package)
     - [Input](#create-an-input-component)
     - [Textarea](#create-a-textarea-component)
     - [Checkbox](#create-a-checkbox-component)
