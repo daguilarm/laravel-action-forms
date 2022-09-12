@@ -88,6 +88,9 @@ return [
         'select' => [
             'base' => 'block w-full rounded-md border border-slate-200 bg-slate-50 mt-1 py-3 pl-3 pr-10 text-base text-cyan-700 focus:border-cyan-500 focus:outline-none focus:ring-cyan-500',
         ],
+        'file' => [
+            'base' => 'block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100',  
+        ],
         // Button
         'button' => [
             'base' => 'rounded-md py-2 px-4 text-sm font-medium border shadow-sm',

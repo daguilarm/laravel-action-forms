@@ -513,6 +513,7 @@ It may be the case that you need to group several elements in a single container
         text="Submit"
         type="submit"
         color="success"
+        conditional="auth()->user()->isAdmin()"
     />
 </x-group>
 ```
