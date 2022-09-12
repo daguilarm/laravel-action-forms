@@ -423,17 +423,17 @@ You can display different types of buttons on your form, which are easily config
 
 ### text
 
-Will the the button text. In the future will be posible to add icons.
+It will the text displayed in the button. In the future will be posible to add icons.
 
-## type
+### type
 
 You must define the button type. The supported one are: `submit` and `button`.
 
-## color
+### color
 
-The allowed colors are: primary, secondary, danger, warning and success.
+The allowed colors are: `primary`, `secondary`, `danger`, `warning` and `success`.
 
-# javascript 
+### javascript 
 
 You can customize your buttons with javascript:
 
