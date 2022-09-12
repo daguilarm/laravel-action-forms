@@ -430,6 +430,17 @@ You will need to add and `array` with the `value` and the `text` to be displayed
 
 You can set a default value. This option will be selected by default.
 
+## File 
+
+```html 
+<x-file
+    width="w-1/3"
+    name="file"
+    label="Select file"
+    dependOn="name"
+/>
+```
+
 ## Button 
 
 You can display different types of buttons on your form, which are easily configurable.
@@ -536,7 +547,6 @@ The element can be in `vertical` or in `horizontal`. The default value is `horiz
 
 ## Roadmap
 
-- File (alpinejs)
 - Toggle/Boolean (alpinejs)
 - Datalist/Search (alpinejs)
 - Datetime (alpinejs, flatpickr) 
