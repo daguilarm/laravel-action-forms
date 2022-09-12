@@ -51,10 +51,10 @@
                     class="{{ $css->get('base') }} @include('action-forms::elements.validation-highlight')" 
                     {{-- Native attributes --}}
                     {{ $attributes }} 
-                />
+                >
                     <option></option>
                     @foreach($options as $key => $value)
-                        <option value="{{ $key }}" {{ $key == $default ? 'selected' : '' }}>{{ $value }}</option>
+                        <option value="{{ $key }}" {{ af__option_default($key, $default) }}>{{ $value }}</option>
                     @endforeach
                 </select>
             </div>

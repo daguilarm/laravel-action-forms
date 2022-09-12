@@ -36,3 +36,17 @@ if (! function_exists('af__js_filter')) {
         return str_replace(['`', '\\', '#'], '"', $value);
     }
 }
+
+/**
+ * Select option default
+ */
+if (! function_exists('af__option_default')) {
+    function af__option_default(?string $key = null, ?string $default = null): string
+    {
+        if(is_null($default) || $default === '') {
+            return '';
+        }
+
+        return $default == $key ? 'selected' : '';
+    }
+}

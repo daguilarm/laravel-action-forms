@@ -113,6 +113,7 @@ final class ServiceProvider extends PackageProvider
             'radio' => Components\Radio::class,
             'select' => Components\Select::class,
             'file' => Components\File::class,
+            'search' => Components\Search::class,
             'button' => Components\Button::class,
             // Layers
             'group' => Components\Group::class,
