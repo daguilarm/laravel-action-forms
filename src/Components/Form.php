@@ -31,8 +31,6 @@ class Form extends Component
                 ->with('cssElement', config('action-forms.theme.element'));
         });
 
-        $this->safeCssClasses = $this->safeCssClasses();
-
         $this->css = collect([
             'base' => $this->getConfigClasses($this->getThemeForm()),
             'restore' => $this->getConfigClasses($this->getThemeRestore()),

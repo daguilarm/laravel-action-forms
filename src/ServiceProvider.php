@@ -55,7 +55,7 @@ final class ServiceProvider extends PackageProvider
         Blade::componentNamespace('Daguilarm\\ActionForms\\Components', 'action-forms');
 
         $this->callAfterResolving(BladeCompiler::class, function (BladeCompiler $blade) {
-            $prefix = config('action-forms.prefix', '');
+            $prefix = config('action-forms.components_prefix', '');
 
             foreach (config('action-forms.components', []) as $alias => $component) {
                 $componentClass = is_string($component) ? $component : $component['class'];

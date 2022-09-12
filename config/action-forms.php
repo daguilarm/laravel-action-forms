@@ -18,14 +18,22 @@ return [
     |--------------------------------------------------------------------------
     */
     'theme' => [
+        // Colors 
+        'colors' => [
+            'primary' => 'cyan',
+            'secondary' => 'slate',
+            'warning' => 'yellow',
+            'danger' => 'red',
+            'success' => 'green',
+        ],
         // Restore button 
         'restore' => 'float-right bg-yellow-500 shadow hover:bg-yellow-600 text-white p-2 -mr-2 rounded-md cursor-pointer',
         // Show view
         'show' => [
-            'container' => 'w-full flex items-center p-3 text-sm border-b border-gray-100 last:border-0',
-            'label' => 'w-1/4 text-gray-400',
+            'container' => 'w-full flex items-center p-3 text-sm border-b border-slate-100 last:border-0',
+            'label' => 'w-1/4 text-slate-400',
             'data' => 'w-3/4 text-cyan-700 font-semibold',
-            'after' => 'p-1 text-gray-400 italic text-xs',
+            'after' => 'p-1 text-slate-400 italic text-xs',
         ],
         // Form view
         'form' => 'w-full shadow rounded-md bg-white px-8 py-6',
@@ -41,12 +49,12 @@ return [
         // Input and textarea
         'input' => [
             'base' => 'w-full p-2',
-            'bg' => 'bg-gray-50',
+            'bg' => 'bg-slate-50',
             'text' => 'text-base text-cyan-700', // Text color for input, textarea,...
-            'border' => 'border border-gray-300',
+            'border' => 'border border-slate-300',
             'focus' => 'focus:outline-none focus:border-cyan-500 focus:ring-cyan-500', // Border color on focus for input, textarea,...
-            'disabled' => 'disabled:bg-gray-200 disabled:text-gray-300 disabled:border-gray-200',
-            'placeholder' => 'placeholder:text-gray-600 placeholder:italic placeholder:opacity-40',
+            'disabled' => 'disabled:bg-slate-200 disabled:text-slate-300 disabled:border-slate-200',
+            'placeholder' => 'placeholder:text-slate-600 placeholder:italic placeholder:opacity-40',
             'shadow' => 'shadow',
             'addons' => [
                 'text' => 'text-white',
@@ -70,6 +78,14 @@ return [
                 'horizontal' => 'flex items-center space-x-4 overflow-x-hidden',
                 'vertical' => 'block',
             ],
+        ],
+        // Select
+        'select' => [
+            'base' => '',
+        ],
+        // Button
+        'button' => [
+            'base' => 'rounded-md py-2 px-4 text-sm font-medium border shadow-sm',
         ],
         // Messages
         'messages' => [
@@ -110,6 +126,8 @@ return [
     | Components
     |--------------------------------------------------------------------------
     */
+    'components_prefix' => '',
+    
     'components' => [
 
         // Base
@@ -118,5 +136,7 @@ return [
         'textarea' => Components\Textarea::class,
         'checkbox' => Components\Checkbox::class,
         'radio' => Components\Radio::class,
+        'select' => Components\Select::class,
+        'button' => Components\Button::class,
     ],
 ];

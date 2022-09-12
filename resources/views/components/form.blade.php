@@ -60,17 +60,9 @@
             @includeWhen(config('action-forms.restore_disabled') && $viewAction === 'edit', 'action-forms::elements.restore')
             {{-- Show components --}}
             {{ $slot }}
-            {{-- Show buttons --}}
-            <button type="submit">Enviar</button>
         </form>
     @endif
 </div>
 
 {{-- Javascript: form elements --}}
 @includeWhen($viewAction !== 'show', 'action-forms::javascript.elements-js')
-
-
-{{-- Safe list (for tailwindcss) --}}
-@if(config('action-forms.tailwind-safe-list'))
-    <span id="theme-safe-css" class="hidden {{ $safeCssClasses }}">Tailwind Safe List</span>
-@endif

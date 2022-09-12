@@ -1,33 +1,10 @@
 <?php
 
 namespace Daguilarm\ActionForms;
+use Prophecy\Promise\ReturnArgumentPromise;
 
 trait Configable
 {
-    /**
-     * Package theme: label
-     */
-    protected function getTheme(): array
-    {
-        return array_merge(
-            self::getThemeRestore(),
-            self::getThemeShow(),
-            self::getThemeElement(),
-            self::getThemeForm(),
-            self::getThemeLabel(),
-            self::getThemeInput(),
-            self::getThemeHelper(),
-            self::getThemeCheckbox(),
-            self::getThemeCheckboxLabel(),
-            self::getThemeRadioLabel(),
-            self::getThemeTextarea(),
-            self::getThemeInputAddons(),
-            self::getThemeInputAddonsHighlight(),
-            self::getThemeErrorMessages(),
-            self::getThemeErrorMessagesHighlight(),
-        );
-    }
-
     /**
      * Package theme: restore button
      */
@@ -156,6 +133,16 @@ trait Configable
     }
 
     /**
+     * Package theme: select
+     */
+    protected function getThemeSelect(): array
+    {
+        return [
+            'select.base',
+        ];
+    }
+
+    /**
      * Package theme: label for radio
      */
     protected function getThemeRadioLabel(): array
@@ -190,6 +177,28 @@ trait Configable
     }
 
     /**
+     * Package theme: button
+     */
+    protected function getThemeButton(): array
+    {
+        return [
+            'button.base',
+        ];
+    }
+
+    /**
+     * Package theme: button
+     */
+    protected function getThemeButtonColor(): string
+    {
+        return collect(config('action-forms.theme.colors'))
+            ->map(function($value, $key) {
+                return 'bg-' . $value . '-600 hover:bg-' . $value . '-700 border-' . $value . '-400';
+            })
+            ->implode(' ');
+    }
+
+    /**
      * Package theme: messages
      */
     protected function getThemeErrorMessages(): array
@@ -211,6 +220,16 @@ trait Configable
     }
 
     /**
+     * Package theme: disabled
+     */
+    protected function getThemeDisabled(): array
+    {
+        return [
+            'disabled',
+        ];
+    }
+
+    /**
      * Get the config theme classes
      */
     protected function getConfigClasses(array $list, string $result = ''): string
@@ -222,16 +241,5 @@ trait Configable
 
         // Remove duplicate entries
         return trim(implode(' ', array_unique(explode(' ', $result))));
-    }
-
-    /**
-     * Generate the list of tailwind classes used by the package theme
-     */
-    protected function safeCssClasses(string $safeList = ''): string
-    {
-        return self::getConfigClasses(self::getTheme())
-            . ' '.config('action-forms.theme.disabled')
-            . ' w-4 h-4 rounded-full bg-green-500 bg-gray-400'
-            . ' cursor-pointer';
     }
 }
