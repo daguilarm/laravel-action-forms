@@ -123,27 +123,27 @@ php artisan vendor:publish --provider="Daguilarm\ActionForms\CookieConsentServic
 
 ## A few images  
 
-Show view without boolean fields:
+**Show view without boolean fields:**
 
 ![Show action](./resources/img/show-no-boolean.png?raw=true)
 
-Show view with boolean fields:
+**Show view with boolean fields:**
 
 ![Show action](./resources/img/show-boolean.png?raw=true)
 
-Dependent fields in action:
+**Dependent fields in action:**
 
 ![Show action](./resources/img/dependOn.gif?raw=true)
 
-Dependent fields disabled:
+**Dependent fields disabled:**
 
 ![Show action](./resources/img/dependOn-disabled.png?raw=true)
 
-Radio field vertical:
+**Radio field vertical:**
 
 ![Show action](./resources/img/radio-vertical.png?raw=true)
 
-Radio field horizontal:
+**Radio field horizontal:**
 
 ![Show action](./resources/img/radio-horizontal.png?raw=true)
 
