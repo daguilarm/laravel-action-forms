@@ -1,7 +1,21 @@
 # laravel-action-forms (project in development...)
  A package to manage forms with Laravel, using only one blade file for all your views (create, edit and show). You will only need to create a file with your form (only once), and the package will automatically generate the views to create, edit and show.
 
-[Install](#Install)
+## Index
+- [Install](#install)
+- [Requirements and configuration](#requirements-and-configuration)
+- [Screenshots](#a-few-images)
+- [Form](#create-a-form-component)
+    - [Default Methods for all the elements](#general-information-about-the-different-fields-supported-by-the-package)
+    - [Input](#create-an-input-component)
+    - [Textarea](#create-a-textarea-component)
+    - [Checkbox](#create-a-checkbox-component)
+    - [Radio button](#create-a-radio-component)
+    - [Select](#select)
+    - [File](#file)
+    - [Button](#button)
+    - [Element group](#groups)
+    - [Roadmap](#roadmap)
 
 ## Install 
 
