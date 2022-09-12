@@ -401,6 +401,10 @@ You will need to add and `array` with the `value` and the `text` to be displayed
 
 > Don't forget to send the value as a variable, using the colon character `:options="[]"`.
 
+## Select 
+
+working on it...
+
 ## Button 
 
 You can display different types of buttons on your form, which are easily configurable.
@@ -507,7 +511,6 @@ The element can be in `vertical` or in `horizontal`. The default value is `horiz
 ## Roadmap
 
 - File (alpinejs)
-- Select (alpinejs)
 - Toggle/Boolean (alpinejs)
 - Datalist/Search (alpinejs)
 - Datetime (alpinejs, flatpickr) 
