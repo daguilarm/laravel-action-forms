@@ -120,18 +120,38 @@ Will get this:
 - [Default attributes for all the components](#default-attributes-for-all-the-components)
     - [Attribute: label](#label)
     - [Attribute: width](#width)
-    - [Attributes: dependOn, dependOnType and dependOnValue](#)
+    - [Attributes: dependOn, dependOnType and dependOnValue](#dependon-dependontype-and-dependonvalue)
     - [Attribute: conditional](#conditional)
     - [Attribute: helper](#helper)
 - [Input](#create-an-input-component)
+    - [Attribute: addons. You can add content before or after the field](#addons)
 - [Textarea](#create-a-textarea-component)
+    - [Attribute: maxlength](#maxlength)
+    - [Attribute: rows](#rows)
+    - [Attribute: counter](#counter)
 - [Checkbox](#create-a-checkbox-component)
+    - [Attribute: checked](#checked)
 - [Radio button](#create-a-radio-component)
+    - [Attribute: position](#position)
+    - [Attribute: options](#options)
 - [Select](#select)
+    - [Attribute: options](#options)
+    - [Attribute: default](#default)
 - [File](#file)
 - [Search / Datalist](#search--select-with-search)
+    - [Attribute: requestFromArray](#requestFromArray)
+    - [Attribute: requestFrom](#requestFrom)
+    - [Attribute: requestId](#requestId)
+    - [Attribute: requestValue](#requestValue)
+- [Toogle](#toggle)
+    - [Attribute: color](#color)
 - [Button](#button)
+    - [Attribute: text](#text)
+    - [Attribute: type](#type)
+    - [Attribute: color](#color)
+    - [Attribute: javascript](#javascript)
 - [Element group](#groups)
+    - [Attribute: align](#align)
 - [Roadmap](#roadmap)
 
 ## Install 
@@ -345,6 +365,7 @@ This will allow us to create dependent fields, for example:
         label="Surname"
         dependOn="name"
         dependOnType="hidden" // or dependOnType="disabled"
+        dependOnValue="John"
         required
     />
 </x-form>
@@ -353,6 +374,8 @@ This will allow us to create dependent fields, for example:
 In this case, the `surname` field will be hidden until the `name` field has a value. The system will be watching the `name` field until an `onchange` event occurs, and then it will check if the `name` field is still empty, if not, it will display the `surname` field. 
 
 The `dependOnType()` attribute admits two possible values: `hidden` or `disabled`.
+
+The `dependOnValue()` attribute will check the parent value with the required value and enable or diable the field base on the result.
 
 **Dependent fields in action:**
 
@@ -379,6 +402,10 @@ Show or hide a component base on a condition:
 
 > If you want to set a default condition, don't forget to send the value as a variable, using the colon character: `:conditional="true"`.
 
+### helper 
+
+Will show a helper message after the field.
+
 ## Create an Input component 
 
 > This component requires the **alpinejs** dependency.
@@ -402,10 +429,6 @@ The `input` field use all the supported parameters, like: `type`, `name`, `place
 ```
 
 An `input` field, has also a list of custom parameters like:
-
-### helper 
-
-Will show a helper message after the input.
 
 ### addons 
 
@@ -455,10 +478,6 @@ You can add addons before, after or both. At the moment, it only supports text. 
 ```
 
 An `textarea` field, has also a list of custom parameters like:
-
-### helper 
-
-It works the same way as explained in the `input` field.
 
 ### maxlength 
 
