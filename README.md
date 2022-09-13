@@ -1,6 +1,112 @@
 # laravel-action-forms (project in development...)
  A package to manage forms with Laravel, using only one blade file for all your views (create, edit and show). You will only need to create a file with your form (only once), and the package will automatically generate the views to `create`, `edit` and `show`.
 
+With this example:
+
+```html
+<x-form
+    id="form-example"
+    method="create"
+    :action="route('dashboard.users.store')"
+    :view="$config->get('action')"
+    :data="$data ?? null"
+>
+    <x-input
+        before="Sr/Sra"
+        type="text"
+        width="w-1/3"
+        name="name"
+        label="Name"
+        placeholder="Your name..."
+        helper="Enter your name"
+        required
+    />
+    <x-select
+        width="w-1/3"
+        name="country"
+        label="Select country"
+        :options="[
+            0 => 'Spain',
+            1 => 'Portugal',
+            2 => 'France',
+            3 => 'Italy',
+        ]"
+        helper="Select your country..."
+    />
+    <x-search
+        width="w-1/3"
+        name="country"
+        label="Select user"
+        requestFrom="https://test.com/api/user?query="
+        requestId="id"
+        requestValue="name"
+    />
+    <x-file
+        width="w-1/3"
+        name="file"
+        label="Select file"
+    />
+    <x-checkbox
+        width="w-1/3"
+        name="active"
+        label="Active"
+        :checked="true"
+        :asBoolean="true"
+        value="1"
+        required
+    />
+    <x-radio
+        width="w-1/3"
+        name="role"
+        label="Role"
+        position="horizontal"
+        :options="[
+            0 => 'Root',
+            1 => 'Admin',
+            2 => 'Editor',
+            3 => 'User',
+            4 => 'Guest',
+        ]"
+    />
+    <x-textarea
+        width="w-1/3"
+        name="address"
+        label="Address"
+        placeholder="Your Address..."
+        counter
+        required
+    />
+    <x-toggle
+        width="w-1/3"
+        name="is_admin"
+        label="Is admin?"
+        color="danger"
+        required
+    />
+    <x-group
+        align="right"
+        width="w-1/3"
+    >
+        <x-button
+            text="Cancel"
+            type="button"
+            color="danger"
+            :javascript="[
+                '@click' => 'console.log(`hellow`)',
+                '@change' => 'this.change($el)',
+            ]"
+        />
+        <x-button
+            text="Submit"
+            type="submit"
+            color="success"
+        />
+    </x-group>
+</x-form>
+```
+
+Will get this:
+
 ![Laravel Action Forms package](./resources/img/laravel-action-forms.gif?raw=true)
 
 ## Index
