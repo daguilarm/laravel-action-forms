@@ -144,7 +144,10 @@
                 x-show="showElement()" 
                 @click.outside="resetElement()"
             >
-                <template x-for="result in searchResults">
+                <template 
+                    x-for="result in searchResults" 
+                    :key="result"
+                >
                     <div 
                         class="{{ $css->get('result') }}" 
                         style="z-index: 999 !important"
