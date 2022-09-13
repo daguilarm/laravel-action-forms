@@ -71,7 +71,7 @@ module.exports = {
     ],
 ```
 
-With this, when `PostCss` scans the all package, so we have a file in `config/action-forms-tailwind-safe.php` where you can add your tailwind safe list:
+With this, when `PostCss` scans the all package it will discover the classes used by the package. You have also a file in `config/action-forms-tailwind-safe.php` where you can add your tailwind safe list, in case you need it:
 
 ```js
 // Tailwind Safe list
