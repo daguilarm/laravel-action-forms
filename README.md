@@ -54,7 +54,7 @@ If you prefer, you can add this requirements using CDN. We have created a few **
 @ActionFormsFlatpickr
 ```
 
-At the end of your `<body>` tag add:
+At the end of your `<body>` tag, add the stack for the scritps:
 
 ```php
 @stack('action-forms-scripts')
