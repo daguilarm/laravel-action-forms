@@ -112,19 +112,27 @@ Will get this:
 ## Index
 - [Install](#install)
 - [Requirements and configuration](#requirements-and-configuration)
-- [Screenshots](#a-few-images)
+- [The show view](#the-show-view)
 - [Form](#create-a-form-component)
-    - [Default Methods for all the components](#general-information-about-the-different-fields-supported-by-the-package)
-    - [Input](#create-an-input-component)
-    - [Textarea](#create-a-textarea-component)
-    - [Checkbox](#create-a-checkbox-component)
-    - [Radio button](#create-a-radio-component)
-    - [Select](#select)
-    - [File](#file)
-    - [Search / Datalist](#search--select-with-search)
-    - [Button](#button)
-    - [Element group](#groups)
-    - [Roadmap](#roadmap)
+    - [Attribute: data](#data)
+    - [Attribute: view](#view)
+    - [Attribute: method](#method)
+- [Default attributes for all the components](#default-attributes-for-all-the-components)
+    - [Attribute: label](#label)
+    - [Attribute: width](#width)
+    - [Attributes: dependOn, dependOnType and dependOnValue](#)
+    - [Attribute: conditional](#conditional)
+    - [Attribute: helper](#helper)
+- [Input](#create-an-input-component)
+- [Textarea](#create-a-textarea-component)
+- [Checkbox](#create-a-checkbox-component)
+- [Radio button](#create-a-radio-component)
+- [Select](#select)
+- [File](#file)
+- [Search / Datalist](#search--select-with-search)
+- [Button](#button)
+- [Element group](#groups)
+- [Roadmap](#roadmap)
 
 ## Install 
 
@@ -291,7 +299,7 @@ The soported methods that can be used in the form are:
 - **update** and **edit**: Will send a `PATCH` `_method` to **Laravel**. You can use either.
 - **delete** and **destroy**: Will send a `DELETE` `_method` to **Laravel**. You can use either.
 
-## General information about the different fields supported by the package
+## Default attributes for all the components
 
 All the components (except `form`) share a series of common methods, apart from those specific to each one of them. Next, we will explain these common methods:
 
