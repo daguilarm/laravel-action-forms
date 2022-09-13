@@ -226,7 +226,7 @@ return [
 ];
 ```
 
-> Remember: if you are using `action-forms-tailwind-safe`, you will need to clear views each time you change something in the package theme.
+> Remember: if you are changing some tailwind class in the config files, you will need to clear views each time you change something in the package theme.
 
 You can also modify the package theme, using the config file:
 
