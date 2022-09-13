@@ -13,6 +13,7 @@
     - [Radio button](#create-a-radio-component)
     - [Select](#select)
     - [File](#file)
+    - [Search / Datalist](#search--select-with-search)
     - [Button](#button)
     - [Element group](#groups)
     - [Roadmap](#roadmap)
@@ -630,6 +631,5 @@ The element can be in `vertical` or in `horizontal`. The default value is `horiz
 ## Roadmap
 
 - Toggle/Boolean (alpinejs)
-- Datalist/Search (alpinejs)
 - Datetime (alpinejs, flatpickr) 
 - Combobox (alpinejs)
