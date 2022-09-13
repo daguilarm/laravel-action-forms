@@ -146,7 +146,6 @@
             >
                 <template 
                     x-for="result in searchResults" 
-                    :key="result"
                 >
                     <div 
                         class="{{ $css->get('result') }}" 
