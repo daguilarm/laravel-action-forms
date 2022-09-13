@@ -303,17 +303,17 @@ Will render a `<label>` tag like: `<label>My name</label/>`.
 
 The `width` parameter allow you to set the container width using **tailwindcss** styles like: `w-1/2`, `w-2/3`,... If you remove the `width` parameter, the default value will be `w-full`. The defult values supported by the package are:
 
-- w-1/5: 20%
-- w-1/4: 25%
-- w-1/3: 33.33%
-- w-2/5: 40%
-- w-1/2: 50% 
-- w-3/5: 60% 
-- w-2/3: 66% 
-- w-3/4: 75% 
-- w-4/5: 80% 
-- w-11/12: 91.6%
-- w-ful: 100%
+- `w-1/5`: 20%
+- `w-1/4`: 25%
+- `w-1/3`: 33.33%
+- `w-2/5`: 40%
+- `w-1/2`: 50% 
+- `w-3/5`: 60% 
+- `w-2/3`: 66% 
+- `w-3/4`: 75% 
+- `w-4/5`: 80% 
+- `w-11/12`: 91.6%
+- `w-full`: 100%
 
 You can add more in the in the file `config/action-forms-tailwind-safe.php`.
 
