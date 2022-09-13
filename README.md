@@ -508,6 +508,8 @@ Same case from an `API`:
 />
 ```
 
+> **Important**: This component contains two input fields, both of which are submitted with the form. Using the example above they would be: `__country` and `country`. The first would send the value of `requestId` and the second the value of `requestValue`.
+
 ### requestFromArray 
 
 It use to add the `array` to the component.
