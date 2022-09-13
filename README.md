@@ -60,7 +60,7 @@ At the end of your `<body>` tag, add the stack for the scritps:
 @stack('action-forms-scripts')
 ```
 
-If you are using `PostCss` in your Tailwindcss configuration, you will need to add the following line in your `tailwind.config.js`:
+If you are using `PostCss` in your Tailwindcss configuration, you will need to add the following lines in your `tailwind.config.js`:
 
 ```js
 module.exports = {
