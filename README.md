@@ -151,7 +151,9 @@ Will get this:
     - [Attribute: color](#color)
     - [Attribute: javascript](#javascript)
 - [Element group](#groups)
+    - Attribute: width 
     - [Attribute: align](#align)
+    - Attribute: position
 - [Roadmap](#roadmap)
 
 ## Install 
