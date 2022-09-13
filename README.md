@@ -290,7 +290,7 @@ Now the components will looks like:
 
 > In the config file, you will find a lot of configuration options.
 
-For this you need to publish the configuration file:
+For this, you will need to publish the configuration file:
 
 ```bash
 php artisan vendor:publish --provider="Daguilarm\ActionForms\CookieConsentServiceProvider"
