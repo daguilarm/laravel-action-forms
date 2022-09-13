@@ -263,6 +263,31 @@ You can also modify the package theme, using the config file:
 ],
 ```
 
+You can add a prefix to your components, using the config file:
+
+```php
+/*
+|--------------------------------------------------------------------------
+| Components prefix
+|--------------------------------------------------------------------------
+| By default the component will be like thid: <x-form></x-form>
+| You can custom the component like: <x-mycustom-form></x-mycustom-form>
+*/
+'components_prefix' => '',
+```
+
+For example:
+
+```php
+'components_prefix' => 'laravel',
+```
+
+Now the components will looks like:
+
+```html
+<x-laravel-input />
+```
+
 > In the config file, you will find a lot of configuration options.
 
 For this you need to publish the configuration file:
