@@ -186,6 +186,14 @@ trait Configable
     }
 
     /**
+     * Package theme: search
+     */
+    protected function getThemeSearch(): array
+    {
+        return self::getThemeInput();
+    }
+
+    /**
      * Package theme: button
      */
     protected function getThemeButton(): array
