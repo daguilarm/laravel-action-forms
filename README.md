@@ -179,7 +179,7 @@ module.exports = {
     ],
 ```
 
-With this, when `PostCss` scans the all package it will discover the classes used by the package. You have also a file in `config/action-forms-tailwind-safe.php` where you can add your tailwind safe list, in case you need it. This is util if you use conditional clases in your blade templates:
+With this, when `PostCss` will scan all package and it will discover all classes used. You have also a file in `config/action-forms-tailwind-safe.php` where you can add your tailwind safe list, in case you need it. This is useful if you are using conditional clases in your blade templates:
 
 ```js
 // Tailwind Safe list
