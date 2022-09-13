@@ -114,6 +114,7 @@ final class ServiceProvider extends PackageProvider
             'select' => Components\Select::class,
             'file' => Components\File::class,
             'search' => Components\Search::class,
+            'toggle' => Components\Toggle::class,
             'button' => Components\Button::class,
             // Layers
             'group' => Components\Group::class,

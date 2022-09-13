@@ -138,7 +138,9 @@ php artisan vendor:publish --provider="Daguilarm\ActionForms\CookieConsentServic
 - In order to eliminate problems, always add an `id` attribute to each component.
 - Don't use all the dependencies. Each component will inform you of the dependencies it requires.
 
-## A few images  
+## The show view 
+
+The show view is used to display the content of the form, but without using its elements.
 
 **Show view without boolean fields:**
 
@@ -147,30 +149,6 @@ php artisan vendor:publish --provider="Daguilarm\ActionForms\CookieConsentServic
 **Show view with boolean fields:**
 
 ![Show action with boolean](./resources/img/show-boolean.png?raw=true)
-
-**Dependent fields in action:**
-
-![Dependent component](./resources/img/dependOn.gif?raw=true)
-
-**Dependent fields disabled:**
-
-![Dependent component disabled](./resources/img/dependOn-disabled.png?raw=true)
-
-**Radio field vertical:**
-
-![Radio button in vertical](./resources/img/radio-vertical.png?raw=true)
-
-**Radio field horizontal:**
-
-![Radio button in horizontal](./resources/img/radio-horizontal.png?raw=true)
-
-**Select and File:**
-
-![Select and File components](./resources/img/select-and-file.png?raw=true)
-
-**Select search / Datalist:**
-
-![Search component](./resources/img/search.gif?raw=true)
 
 ## Create a Form component 
 
@@ -259,6 +237,14 @@ This will allow us to create dependent fields, for example:
 In this case, the `surname` field will be hidden until the `name` field has a value. The system will be watching the `name` field until an `onchange` event occurs, and then it will check if the `name` field is still empty, if not, it will display the `surname` field. 
 
 The `dependOnType()` attribute admits two possible values: `hidden` or `disabled`.
+
+**Dependent fields in action:**
+
+![Dependent component](./resources/img/dependOn.gif?raw=true)
+
+**Dependent fields disabled:**
+
+![Dependent component disabled](./resources/img/dependOn-disabled.png?raw=true)
 
 > **The dependent system only works on one level**. That is, a parent element enables or disables their children elements, but it does not trigger a cascade of events towards its own children and these to their children, etc...
 
@@ -420,6 +406,14 @@ By default, the field will be unchecked.
 
 You can display the radio button in horizontal or in vertical, using: `position="horizontal"` or `position="vertical"`.
 
+**Radio field vertical:**
+
+![Radio button in vertical](./resources/img/radio-vertical.png?raw=true)
+
+**Radio field horizontal:**
+
+![Radio button in horizontal](./resources/img/radio-horizontal.png?raw=true)
+
 ### options
 
 You will need to add and `array` with the `value` and the `text` to be displayed.
@@ -442,6 +436,10 @@ You will need to add and `array` with the `value` and the `text` to be displayed
     default="0"
 />
 ```
+
+**Select and File:**
+
+![Select and File components](./resources/img/select-and-file.png?raw=true)
 
 ### options
 
@@ -508,6 +506,10 @@ Same case from an `API`:
 />
 ```
 
+**Select search / Datalist:**
+
+![Search component](./resources/img/search.gif?raw=true)
+
 > **Important**: This component contains two input fields, both of which are submitted with the form. Using the example above they would be: `__country` and `country`. The first would send the value of `requestId` and the second the value of `requestValue`.
 
 ### requestFromArray 
@@ -525,6 +527,12 @@ Used to define the key of the array.
 ### requestValue
 
 Used to define the value of the array.
+
+## Toggle 
+
+**Toogle button example:**
+
+![Toogle button](./resources/img/toggle.gif?raw=true)
 
 ## Button 
 
