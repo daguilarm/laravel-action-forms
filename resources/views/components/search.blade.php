@@ -102,27 +102,51 @@
                 />
                 <input type="hidden" x-ref="hidden__{{ $element }}" name="__{{ $element }}" :disabled="disabled" value="">
                 {{-- Search icon --}}
-                <div id="search-icons-{{ $element }}" class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                <div id="search-icons-{{ $element }}" class="{{ $css->get('icon_container') }}">
                     <!-- Heroicon name: search -->
-                    <svg x-show="!isLoading" class="h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" strokeWidth={1.5} stroke="currentColor" fill="none" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                    <svg 
+                        x-show="!isLoading" 
+                        class="{{ $css->get('icon') }}" 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        viewBox="0 0 20 20" 
+                        stroke-width="1.5" 
+                        stroke="currentColor" 
+                        fill="none" 
+                    >
+                        <path 
+                            stroke-linecap="round" 
+                            stroke-linejoin="round" 
+                            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" 
+                        />
                     </svg>
                     <!-- Heroicon name: loading -->
-                    <svg x-show="isLoading" class="animate-spin h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                    <svg 
+                        x-show="isLoading" 
+                        class="animate-spin {{ $css->get('icon') }}" 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        fill="none" 
+                        viewBox="0 0 24 24" 
+                        stroke-width="1.5" 
+                        stroke="currentColor"
+                    >
+                        <path 
+                            stroke-linecap="round" 
+                            stroke-linejoin="round" 
+                            d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" 
+                        />
                     </svg>
                 </div>
             </div>
             {{-- Result --}}
             <div 
-                class="absolute shadow border border-cyan-400 w-full bg-gray-50 mt-1" 
+                class="{{ $css->get('result_container') }}" 
                 style="z-index: 99 !important"
                 x-show="showElement()" 
                 @click.outside="resetElement()"
             >
                 <template x-for="result in searchResults">
                     <div 
-                        class="block relative py-2 px-3 cursor-pointer border-b border-gray-100 last:border-0 text-cyan-700 text-sm hover:bg-cyan-600 hover:text-white" 
+                        class="{{ $css->get('result') }}" 
                         style="z-index: 999 !important"
                         x-text="result.name"
                         x-on:click="selectElement(result)"

@@ -91,6 +91,12 @@ return [
         'file' => [
             'base' => 'block w-full text-sm text-slate-400 file:cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-stale-100 file:text-cyan-800 hover:file:bg-cyan-700 hover:file:text-white',  
         ],
+        'search' => [
+            'icon_container' => 'pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3',
+            'icon' => 'h-4 w-4 text-gray-400',
+            'result_container' => 'absolute shadow border border-cyan-400 w-full bg-gray-50 mt-1',
+            'result' => 'block relative py-2 px-3 cursor-pointer border-b border-gray-100 last:border-0 text-cyan-700 text-sm hover:bg-cyan-600 hover:text-white',
+        ],
         // Button
         'button' => [
             'base' => 'rounded-md py-2 px-4 text-sm font-medium border shadow-sm',

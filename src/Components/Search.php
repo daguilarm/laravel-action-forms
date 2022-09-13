@@ -35,6 +35,10 @@ class Search extends FormComponent
 
         $this->css = collect([
             'base' => $this->getConfigClasses($this->getThemeInput()) . ' rounded-md',
+            'icon_container' => config('action-forms.theme.search.icon_container'),
+            'icon' => config('action-forms.theme.search.icon'),
+            'result_container' => config('action-forms.theme.search.result_container'),
+            'result' => config('action-forms.theme.search.result'),
             'label' => $this->getConfigClasses($this->getThemeLabel()),
             'error' => $this->getConfigClasses($this->getThemeErrorMessages()),
             'errorHighlight' => $this->getConfigClasses($this->getThemeErrorMessagesHighlight()),
