@@ -791,6 +791,5 @@ The element can be in `vertical` or in `horizontal`. The default value is `horiz
 
 ## Roadmap
 
-- Toggle/Boolean (alpinejs)
-- Datetime (alpinejs, flatpickr) 
 - Combobox (alpinejs)
+- Datetime (alpinejs, flatpickr) 
