@@ -143,6 +143,7 @@ Will get this:
     - [Attribute: requestFrom](#requestFrom)
     - [Attribute: requestId](#requestId)
     - [Attribute: requestValue](#requestValue)
+    - [Attribute: minChars](#minchars)
 - [Toogle](#toggle)
     - [Attribute: color](#color)
 - [Button](#button)
@@ -651,6 +652,7 @@ The component would look like this (using an `array`):
     :requestFromArray="$array"
     requestId="id"
     requestValue="name"
+    minChars="3"
 />
 ```
 
@@ -689,6 +691,10 @@ Used to define the key of the array.
 ### requestValue
 
 Used to define the value of the array.
+
+### minChars
+
+Minimum number of characters to start the search.
 
 ## Toggle 
 

@@ -30,6 +30,7 @@ class Search extends FormComponent
         public ?string $requestId = null,
         public ?string $requestValue = null,
         public array $options = [],
+        public ?string $minChars = '2',
     ) {
         parent::__construct();
 

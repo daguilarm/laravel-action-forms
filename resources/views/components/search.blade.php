@@ -1,6 +1,7 @@
 @props([
     'element' => $attributes->get('name'),
     'value' => af__value($attributes, 'name', $data),
+    'minChars' => $minChars,
 ])
 
 {{-- Form-element container --}}
@@ -31,8 +32,10 @@
             searchResults: [],
             isLoading: false,
             searchType: '{{ $requestFrom ? 'request' : 'array' }}',
+            minChars: '{{ $minChars }}',
             searchEngine() {
-                if(this.searchElement.length >= 1) {
+                {{-- Start search with... chars --}}
+                if(this.searchElement.length >= this.minChars) {
                     {{-- Start loading --}}
                     this.isLoading = true;
                     {{-- Search from ajax --}}
