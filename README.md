@@ -325,7 +325,7 @@ The `width` parameter allow you to set the container width using **tailwindcss**
 
 You can add more in the in the file `config/action-forms-tailwind-safe.php`.
 
-### dependOn & dependOnType
+### dependOn, dependOnType and dependOnValue
 
 This will allow us to create dependent fields, for example:
 
