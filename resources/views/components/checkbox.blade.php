@@ -1,14 +1,5 @@
 @props([
     'element' => $attributes->get('name'),
-    'uniqueKey' => $uniqueKey,
-    'css' => $css,
-    'conditional' => $conditional,
-    'width' => $width,
-    'label' => $label,
-    'dependOn' => $dependOn,
-    'dependOnType' => $dependOnType,
-    'dependOnValue' => $dependOnValue,
-    'helper' => $helper,
     'value' => af__value($attributes, 'name', $data),
     'databaseValue' => $data->{$attributes->get('name')} ?? null,
 ])

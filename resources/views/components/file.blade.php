@@ -1,12 +1,5 @@
 @props([
     'element' => $attributes->get('name'),
-    'uniqueKey' => $uniqueKey,
-    'css' => $css,
-    'conditional' => $conditional,
-    'width' => $width,
-    'label' => $label,
-    'dependOn' => $dependOn,
-    'helper' => $helper,
 ])
 
 {{-- Form-element container --}}

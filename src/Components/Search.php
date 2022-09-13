@@ -26,15 +26,13 @@ class Search extends FormComponent
         public mixed $dependOnValue = null,
         public ?bool $conditional = null,
         public ?string $helper = null,
-        public ?string $id = null,
-        public bool $asBoolean = false,
-        public string $position = 'vertical',
+        public ?string $requestFrom = null,
+        public ?string $requestId = null,
+        public ?string $requestValue = null,
         public array $options = [],
-        public ?string $default = null,
     ) {
         parent::__construct();
 
-        $this->asBoolean = $asBoolean ? true : false;
         $this->css = collect([
             'base' => $this->getConfigClasses($this->getThemeInput()) . ' rounded-md',
             'label' => $this->getConfigClasses($this->getThemeLabel()),

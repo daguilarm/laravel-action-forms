@@ -457,6 +457,68 @@ You can set a default value. This option will be selected by default.
 />
 ```
 
+## Search / Select with search 
+
+We can use a component that emulates a `datalist` field but with the option to add values ​​(known problem with `datalist` fields). For this we will use the `Select` component.
+
+This component can use data that comes from an `array` or an `API`. Let's start with an example using an `array`. The first thing is to define the `array`:
+
+```php 
+$array = [
+    [
+        'id' => 1, // key
+        'name' => 'Damián', // value
+    ],
+    [
+        'id' => 2, // key
+        'name' => 'Daniel', // value
+    ],
+];
+```
+
+The component would look like this (using an `array`):
+
+```html 
+<x-search
+    width="w-1/3"
+    name="country"
+    label="Select user"
+    :requestFromArray="$array"
+    requestId="id"
+    requestValue="name"
+/>
+```
+
+Same case from an `API`:
+
+```html 
+<x-search
+    width="w-1/3"
+    name="country"
+    label="Select user"
+    requestFrom="https://domain.com/api/user?query="
+    requestId="id"
+    requestValue="name"
+    dependOn="country_id"
+/>
+```
+
+### requestFromArray 
+
+It use to add the `array` to the component.
+
+### requestFrom 
+
+It use to define the `URL` to the server (in order to get a response). **Only works with `JSON` responses.**
+
+### requestId
+
+Used to define the key of the array.
+
+### requestValue
+
+Used to define the value of the array.
+
 ## Button 
 
 You can display different types of buttons on your form, which are easily configurable.

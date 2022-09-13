@@ -1,16 +1,6 @@
 @props([
     'element' => $attributes->get('name'),
-    'uniqueKey' => $uniqueKey,
-    'css' => $css,
-    'conditional' => $conditional,
-    'width' => $width,
-    'label' => $label,
-    'dependOn' => $dependOn,
-    'dependOnType' => $dependOnType,
-    'dependOnValue' => $dependOnValue,
-    'helper' => $helper,
     'value' => af__value($attributes, 'name', $data),
-    'default' => $default,
 ])
 
 {{-- Form-element container --}}
@@ -28,7 +18,7 @@
             )
         "
         id="{{ $uniqueKey }}"
-        class="{{ $width }} {{ $cssElement }}"
+        class="{{ $width }} {{ $cssElement }} relative"
         x-show="visible"
         :class="disabled ? disabledClass : ''"
     >
@@ -40,17 +30,54 @@
             searchElement: '',
             searchResults: [],
             isLoading: false,
+            searchType: '{{ $requestFrom ? 'request' : 'array' }}',
             searchEngine() {
                 if(this.searchElement.length >= 1) {
+                    {{-- Start loading --}}
                     this.isLoading = true;
-                    fetch('https://agronoom.test/dashboard/api/user?query=' + this.searchElement)
-                        .then(response => response.json())
-                        .then(data => {
-                        this.isLoading = false;
-                        this.searchResults = data;
-                    });
+                    {{-- Search from ajax --}}
+                    if(this.searchType === 'request') {
+                        this.searchFromRequest('{{ $requestFrom }}');
+                    {{-- Search from array --}}
+                    } else {
+                        this.searchArray({{ json_encode($options) }});
+                    }
                 }
             },
+            {{-- Search from request AJAX/API --}}
+            searchFromRequest(url) {
+                fetch(url + this.searchElement)
+                    .then(response => response.json())
+                    .then(data => {
+                        this.searchResults = data;
+                        {{-- End of loading --}}
+                        this.isLoading = false;
+                    });
+            },
+            {{-- Search from array --}}
+            searchArray(results) {
+                query = this.searchElement.toLowerCase();
+                this.searchResults = results.filter(function(el) {
+                    return el.{{ $requestValue }}.toLowerCase().indexOf(query.toLowerCase()) > -1;
+                });
+                {{-- End of loading --}}
+                this.isLoading = false;
+            },
+            {{-- Select the current element from the search list --}}
+            selectElement(data) {
+                this.searchResults = 0;
+                $refs.hidden__{{ $element }}.value = data.{{ $requestId }};
+                this.value = data.{{ $requestValue }};
+            },
+            {{-- Reset search --}}
+            resetElement() {
+                this.searchResults = 0;
+                this.value = '';
+            },
+            {{-- Show element when results... --}}
+            showElement() {
+                return this.searchResults.length > 0;
+            }
         }">
             <div class="flex mt-1.5 relative">
                 {{-- search field --}}
@@ -71,11 +98,11 @@
                     dusk="form-input-{{ $attributes->get('id') ?? $element }}"
                     class="{{ $css->get('base') }} @include('action-forms::elements.validation-highlight') pl-10" 
                     {{-- Native attributes --}}
-                    name="hiden__{{ $element }}"
+                    {{ $attributes }}
                 />
-                <input type="hidden" name="{{ $element }}" />
+                <input type="hidden" x-ref="hidden__{{ $element }}" name="__{{ $element }}" :disabled="disabled" value="">
                 {{-- Search icon --}}
-                <div id="datalist-{{ $element }}" class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                <div id="search-icons-{{ $element }}" class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                     <!-- Heroicon name: search -->
                     <svg x-show="!isLoading" class="h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" strokeWidth={1.5} stroke="currentColor" fill="none" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
@@ -88,11 +115,18 @@
             </div>
             {{-- Result --}}
             <div 
-                class="bg-transparent mt-1" 
-                x-show="searchResults.length > 0" 
+                class="absolute shadow border border-cyan-400 w-full bg-gray-50 mt-1" 
+                style="z-index: 99 !important"
+                x-show="showElement()" 
+                @click.outside="resetElement()"
             >
                 <template x-for="result in searchResults">
-                    <div class="block py-2 px-3 cursor-pointer border-b border-gray-100 last:border-0 text-cyan-700 text-sm bg-gray-50 hover:bg-cyan-600 hover:text-white" x-text="result.name"></div>
+                    <div 
+                        class="block relative py-2 px-3 cursor-pointer border-b border-gray-100 last:border-0 text-cyan-700 text-sm hover:bg-cyan-600 hover:text-white" 
+                        style="z-index: 999 !important"
+                        x-text="result.name"
+                        x-on:click="selectElement(result)"
+                    ></div>
                 </template>
             </div>
             {{-- Validation errors and Helper --}}
