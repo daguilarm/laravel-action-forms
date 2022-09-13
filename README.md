@@ -145,27 +145,31 @@ php artisan vendor:publish --provider="Daguilarm\ActionForms\CookieConsentServic
 
 **Show view with boolean fields:**
 
-![Show action](./resources/img/show-boolean.png?raw=true)
+![Show action with boolean](./resources/img/show-boolean.png?raw=true)
 
 **Dependent fields in action:**
 
-![Show action](./resources/img/dependOn.gif?raw=true)
+![Dependent component](./resources/img/dependOn.gif?raw=true)
 
 **Dependent fields disabled:**
 
-![Show action](./resources/img/dependOn-disabled.png?raw=true)
+![Dependent component disabled](./resources/img/dependOn-disabled.png?raw=true)
 
 **Radio field vertical:**
 
-![Show action](./resources/img/radio-vertical.png?raw=true)
+![Radio button in vertical](./resources/img/radio-vertical.png?raw=true)
 
 **Radio field horizontal:**
 
-![Show action](./resources/img/radio-horizontal.png?raw=true)
+![Radio button in horizontal](./resources/img/radio-horizontal.png?raw=true)
 
 **Select and File:**
 
-![Show action](./resources/img/select-and-file.png?raw=true)
+![Select and File components](./resources/img/select-and-file.png?raw=true)
+
+**Select search / Datalist:**
+
+![Search component](./resources/img/search.gif?raw=true)
 
 ## Create a Form component 
 
