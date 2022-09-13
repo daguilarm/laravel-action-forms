@@ -16,7 +16,6 @@ if (! function_exists('af__value')) {
     }
 }
 
-
 /**
  * Render the javacript
  */
@@ -43,7 +42,7 @@ if (! function_exists('af__js_filter')) {
 if (! function_exists('af__option_default')) {
     function af__option_default(?string $key = null, ?string $default = null): string
     {
-        if(is_null($default) || $default === '') {
+        if (is_null($default) || $default === '') {
             return '';
         }
 

@@ -14,18 +14,18 @@ class Group extends FormComponent
      */
     public function __construct(
         public ?string $position = 'horizontal',
-        public string $align = "right",
+        public string $align = 'right',
         public string $width = 'full',
     ) {
         parent::__construct();
 
-        if($position) {
-            $positionAlign = match($align) {
+        if ($position) {
+            $positionAlign = match ($align) {
                 'left' => 'justify-start',
                 'center' => 'justify-center',
                 'right' => 'justify-end',
             };
-            $this->position = match($position) {
+            $this->position = match ($position) {
                 'horizontal' => 'flex items-center ' . $positionAlign . ' space-x-4',
                 'vertical' => 'flex flex-col space-y-4'
             };
