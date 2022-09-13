@@ -1,6 +1,8 @@
 # laravel-action-forms (project in development...)
  A package to manage forms with Laravel, using only one blade file for all your views (create, edit and show). You will only need to create a file with your form (only once), and the package will automatically generate the views to `create`, `edit` and `show`.
 
+![Laravel Action Forms](./resources/img/laravel-action-forms.gif?raw=true)
+
 ## Index
 - [Install](#install)
 - [Requirements and configuration](#requirements-and-configuration)
@@ -406,11 +408,11 @@ By default, the field will be unchecked.
 
 You can display the radio button in horizontal or in vertical, using: `position="horizontal"` or `position="vertical"`.
 
-**Radio field vertical:**
+**Radio field with vertical position:**
 
 ![Radio button in vertical](./resources/img/radio-vertical.png?raw=true)
 
-**Radio field horizontal:**
+**Radio field with horizontal position:**
 
 ![Radio button in horizontal](./resources/img/radio-horizontal.png?raw=true)
 
@@ -437,7 +439,7 @@ You will need to add and `array` with the `value` and the `text` to be displayed
 />
 ```
 
-**Select and File:**
+**Select and File examples:**
 
 ![Select and File components](./resources/img/select-and-file.png?raw=true)
 
@@ -506,7 +508,7 @@ Same case from an `API`:
 />
 ```
 
-**Select search / Datalist:**
+**Select search / Datalist example:**
 
 ![Search component](./resources/img/search.gif?raw=true)
 
@@ -529,6 +531,20 @@ Used to define the key of the array.
 Used to define the value of the array.
 
 ## Toggle 
+
+```html
+<x-toggle
+    width="w-1/3"
+    name="is_admin"
+    label="Is admin?"
+    color="danger"
+    required
+/>
+```
+
+## color 
+
+The allowed colors are: `primary`, `secondary`, `danger`, `warning` and `success`.
 
 **Toogle button example:**
 
