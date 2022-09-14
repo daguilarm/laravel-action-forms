@@ -1,5 +1,5 @@
 {{-- Form field javascript --}}
-@once('action-forms-scripts')
+@push('action-forms-scripts')
     <script defer $_key="{{ str()->uuid() }}">
         document.addEventListener('alpine:init', () => {
             Alpine.data('formData', (parent, conditional, value, valueEqual, type, databaseValue = null, currentElement) => ({
@@ -160,4 +160,4 @@
             }))
         })
     </script>
-@endonce
+@endpush

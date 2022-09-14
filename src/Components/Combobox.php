@@ -7,7 +7,7 @@ use Daguilarm\ActionForms\FormComponent;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 
-class Search extends FormComponent
+class Combobox extends FormComponent
 {
     use Configable;
 
@@ -27,10 +27,9 @@ class Search extends FormComponent
         public ?bool $conditional = null,
         public ?string $helper = null,
         public ?string $requestFrom = null,
-        public array $requestFromArray = [],
         public ?string $requestId = null,
         public ?string $requestValue = null,
-        public array $options = [],
+        public array $requestFromArray = [],
         public ?string $minChars = '2',
     ) {
         parent::__construct();
@@ -53,6 +52,6 @@ class Search extends FormComponent
      */
     public function render(): View
     {
-        return view('action-forms::components.search');
+        return view('action-forms::components.combobox');
     }
 }

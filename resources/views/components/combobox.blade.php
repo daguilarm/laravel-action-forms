@@ -27,12 +27,12 @@
         @includeWhen($label, 'action-forms::elements.label')
         
         {{-- Element container --}}
-        <div x-data="            
+        <div x-data="
             request(
                 '{{ $element }}', 
                 '{{ $requestId }}', 
                 '{{ $requestValue}}', 
-                {{ json_encode($requestFromArray) }},
+                '{{ json_encode($requestFromArray) }}',
                 '{{ $requestFrom }}',
                 '{{ $minChars }}'
             )
@@ -58,7 +58,7 @@
                     {{-- Native attributes --}}
                     {{ $attributes }}
                 />
-                <input type="hidden" data-element="hidden__{{ $element }}" name="__{{ $element }}" :disabled="disabled" value="">
+                <input type="hidden" x-ref="hidden__{{ $element }}" name="__{{ $element }}" :disabled="disabled" value="">
                 {{-- Search icon --}}
                 <div id="search-icons-{{ $element }}" class="{{ $css->get('icon_container') }}">
                     <!-- Heroicon name: search -->

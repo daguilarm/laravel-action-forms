@@ -112,6 +112,7 @@ final class ServiceProvider extends PackageProvider
             'checkbox' => Components\Checkbox::class,
             'radio' => Components\Radio::class,
             'select' => Components\Select::class,
+            'combobox' => Components\Combobox::class,
             'file' => Components\File::class,
             'search' => Components\Search::class,
             'toggle' => Components\Toggle::class,
