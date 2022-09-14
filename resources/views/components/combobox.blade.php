@@ -8,7 +8,7 @@
 @if($viewAction !== 'show') 
     <div 
         x-data="
-            formData(
+            formElement(
                 '{{ $dependOn }}', 
                 @json($conditional ?? true), 
                 `{{ $value }}`, 

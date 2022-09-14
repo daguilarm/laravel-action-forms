@@ -2,117 +2,152 @@
 @push('action-forms-scripts')
     <script defer $_key="{{ str()->uuid() }}">
         document.addEventListener('alpine:init', () => {
-            Alpine.data('formData', (parent, conditional, value, valueEqual, type, databaseValue = null, currentElement) => ({
-                // Set the values
-                parent: parent,
-                conditional: conditional,
-                value: value ? value.replace(/(\r\n|\n|\r)/gm,"") : value, // Fixed multilines values
-                valueEqual: valueEqual,
-                databaseValue: databaseValue,
-                type: type,
-                currentElement: currentElement,
+            // Define the form element
+            Alpine.data('formElement', (parent, conditional, value, valueEqual, type, databaseValue = null, currentElement) => ({
+                // Set the default values for the component
                 disabled: false,
                 visible: true,
+                currentElement: currentElement,
+                parent: parent,
                 checked: databaseValue ? true : false,
-                counterVisible: false,
-                count: 0,
+                value: value ? value.replace(/(\r\n|\n|\r)/gm,"") : value, // Fixed multilines values
+                databaseValue: databaseValue,
+                conditional: conditional,
+                // Dependant elements
+                dependOnType: type,
+                dependOnValue: valueEqual,
+                // Tailwind classes
                 disabledClass: '{{ config('action-forms.theme.disabled') }}',
                 resetValuesOnDisabled: '{{ config('action-forms.reset_disabled') }}',
-                // Init the component
+                // Textarea
+                counterVisible: false,
+                count: 0,
+                // Init the component for the element
                 init() {
-                    // Show or hide base on condition
+                    // Show or hide the current element base on a condition
+                    // The condition will be boolean so... 
+                    // If condition is false
                     if(!this.conditional) {
                         // this.visible = false;
                         this.disabled = true;
-                        this.value = '';
+                        this.visible = this.visibility();
+                        // Current element maybe is reset
+                        if(this.resetValuesOnDisabled) {
+                            this.value = '';
+                        }
                         // This way end here
-                        return true;
-                    // Rest of the cases
-                    } else {
-                        this.disabled = this.disableOrEnable(this.parent, this.value, this.valueEqual, this.conditional, false, currentElement);
-                        this.visible = this.type === 'hidden' 
-                            ? !this.disabled 
-                            : true;
-                    }
+                        return;
+                    } 
+                    // Set init values for disabled and visible
+                    // Check if the current element must be disabled
+                    this.disabled = this.disableOrEnable(this.parent, this.value, this.dependOnValue, this.conditional, false, currentElement);
+                    // Check if the current element must be visble
+                    this.visible = this.visibility();
                 },
-                // Disable or enable fields
-                disableOrEnable(parent, value, valueEqual, conditional, hasChildren, currentElement, disabled = true) {
-                    // If field has not parent, then the field is enable
+                // Define the visibility of the current element
+                // Will check for dependant type (in this case hidden)
+                visibility() {
+                    return this.dependOnType === 'hidden' 
+                        ? !this.disabled 
+                        : true;
+                },
+                // Disable or enable fields base on parent status
+                disableOrEnable(parent, value, dependOnValue, conditional, hasChildren, currentElement, disabled = true) {
+                    // If the current element has not parent element...
+                    // Then the current element is enable
                     if(!parent) {
                         return false;
-                    // If field has parent, then start the magic!
-                    } else {
-                        // Set the parent element 
-                        let parentField = document.querySelector('[name=' + parent + ']');
-                        return this.hasParent(parentField);
-                    }
+                    } 
+                    // If the current element has a parent...
+                    // Then will get the parent element
+                    let parentField = document.querySelector('[name=' + parent + ']');
+                    // Will decide if the current element must be enable or disabled
+                    // This will be decided base on if this element has a parent
+                    return this.hasParent(parentField);
                 },
-                // Get the element parent
+                // If the current element has a parent...
+                // We have to evaluate the parent
                 hasParent(parent) {
-                    // Parent is checkable 
+                    // If parent is a checkable element...
                     if(this.isCheckable(parent)) {
                         return this.parentIsCheckable(parent);
                     } 
-                    // Parent is not checkable
+                    // If parent is not a checkable element...
                     return this.parentIsNotCheckable(parent);
                 },
-                // Parent element is not checkable
+                // Will evaluate the parent
+                // If the parent element is not checkable...
                 parentIsNotCheckable(parent) {
-                    // If the child has a value, we are in the edit action, so the field is enable
+                    // If the child element has a value, the field must be enabled
                     if(this.value) {
-                        // Child is checkable
+                        // Action view: create 
+                        // Current element is checkable and has no value
+                        // Will be disabled or enabled base on the parent value
+                        if(this.isCheckable(this.currentElement) && this.isAnEmptyField(this.currentElement.dataset.value)) {
+                            return parent.value ? false : true;
+                        }
+                        // Action view: edit 
+                        // The current element is checkable and has a valid value
                         if(this.isCheckable(this.currentElement) && !this.isAnEmptyField(this.currentElement.dataset.value)) {
                             this.currentElement.checked = true;
                             this.currentElement.disabled = this.isAnEmptyField(this.currentElement.dataset.value) ? true : false;
                         }
-                        // Default values for checkable element: create and edit
-                        if(this.isCheckable(this.currentElement)) {
-                            return parent.value ? false : true;
-                        }
+                        // Action view: edit 
                         // Not checkable field
+                        // Current element will be enabled
                         return false;
-                    // We are not in the edit action
+
+                    // If the current element has not a value
                     } else {
-                        // If parent has a value and valueEqual is not defined, then enable the child
-                        if(parent.value && !this.valueEqual) {
+                        // If parent element has a value...
+                        // And dependOnValue is not defined (we just want any value)...
+                        // Then the child element will be enabled
+                        if(parent.value && !this.dependOnValue) {
                             return false;
                         }
-                        // If parent has a value and is equal to valueEqual, then enable the child
-                        if(parent.value && this.valueEqual && parent.value === this.valueEqual) {
+                        // If parent has a value...
+                        // And this value is equal to dependOnValue...
+                        // Then the child element will be also enabled
+                        if(parent.value && this.dependOnValue && parent.value === this.dependOnValue) {
                             return false;
                         } 
                     }
-                    // Check for children
+                    // Now will check if the current element has children 
+                    // Then will enable or disable the children
                     if(this.hasChildren) {
                         this.enableOrDisableChildren(this.currentElement);
                     }
+                    // Will desabled the element by default
                     return true;
                 },
-                // Parent element is checkable
+                // Will evaluate the parent
+                // If the parent element is checkable
                 parentIsCheckable(parent) {
-                    // Is a radio button, so has multiples parent
+                    // If the parent is a radio button... 
+                    // Then the current element will have multiples parents
                     if(this.isRadiable(parent)) {
-                        // If radio button, then parent are multiples 
+                        // Get all the checked parents
                         let isChecked = document.querySelectorAll('[name=' + this.parent + ']:checked');
-                        // If parent is checked, the child is enabled.
+                        // We only need one checked parent to enable the element...
+                        // So we only need to check if the first element exits
                         if(isChecked[0]) {
+                            this.enableOrDisableChildren(parent);
                             return false;
                         }
-                    // It is a checkbox 
+                    // The parent element is a checkbox 
                     } else {
-                        // If parent is checked, the child is enabled.
+                        // If parent is checked... 
+                        // The child is enabled
                         if(parent.checked) {
+                            this.enableOrDisableChildren(parent);
                             return false;
                         }
-                    }
-                    // Child is disabled
-                    // Check for children
-                    if(this.hasChildren) {
-                        this.enableOrDisableChildren(this.currentElement);
                     }
                     // Child maybe is reset
-                    this.value = '';
-                    // Child is disabled
+                    if(this.resetValuesOnDisabled) {
+                        this.value = '';
+                    }
+                    // Child element is disabled
                     return true;
                 },
                 // Enable or disable children
@@ -142,7 +177,7 @@
                     element.disabled = false;
                     // Checkable children... 
                     if(this.isCheckable(element)) {
-                        element.checked = element.databaseValue ? true : false;
+                        element.checked = element.dataset.value === this.value  ? true : false;
                     }
                 },
                 // Reset values when disabled if this option is checked in config

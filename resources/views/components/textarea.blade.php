@@ -7,15 +7,17 @@
 @if($viewAction !== 'show') 
     {{-- Element container --}}
     <div 
-        x-data="formData(
-            '{{ $dependOn }}', 
-            @json($conditional ?? true), 
-            `{{ $value }}`, 
-            '{{ $dependOnValue }}', 
-            '{{ $dependOnType }}', 
-            databaseValue = null, 
-            $refs.__{{ $uniqueKey }}
-        )"
+        x-data="
+            formElement(
+                '{{ $dependOn }}', 
+                @json($conditional ?? true), 
+                `{{ $value }}`, 
+                '{{ $dependOnValue }}', 
+                '{{ $dependOnType }}', 
+                databaseValue = null, 
+                $refs.__{{ $uniqueKey }}
+            )
+        "
         id="{{ $uniqueKey }}"
         class="{{ $width }} {{ $cssElement }}"
         x-show="visible"

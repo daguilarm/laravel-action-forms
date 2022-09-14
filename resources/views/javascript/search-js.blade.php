@@ -2,8 +2,8 @@
 @once('action-forms-scripts')
     <script defer $_key="{{ str()->uuid() }}">
         document.addEventListener('alpine:init', () => {
-            // For manage request value or arrays
-            Alpine.data('request', (element, requestId, requestValue, requestFromArray = null, requestFrom = null, minChars = 1) => ({
+            // For searching elements like: search, combobox,...
+            Alpine.data('formSearch', (element, requestId, requestValue, requestFromArray = null, requestFrom = null, minChars = 1) => ({
                 searchElement: '',
                 searchResults: [],
                 isLoading: false,
