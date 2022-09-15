@@ -25,8 +25,8 @@ final class ServiceProvider extends PackageProvider
         }
 
         // Load helpers
-        if (File::exists(__DIR__ . '\src\Helpers.php')) {
-            require __DIR__ . '\src\Helpers.php';
+        if (File::exists(__DIR__ . '/../src/Helpers.php')) {
+            require __DIR__ . '/../src/Helpers.php';
         }
     }
 
