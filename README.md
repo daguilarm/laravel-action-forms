@@ -667,9 +667,6 @@ You must the define your array value.
     width="w-1/3"
     name="country"
     label="Select country"
-    # Option 1: from URL
-    :fromUrl="https://www.domain.com/api/countries"
-    # Option 2: from array
     :fromArray="$countries"
     resultKey="uuid"
     resultValue="name"
