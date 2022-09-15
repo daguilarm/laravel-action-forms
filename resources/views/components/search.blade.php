@@ -32,8 +32,8 @@
                 '{{ $element }}', 
                 '{{ $requestId }}', 
                 '{{ $requestValue}}', 
-                {{ json_encode($requestFromArray) }},
-                '{{ $requestFrom }}',
+                {{ json_encode($fromArray) }},
+                '{{ $fromUrl }}',
                 '{{ $minChars }}'
             )
         ">

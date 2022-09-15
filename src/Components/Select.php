@@ -29,7 +29,11 @@ class Select extends FormComponent
         public ?string $id = null,
         public bool $asBoolean = false,
         public string $position = 'vertical',
-        public array $options = [],
+        public ?string $fromUrl = null,
+        public array $fromArray = [],
+        public ?string $resultKey = null,
+        public ?string $resultValue = null,
+        public ?string $comboboxFrom = null,
         public ?string $default = null,
     ) {
         parent::__construct();

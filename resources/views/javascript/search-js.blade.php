@@ -3,17 +3,18 @@
     <script defer $_key="{{ str()->uuid() }}">
         document.addEventListener('alpine:init', () => {
             // For searching elements like: search, combobox,...
-            Alpine.data('formSearch', (element, requestId, requestValue, requestFromArray = null, requestFrom = null, minChars = 1) => ({
+            Alpine.data('formSearch', (element, requestId, requestValue, fromArray = null, fromUrl = null, minChars = 1, parentValue = null) => ({
                 searchElement: '',
                 searchResults: [],
                 isLoading: false,
                 element: element,
                 minChars: minChars,
-                requestFrom: requestFrom,
-                requestFromArray: requestFromArray,
+                fromUrl: fromUrl,
+                fromArray: fromArray,
                 requestId: requestId,
                 requestValue: requestValue,
-                searchType: requestFrom ? 'request' : 'array',
+                searchType: fromUrl ? 'request' : 'array',
+                parentValue: parentValue,
                 // Search in element
                 searchEngine() {
                     // If query string is has enought length... 
@@ -23,17 +24,17 @@
                         this.isLoading = true;
                         // Serch type: from request url/API
                         if(this.searchType === 'request') {
-                            this.searchFromRequest();
+                            this.searchFromUrl();
                         // Search type: from array
                         } else {
-                            this.searchArray();
+                            this.searchFromArray();
                         }
                     }
                 },
                 // Serch type: from request url/API
-                searchFromRequest() {
+                searchFromUrl() {
                     // Request url
-                    fetch(this.requestFrom + this.searchElement)
+                    fetch(this.fromUrl + this.searchElement)
                         .then(response => response.json())
                         .then(data => {
                             // Get the results from the request
@@ -43,7 +44,7 @@
                         });
                 },
                 // Search type: from array
-                searchArray() {
+                searchFromArray() {
                     // Lowercase the query string
                     let query = this.searchElement.toLowerCase();
                     // Get the results from the array
@@ -53,7 +54,7 @@
                 },
                 // Array search
                 filterArray(query, requestValue) {
-                    return this.requestFromArray
+                    return this.fromArray
                         .filter(function(el) {
                             return eval('el.' + requestValue).toLowerCase().indexOf(query.toLowerCase()) > -1;
                         });

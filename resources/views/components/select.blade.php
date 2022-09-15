@@ -26,7 +26,16 @@
         @includeWhen($label, 'action-forms::elements.label')
         
         {{-- Element container --}}
-        <div>
+        <div x-data="            
+            formSelect(
+                '{{ $element }}',
+                '{{ $comboboxFrom }}', 
+                '{{ $resultKey }}', 
+                '{{ $resultValue}}', 
+                {{ json_encode($fromArray) }},
+                '{{ $fromUrl }}'
+            )
+        ">
             <div class="flex mt-1.5">
                 {{-- Select field --}}
                 <select 
@@ -43,9 +52,13 @@
                     {{ $attributes }} 
                 >
                     <option></option>
-                    @foreach($options as $key => $value)
-                        <option value="{{ $key }}" {{ af__option_default($key, $default) }}>{{ $value }}</option>
-                    @endforeach
+                    <template x-for="[key, result] in Object.entries(results)">
+                        <option 
+                            x-text="result[resultValue]"
+                            :value="result[resultKey]"
+                            :key="{{ str()->uuid() }}"
+                        ></option>
+                    </template>
                 </select>
             </div>
             {{-- Validation errors and Helper --}}
@@ -55,3 +68,6 @@
 @else 
     @include('action-forms::elements.show')
 @endif {{-- /Form element container --}}
+
+{{-- Javascript: form select --}}
+@includeWhen($viewAction !== 'show', 'action-forms::javascript.select-js')

@@ -26,11 +26,10 @@ class Search extends FormComponent
         public mixed $dependOnValue = null,
         public ?bool $conditional = null,
         public ?string $helper = null,
-        public ?string $requestFrom = null,
-        public array $requestFromArray = [],
+        public ?string $fromUrl = null,
+        public array $fromArray = [],
         public ?string $requestId = null,
         public ?string $requestValue = null,
-        public array $options = [],
         public ?string $minChars = '2',
     ) {
         parent::__construct();

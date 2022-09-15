@@ -607,13 +607,23 @@ You will need to add and `array` with the `value` and the `text` to be displayed
     width="w-1/3"
     name="country"
     label="Select country"
-    :options="[
-        0 => 'Spain',
-        1 => 'Portugal',
-        2 => 'France',
-        3 => 'Italy',
+    :fromArray="[
+        [
+            'id' => 1, // key
+            'name' => 'Spain', // value
+        ],
+        [
+            'id' => 2, // key
+            'name' => 'France', // value
+        ],
+        [
+            'id' => 3, // key
+            'name' => 'Italy', // value
+        ]
     ]"
-    default="0"
+    resultKey="id"
+    resultValue="name"
+    default="2"
 />
 ```
 
@@ -621,13 +631,75 @@ You will need to add and `array` with the `value` and the `text` to be displayed
 
 ![Select and File components](./resources/img/select-and-file.png?raw=true)
 
-### options
+### fromArray
 
-You will need to add and `array` with the `value` and the `text` to be displayed.
+You will need to add and `array` with the `key` and the `value` to be displayed.
+
+### fromUrl
+
+You can define an url to get your data in `JSON` format:
+
+```html
+<x-select
+    width="w-1/3"
+    name="country"
+    label="Select country"
+    :fromUrl="https://www.domain.com/api/countries"
+    resultKey="uuid"
+    resultValue="name"
+    default="2"
+/>
+```
+
+### resultKey 
+
+You must the define your array key.
+
+### resultValue 
+
+You must the define your array value.
+
+### comboboxFrom
+
+```html
+<!-- Parent element -->
+<x-select
+    width="w-1/3"
+    name="country"
+    label="Select country"
+    # Option 1: from URL
+    :fromUrl="https://www.domain.com/api/countries"
+    # Option 2: from array
+    :fromArray="$countries"
+    resultKey="uuid"
+    resultValue="name"
+    default="2"
+/>
+
+<!-- Child element -->
+<x-select
+    width="w-1/3"
+    name="city"
+    label="Select city"
+    :fromUrl="https://www.domain.com/api/cities?country="
+    comboboxFrom="country"
+    resultKey="uuid"
+    resultValue="name"
+    default="2"
+/>
+```
+
+In this example, the URL for the `JSON` response will be:
+
+```js 
+let url = 'https://www.domain.com/api/cities?country=' + country.value
+```
+
+An will populate the child element with the cities from the selected country (parent element).
 
 ### default 
 
-You can set a default value. This option will be selected by default.
+You can set a default value. This value will be selected by default.
 
 ## File 
 
