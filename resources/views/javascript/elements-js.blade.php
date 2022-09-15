@@ -127,10 +127,9 @@
                     // Then the current element will have multiples parents
                     if(this.isRadiable(parent)) {
                         // Get all the checked parents
-                        let isChecked = document.querySelectorAll('[name=' + this.parent + ']:checked');
                         // We only need one checked parent to enable the element...
                         // So we only need to check if the first element exits
-                        if(isChecked[0]) {
+                        if(this.ifParentIsRadiobuttonGetTheCheckedElement(parent)) {
                             this.enableOrDisableChildren(parent);
                             return false;
                         }
@@ -150,6 +149,9 @@
                     // Child element is disabled
                     return true;
                 },
+                ifParentIsRadiobuttonGetTheCheckedElement(parent) {
+                    return document.querySelectorAll('[name=' + parent.name + ']:checked')[0];
+                },
                 // Enable or disable children
                 enableOrDisableChildren(parent) {
                     let children = document.querySelectorAll('[data-parent=' + parent.name + ']');
@@ -157,8 +159,16 @@
                     children.forEach(element => {
                         // Get the container
                         let container = document.getElementById(element.dataset.key);
-                        // If parent is checkable and is checked
-                        if(this.isCheckable(parent) && parent.checked) {
+                        // Parent is a radio button
+                        if(this.isRadiable(parent)) {
+                            // Get all the checked parents
+                            // We only need one checked parent to enable the element...
+                            // So we only need to check if the first element exits
+                            if(this.ifParentIsRadiobuttonGetTheCheckedElement(parent)) {
+                                this.enableChildren(parent, container, element);
+                            }
+                        // Parent is a checkbox and is checked
+                        } else if(this.isCheckable(parent) && parent.checked) {
                             this.enableChildren(parent, container, element);
                         // If parent is not checkable and has a value
                         } else if(!this.isCheckable(parent) && parent.value) {
@@ -175,9 +185,15 @@
                 enableChildren(parent, container, element) {
                     container.classList.remove(this.disabledClass);
                     element.disabled = false;
-                    // Checkable children... 
-                    if(this.isCheckable(element)) {
+                    // Children is a radio button
+                    // Will check for a children value
+                    if(this.isRadiable(element) && !this.isAnEmptyField(element.dataset.value)) {
                         element.checked = element.dataset.value === this.value  ? true : false;
+                    }
+                    // Children is a checkbox and has a value
+                    // Will check for a children value
+                    if(this.isCheckable(element) && !this.isAnEmptyField(element.dataset.value)) {
+                        element.checked = element.dataset.value  ? true : false;
                     }
                 },
                 // Reset values when disabled if this option is checked in config
