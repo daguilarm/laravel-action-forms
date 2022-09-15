@@ -11,8 +11,9 @@ if (! function_exists('af__value')) {
     function af__value(ComponentAttributeBag $attributes, string $name, ?object $data = null): mixed
     {
         $key = $attributes->get($name);
+        $value = data_get($data, $key, null);
 
-        return old($name, $data->{$key} ?? null);
+        return old($name, $value);
     }
 }
 
