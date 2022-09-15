@@ -167,16 +167,16 @@
                             // Get all the checked parents
                             // We only need one checked parent to enable the element...
                             // So we only need to check if the first element exits
-                            if(this.ifParentIsRadiobuttonGetTheCheckedElement(parent)) {
+                            if(this.ifParentIsRadiobuttonGetTheCheckedElement(parent) && this.ifDependOnValue(parent, element)) {
                                 this.enableChildren(parent, container, element);
                             }
                         // If parent element is a checkbox
                         // If parent element is checked
-                        } else if(this.isCheckbox(parent) && parent.checked) {
+                        } else if(this.isCheckbox(parent) && parent.checked  && this.ifDependOnValue(parent, element)) {
                             this.enableChildren(parent, container, element);
                         // If parent element is not a checkbox
                         // If parent element has a value
-                        } else if(!this.isCheckbox(parent) && parent.value) {
+                        } else if(!this.isCheckbox(parent) && parent.value && this.ifDependOnValue(parent, element)) {
                             this.enableChildren(parent, container, element);
                         // If the parent element has no value... 
                         // Then the child element is disabled
@@ -203,6 +203,15 @@
                     if(this.isCheckbox(element) && !this.isAnEmptyField(element.dataset.value)) {
                         element.checked = element.dataset.value  ? true : false;
                     }
+                },
+                // If dependOnValue is active...
+                ifDependOnValue(parent, child) {
+                    // Not apply
+                    if(!child.dataset.equal) {
+                        return true;
+                    }
+                    // Check dependOnValue
+                    return child.dataset.equal && child.dataset.equal === parent.value;
                 },
                 // Reset values 
                 // Base on config options

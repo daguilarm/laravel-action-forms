@@ -43,9 +43,7 @@
                     data-key="{{ $uniqueKey }}"
                     data-value="{{ $value }}"
                     data-parent="{{ $dependOn }}"
-                    data-field="__{{ $uniqueKey }}"
                     data-equal="{{ $dependOnValue }}"
-                    data-condition="{{ $conditional }}"
                     dusk="form-input-{{ $attributes->get('id') ?? $element }}"
                     class="{{ $css->get('base') }} {{ $addons }} @include('action-forms::elements.validation-highlight')" 
                     {{-- Native attributes --}}

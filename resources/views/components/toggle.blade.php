@@ -46,9 +46,7 @@
                                 data-key="{{ $uniqueKey }}"
                                 data-value="{{ $value }}"
                                 data-parent="{{ $dependOn }}"
-                                data-field="__{{ $uniqueKey }}"
                                 data-equal="{{ $dependOnValue }}"
-                                data-condition="{{ $conditional }}"
                                 dusk="form-input-{{ $attributes->get('id') ?? $element }}"
                                 class="sr-only"
                                 {{-- Native attributes --}}

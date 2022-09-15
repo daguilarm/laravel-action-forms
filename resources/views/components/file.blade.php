@@ -34,8 +34,6 @@
                     :disabled="disabled"
                     data-key="{{ $uniqueKey }}"
                     data-parent="{{ $dependOn }}"
-                    data-field="__{{ $uniqueKey }}"
-                    data-condition="{{ $conditional }}"
                     dusk="form-input-{{ $attributes->get('id') ?? $element }}"
                     class="{{ $css->get('base') }} @include('action-forms::elements.validation-highlight')" 
                     {{-- Native attributes --}}
