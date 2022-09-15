@@ -28,8 +28,12 @@
         isCheckable(element) {
             return element.getAttribute('type') === 'checkbox' || element.getAttribute('type') === 'radio';
         },
+        // See if the element is checkable
+        isCheckbox(element) {
+            return element.getAttribute('type') === 'checkbox';
+        },
         // Check if the element is a radio button
-        isRadiable(element) {
+        isRadioButton(element) {
             return element.getAttribute('type') === 'radio';
         },
     }" 

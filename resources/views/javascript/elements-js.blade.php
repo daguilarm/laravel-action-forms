@@ -125,7 +125,7 @@
                 parentIsCheckable(parent) {
                     // If the parent is a radio button... 
                     // Then the current element will have multiples parents
-                    if(this.isRadiable(parent)) {
+                    if(this.isRadioButton(parent)) {
                         // Get all the checked parents
                         // We only need one checked parent to enable the element...
                         // So we only need to check if the first element exits
@@ -163,7 +163,7 @@
                         // Get the current element container
                         let container = document.getElementById(element.dataset.key);
                         // If parent element is a radio button
-                        if(this.isRadiable(parent)) {
+                        if(this.isRadioButton(parent)) {
                             // Get all the checked parents
                             // We only need one checked parent to enable the element...
                             // So we only need to check if the first element exits
@@ -172,11 +172,11 @@
                             }
                         // If parent element is a checkbox
                         // If parent element is checked
-                        } else if(this.isCheckable(parent) && parent.checked) {
+                        } else if(this.isCheckbox(parent) && parent.checked) {
                             this.enableChildren(parent, container, element);
-                        // If parent element is not checkable
+                        // If parent element is not a checkbox
                         // If parent element has a value
-                        } else if(!this.isCheckable(parent) && parent.value) {
+                        } else if(!this.isCheckbox(parent) && parent.value) {
                             this.enableChildren(parent, container, element);
                         // If the parent element has no value... 
                         // Then the child element is disabled
@@ -195,12 +195,12 @@
                     element.disabled = false;
                     // Children is a radio button
                     // Will check for a children value
-                    if(this.isRadiable(element) && !this.isAnEmptyField(element.dataset.value)) {
+                    if(this.isRadioButton(element) && !this.isAnEmptyField(element.dataset.value)) {
                         element.checked = element.dataset.value === this.value  ? true : false;
                     }
                     // Children is a checkbox and has a value
                     // Will check for a children value
-                    if(this.isCheckable(element) && !this.isAnEmptyField(element.dataset.value)) {
+                    if(this.isCheckbox(element) && !this.isAnEmptyField(element.dataset.value)) {
                         element.checked = element.dataset.value  ? true : false;
                     }
                 },
@@ -216,7 +216,7 @@
                 },
                 // isAnEmptyField(value) -> it is on parent element -> form.blade.php
                 // isCheckable(element) -> it is on parent element -> form.blade.php
-                // isRadiable(element) -> it is on parent element -> form.blade.php
+                // isRadioButton(element) -> it is on parent element -> form.blade.php
             }))
         })
     </script>
