@@ -434,6 +434,23 @@ Show or hide a component base on a condition:
 
 Will show a helper message after the field.
 
+## name 
+
+You can add relationships using dot notation:
+
+    <x-input
+        id="surname"
+        type="text"
+        name="user.profile_avatar"
+        label="Surname"
+    />
+
+Will be equivalen to: 
+
+```php 
+$data->user->profile_avatar;
+```
+
 ## Create an Input component 
 
 > This component requires the **alpinejs** dependency.
