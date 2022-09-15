@@ -70,6 +70,7 @@
                 // Get the hidden field
                 getHiddenElement() {
                     return document.querySelector('[data-element="hidden__' + this.element + '"]');
+                },
                 // Reset element
                 resetElement() {
                     this.searchResults = 0;

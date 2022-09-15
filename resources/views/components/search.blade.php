@@ -28,7 +28,7 @@
         
         {{-- Element container --}}
         <div x-data="            
-            request(
+            formSearch(
                 '{{ $element }}', 
                 '{{ $requestId }}', 
                 '{{ $requestValue}}', 
