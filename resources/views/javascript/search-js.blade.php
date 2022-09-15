@@ -3,7 +3,7 @@
     <script defer $_key="{{ str()->uuid() }}">
         document.addEventListener('alpine:init', () => {
             // For searching elements like: search, combobox,...
-            Alpine.data('formSearch', (element, requestId, requestValue, fromArray = null, fromUrl = null, minChars = 1, parentValue = null) => ({
+            Alpine.data('formSearch', (element, resultKey, resultValue, fromArray = null, fromUrl = null, minChars = 1, parentValue = null) => ({
                 searchElement: '',
                 searchResults: [],
                 isLoading: false,
@@ -11,8 +11,8 @@
                 minChars: minChars,
                 fromUrl: fromUrl,
                 fromArray: fromArray,
-                requestId: requestId,
-                requestValue: requestValue,
+                resultKey: resultKey,
+                resultValue: resultValue,
                 searchType: fromUrl ? 'request' : 'array',
                 parentValue: parentValue,
                 // Search in element
@@ -48,15 +48,15 @@
                     // Lowercase the query string
                     let query = this.searchElement.toLowerCase();
                     // Get the results from the array
-                    this.searchResults = this.filterArray(query, this.requestValue);
+                    this.searchResults = this.filterArray(query, this.resultValue);
                     // Then stop loading flag
                     this.isLoading = false;
                 },
                 // Array search
-                filterArray(query, requestValue) {
+                filterArray(query, resultValue) {
                     return this.fromArray
                         .filter(function(el) {
-                            return eval('el.' + requestValue).toLowerCase().indexOf(query.toLowerCase()) > -1;
+                            return eval('el.' + resultValue).toLowerCase().indexOf(query.toLowerCase()) > -1;
                         });
                 },
                 // Select element from search
@@ -64,9 +64,9 @@
                     // Reset results
                     this.searchResults = 0;
                     // Add value to hidden field (ID)
-                    this.getHiddenElement().value = eval('data.' + this.requestId);
+                    this.getHiddenElement().value = eval('data.' + this.resultKey);
                     // Add value to field (TEXT)
-                    this.value = eval('data.' + this.requestValue);
+                    this.value = eval('data.' + this.resultValue);
                 },
                 // Get the hidden field
                 getHiddenElement() {

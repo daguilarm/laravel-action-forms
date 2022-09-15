@@ -738,23 +738,23 @@ The component would look like this (using an `array`):
     width="w-1/3"
     name="country"
     label="Select user"
-    :requestFromArray="$array"
-    requestId="id"
-    requestValue="name"
+    :fromArray="$array"
+    resultKey="id"
+    resultValue="name"
     minChars="3"
 />
 ```
 
-Same case from an `API`:
+Same case from an `URL`:
 
 ```html 
 <x-search
     width="w-1/3"
     name="country"
     label="Select user"
-    requestFrom="https://domain.com/api/user?query="
-    requestId="id"
-    requestValue="name"
+    fromUrl="https://domain.com/api/user?query="
+    resultKey="id"
+    resultValue="name"
     dependOn="country_id"
 />
 ```
@@ -763,23 +763,11 @@ Same case from an `API`:
 
 ![Search component](./resources/img/search.gif?raw=true)
 
-> **Important**: This component contains two input fields, both of which are submitted with the form. Using the example above they would be: `__country` and `country`. The first would send the value of `requestId` and the second the value of `requestValue`.
+> **Important**: This component contains two input fields, both of which are submitted with the form. Using the example above they would be: `__country` and `country`. The first would send the value of `responseKey` and the second the value of `responseValue`.
 
-### requestFromArray 
+### fromArray, fromUrl, resultKey, resultValue and comboboxFrom
 
-It use to add the `array` to the component.
-
-### requestFrom 
-
-It use to define the `URL` to the server (in order to get a response). **Only works with `JSON` responses.**
-
-### requestId
-
-Used to define the key of the array.
-
-### requestValue
-
-Used to define the value of the array.
+Same behavior as select element.
 
 ### minChars
 

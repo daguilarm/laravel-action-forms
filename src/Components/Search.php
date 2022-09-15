@@ -28,8 +28,9 @@ class Search extends FormComponent
         public ?string $helper = null,
         public ?string $fromUrl = null,
         public array $fromArray = [],
-        public ?string $requestId = null,
-        public ?string $requestValue = null,
+        public ?string $resultKey = null,
+        public ?string $resultValue = null,
+        public ?string $comboboxFrom = null,
         public ?string $minChars = '2',
     ) {
         parent::__construct();

@@ -30,8 +30,8 @@
         <div x-data="            
             formSearch(
                 '{{ $element }}', 
-                '{{ $requestId }}', 
-                '{{ $requestValue}}', 
+                '{{ $resultKey }}', 
+                '{{ $resultValue}}', 
                 {{ json_encode($fromArray) }},
                 '{{ $fromUrl }}',
                 '{{ $minChars }}'
